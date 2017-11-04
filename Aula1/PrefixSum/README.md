@@ -26,6 +26,7 @@ Fazendo o pré-processamento de soma prefixa, é possível responder cada pergun
 cada índice do vetor de soma prefixa significa "Qual é a soma de todos os elementos anteriores a este índice?"
 
 v    = {1,3,5,-3,1,12,20,-3,2}
+
 psum = {1,4,9,6,7,19,39,36,38}
 
 
