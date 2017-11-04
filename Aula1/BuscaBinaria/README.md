@@ -1,6 +1,8 @@
 Busca Binaria
 =============
 
+Busca Binária na resposta
+-------------------------
 Vamos começar com um exemplo:
 
 
@@ -71,17 +73,6 @@ meio = (2.5 + 5) / 2 = 3.75
 O------------------|------------------O
 ```
 
-meio = (2.5 + 3.75) / 2 = 3.125
-3.125 ^ 2 = 9.76, que é maior que 9.
-
-
-
-```
-2.5                 meio            3.125
-
-O------------------|------------------O
-```
-
 ```
 .
 .
@@ -89,6 +80,20 @@ O------------------|------------------O
 ```
 
 Após umas 50 iterações, o intervalo já será pequeno o suficiente para termos a raiz de 9 com uma boa precisão. e é possível ver que a resposta convergirá para 3.
+
+
+
+Busca Binária em vetores
+------------------------
+
+Imagine que você tem vários inteiros em um vetor V, e é necessário frequentemente verificar uma informação do tipo
+
+X está em V?
+
+Qual o primeiro inteiro maior que X presente em V?
+
+
+
 
 
 
