@@ -93,11 +93,7 @@ X está em V?
 Qual o primeiro inteiro maior que X presente em V?
 
 
-
-
-
-
-
+(terminar depois)
 
 
 
