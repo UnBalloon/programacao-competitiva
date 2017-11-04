@@ -8,7 +8,10 @@ double raiz(double k)
 	double l = 0.0;
 	double r = k+1;
 
-
+	/* quando a resposta é um número em 
+	ponto flutuante, é interessante
+	usar repetição contada, para evitar
+	loops infinitos. */
 	for (int i = 0; i <= 100; ++i)
 	{
 		double mid = (l + r)/2;
