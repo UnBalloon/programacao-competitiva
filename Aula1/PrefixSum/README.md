@@ -31,10 +31,12 @@ psum = {1,4,9,6,7,19,39,36,38}
 
 
 Tendo essas informações, a resposta pra cada pergunta pode ser obtida da seguinte forma:
-
+```
 int pergunta(int a, int b){
     if(a != 0)
         return psum[b] - psum[a-1];
     else
         return psum[b];
 }
+```
+
