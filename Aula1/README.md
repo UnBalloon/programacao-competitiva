@@ -70,3 +70,28 @@ Aos longo das iterações do primeiro loop, a quantidade de iterações do segun
 
 Portanto podemos dizer que a complexidade do código acima é O(```(n+1)*n/2```), O(```(n+1)*n```) ou O(```n^2```). Mas geralmente optamos pela forma mais simples que é O(```n^2```).
 
+(Se você ainda não aprendeu recursão, talvez não entenda esse exemplo)
+```
+int fibonacci(int n){
+    if(n == 0)
+        return 0;
+    if(n == 1)
+        return 1;
+    return fibonacci(n-1) + fibonacci(n-2);
+}
+```
+
+A famosa função de fibonacci. Essa função recursiva é bem bonita de se ver declarada, mas tem uma complexidade horrível.
+
+Pense que queremos Calcular Fibonacci(4)
+
+                               
+                                      4   
+                                   /    \
+                                  3      2
+                                 / \    / \
+                                2   1  1   0 
+                               / \
+                              1   0
+                              
+Essa a árvore formada pelas chamadas recursivas, olhe quantas fezes recomputamos as mesmas coisas. A complexidade dessa função é O(```2^n```), pois para cada chamada de fibonacci recursiva, fazemos outras duas, e acabamos recomputando várias vezes as mesmas coisas. Implemente essa função em sua máquina e faça uma chamada de fibonacci(35), já deve ser possível sentir o tempo que o programa leva para processar isso. 
