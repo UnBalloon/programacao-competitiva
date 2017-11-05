@@ -66,7 +66,7 @@ for(int i = 0; i < n; i++){
 ```
 A quantidade de vezes que o segundo loop executa depende do i, então é um pouco mais difícil de analisar a complexidade.
 
-Aos longo das iterações do primeiro loop, a quantidade de iterações do segundo é ```n + (n-1) + (n-2) + (n-3) + ... + 1```, ou seja, é soma de [PA](https://educacao.uol.com.br/disciplinas/matematica/progressao-artimetica-pa-formula-da-soma-e-do-termo-geral.htm) e podemos resolver para O(```(n+1)*n/2```). Em análise de complexidade só nos importamos com quando as variáveis são muito grandes(tendem a infinito), de um modo bem bruto infinito e infinito/2 dá no mesmo, então podemos escrever a complexidade como O(```(n+1)*n```). Novamente quando pensamos em números bem altos ```n``` e ```n+1``` se tornam praticamente a mesma coisa e podemos concluir que a complexidade é O(```n^2```).
+Ao longo das iterações do primeiro loop, a quantidade de iterações do segundo é ```n + (n-1) + (n-2) + (n-3) + ... + 1```, ou seja, é soma de [PA](https://educacao.uol.com.br/disciplinas/matematica/progressao-artimetica-pa-formula-da-soma-e-do-termo-geral.htm) e podemos resolver para O(```(n+1)*n/2```). Em análise de complexidade só nos importamos com quando as variáveis são muito grandes(tendem a infinito), de um modo bem bruto infinito e infinito/2 dá no mesmo, então podemos escrever a complexidade como O(```(n+1)*n```). Novamente quando pensamos em números bem altos ```n``` e ```n+1``` se tornam praticamente a mesma coisa e podemos concluir que a complexidade é O(```n^2```).
 
 Portanto podemos dizer que a complexidade do código acima é O(```(n+1)*n/2```), O(```(n+1)*n```) ou O(```n^2```). Mas geralmente optamos pela forma mais simples que é O(```n^2```).
 
