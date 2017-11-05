@@ -8,7 +8,8 @@ O que é Complexidade?
 
 Em linhas gerais, a complexidade de um algoritmo é o quanto as variáveis de entrada impactam no seu tempo de execução.
 
-Para se referir a complexidade de um algoritmo, se usa a notação O(complexidade). A quantidade de operações que os computadores atuais executam em um segundo é por volta de 10^8, portanto podemos estimar o tempo de execução de um programa usando análise de complexidade.
+Para se referir a complexidade de um algoritmo, se usa a notação O(complexidade). A quantidade de operações que os computadores atuais executam em um segundo é por volta de 10^8, portanto podemos estimar o tempo de execução de um programa usando análise de complexidade. Basta fazer o cálculo de complexidade e dividir por 10^8, e a resposta será aproximadamente o tempo de execução em segundos.
+
 
 Exemplos:
 
