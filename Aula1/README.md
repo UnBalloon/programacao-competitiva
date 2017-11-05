@@ -94,4 +94,4 @@ Pense que queremos Calcular Fibonacci(4)
                                / \
                               1   0
                               
-Essa a árvore formada pelas chamadas recursivas, olhe quantas fezes recomputamos as mesmas coisas. A complexidade dessa função é O(```2^n```), pois para cada chamada de fibonacci recursiva, fazemos outras duas, e acabamos recomputando várias vezes as mesmas coisas. Implemente essa função em sua máquina e faça uma chamada de fibonacci(35), já deve ser possível sentir o tempo que o programa leva para processar isso. 
+Essa a árvore formada pelas chamadas recursivas, olhe quantas vezes recomputamos as mesmas coisas. A complexidade dessa função é O(```2^n```), pois para cada chamada de fibonacci recursiva, fazemos outras duas, e acabamos recomputando várias vezes as mesmas coisas. Implemente essa função em sua máquina e faça uma chamada de fibonacci(35), já deve ser possível sentir o tempo que o programa leva para processar isso. 
