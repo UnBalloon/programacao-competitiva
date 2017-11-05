@@ -8,14 +8,14 @@ o segundo é o endereço de memória logo após o ultimo elemento do vetor.
 
 Então se temos um bloco de memória v dessa forma: 
 ```
-pos = [0,1 , 2,3,4]
-v =   [0,15,10,9,4]
+pos = [0, 1, 2,3,4]
+v   = [0,15,10,9,4]
 ```
 
 e chamamos sort(v, v+4), ficamos com: 
 ```
-pos = [0,1,2 , 3,4]
-v =   [0,9,10,15,4]
+pos = [0,1, 2, 3,4]
+v   = [0,9,10,15,4]
 ```
 
 então de maneira geral, se temos um vetor v de tamanho n, para ordená-lo basta chamar sort(v,v+n)
