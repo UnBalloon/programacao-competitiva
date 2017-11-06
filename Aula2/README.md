@@ -24,7 +24,7 @@ Matematica, strings, estruturas de dados e e diversas funções úteis.
 
 # STL(Standart Template Library) 
 
-## Introcução
+## Introdução
 STL é uma parte fundamental de C++, pois com o passar do tempo, iremos nos deparar com diversos problemas comuns em relação a dados, com isso podemos criar uma coleção de dados e executar várias operações, como: adicionar, remover, mover, ordenar, alterar dados.
 
 ## Objetivos
@@ -55,6 +55,6 @@ Nesta aula, iremos ter contatos com algumas STL's mais usadas na programação c
 - Vetor de palavras, para armazenar a frequencia de palavras em um texto
 - Para mais detalhes: http://www.cplusplus.com/reference/map/map/
 ```cpp
-	map<string> mp;
+	map<string,int> mp;
 	mp["Thiago"]++;
 ```
