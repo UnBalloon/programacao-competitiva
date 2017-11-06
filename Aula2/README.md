@@ -51,8 +51,8 @@ Nesta aula, iremos ter contatos com algumas estruturas de dados (EDs) mais usada
 
 - Map é uma espécie de vetor que armazena elementos formados por uma chave e valor (key,value)
 - Isso abre um universo de possibilidades, como:
-- Fazer um vetor de char com char, no qual uma letra armazena uma outra letra (Crifa de César)
-- Vetor de palavras, para armazenar a frequencia de palavras em um texto
+	- Fazer um vetor de char com char, no qual uma letra armazena uma outra letra (Crifa de César)
+	- Vetor de palavras, para armazenar a frequencia de palavras em um texto
 - Para mais detalhes: http://www.cplusplus.com/reference/map/map/
 ```cpp
 	map<string,int> mp;
