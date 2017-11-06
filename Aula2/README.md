@@ -28,7 +28,7 @@ Matematica, strings, estruturas de dados e e diversas funções úteis.
 STL é uma parte fundamental de C++, pois com o passar do tempo, iremos nos deparar com diversos problemas comuns em relação a dados, com isso podemos criar uma coleção de dados e executar várias operações, como: adicionar, remover, mover, ordenar, alterar dados.
 
 ## Objetivos
-Nesta aula, iremos ter contatos com algumas STL's mais usadas na programação competitiva.
+Nesta aula, iremos ter contatos com algumas estruturas de dados (EDs) mais usadas na programação competitiva.
 - Vector
 - Map
 - Set
@@ -37,7 +37,7 @@ Nesta aula, iremos ter contatos com algumas STL's mais usadas na programação c
 
 ## Vector
 
-- A grosso modo, vector é uma STL no qual se parece a um Array, porém tem seu tamanho expansível.
+- A grosso modo, vector é uma ED no qual se parece a um Array, porém tem seu tamanho expansível.
 - A diferença principal entre Vector e Array é a sua alocação, no qual a do Array se faz estáticamente, já a do Vector Dinamicamente, com ponteiros :D
 - Desenhos-no-quadro.jpg
 - Apresentar principais métodos: push_back(), begin(), end(), etc.
