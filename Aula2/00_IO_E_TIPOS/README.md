@@ -41,7 +41,7 @@ string b = "def";
 A concatenação de strings é simplesmente juntar 2 strings, uma após a outra. Então se tenho a string 'abc' e a string 'def',
 'abc' + 'def' = 'abcdef'. Como é necessário uma operação para cada caractere, esse operaçao é executada em O(S), aonde S é a soma dos tamanhos das strings.
 ```cpp
-cout << a + b << endl;
+string resultado = a + b;
 ```
 
 
