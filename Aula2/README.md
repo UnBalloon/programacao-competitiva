@@ -29,3 +29,9 @@ Saber as funções e estruturas de dados da STL é uma parte fundamental de C++,
 - Introduzir as estruturas de dados comuns
 - Aumentar a gama de problemas que os alunos são capazes de resolver
 
+[IO e Tipos](00_IO_E_TIPOS)
+----
+[Estruturas de Dados](01_Estruturas_de_Dados)
+---
+[Ordenação](02_Ordenacao)
+---
