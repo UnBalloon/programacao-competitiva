@@ -33,6 +33,5 @@ int main(){
 	else if(par4 > par3)
 		printf("par4 é maior\n");
 	else
-		printf("par3 e par4 sao iguais);
+		printf("par3 e par4 sao iguais\n");
 }
-	
