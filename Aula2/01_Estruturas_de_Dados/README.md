@@ -1,9 +1,6 @@
 
 # Estruturas de dados 
 
-## Introdução
-
-
 
 ## Vector
 
