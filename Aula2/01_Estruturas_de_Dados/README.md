@@ -1,14 +1,12 @@
 
 # Estruturas de dados 
 
-## Introdução
-
 
 
 ## Vector
 
 - A grosso modo, vector é uma ED no qual se parece a um Array, porém tem seu tamanho expansível.
-- A diferença principal entre Vector e Array é a sua alocação, no qual a do Array se faz estáticamente, já a do Vector é feita dinamicamente [com ponteiros :D]
+- A diferença principal entre Vector e Array é a sua alocação, no qual a do Array se faz estaticamente, já a do Vector é feita dinamicamente [com ponteiros :D]
 - Desenhos-no-quadro.jpg
 - Apresentar principais métodos: push_back(), begin(), end(), etc.
 - Para mais detalhes: http://www.cplusplus.com/reference/vector/vector/
