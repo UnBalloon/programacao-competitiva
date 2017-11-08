@@ -43,8 +43,26 @@ cout << a + b << endl;
 
 O critério para comparação de strings é muito parecido com o critério de ordenação lexicográfico (do dicionário), mas também funciona para sequencia de caracteres com caracteres especiais (?,-,.,!). Na verdade, o que é feito é comparar caractere à caractere pelo seu valor na tabela ASCII, Caso uma string s1 tenha um caractere com valor menor que o de uma string s2, a comparação termina e s1 é considerada menor que s2. No pior caso, será necessário comparar todos os caracteres de pelo menos uma das strings, então comparação entre strings é executada em O(S) aonde S é o tamanho da menor entre as duas strings.
 
+```cpp
+string a = "abc";
+string b = "abd";
+if(a > b)
+  // faz tal coisa
+else
+  // faz outra coisa
+```
+
 A conversão para inteiro é bem simples, a única restrição é que caso a string seja muito grande, seu tamanho estourará o limite para inteiro (ou long long), é executada em O(S) com s sendo o tamanho da string. O mesmo vale para a conversão de inteiro para string.
 
+
+```cpp
+string s = "123";
+int a = stoi(s);
+```
+```cpp
+int a = 123;
+string s = to_string(a);
+```
 Pair
 ----
 
