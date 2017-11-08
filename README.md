@@ -9,6 +9,6 @@ Como compilar os exemplos
 os exemplos estão em c++, se você sabe compilar com o gcc, basta compilar como compilaria com o gcc, mas digitando g++ no lugar de gcc.
 
 Caso você não tenha o g++ instalado, basta digitar 
-```
-sudo apt-get install g++
+```bash
+sudo apt-get install g++ -std=c++11
 ```
