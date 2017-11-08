@@ -80,5 +80,24 @@ Pares podem ser comparados, de forma que o valor da esquerda é comparado antes,
 if(p1 > p2)
   //faz tal coisa
 else
-  // faz outra coisa
+  // faz outra coisa
+``` 
+Define
+-----
+Defines são expressões pré definidas pelo programador, que podem facilitar sua vida reduzindo tempo de escrita. *MUITO* cuidado!!! Elas podem  acabar atrapalhando caso usadas de maneira errada.
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+#define pb push_back
+#define mp make_pair
+#define ii pair<int,int>
+#define N 100000
+int main(){
+
+	vector<int> v;
+	v.pb(N); // inserindo 100000 no vetor
+	vector<ii> v2; //vetor de <int,int>
+	v2.pb(mp(1,0)); //inserindo o par (1,0) no vetor de par
+}
 ```
