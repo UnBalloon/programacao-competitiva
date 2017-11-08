@@ -15,7 +15,10 @@ Leitura
 -------
 
 O exemplo leitura mostra como ler variáveis em c++, pode-se usar o comando cin, que é parecido com o scanf, e assim como o cout, não é necessário indicar o tipo.
-
+```cpp
+	double y;
+	cin >> y;
+```
 
 Importante
 ----------
