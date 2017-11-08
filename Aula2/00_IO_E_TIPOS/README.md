@@ -34,6 +34,12 @@ C++ tem strings como tipo nativo,  como se fosse um char ou um inteiro. Por esse
 
 A concatenação de strings é simplesmente juntar 2 strings, uma após a outra. Então se tenho a string 'abc' e a string 'def',
 'abc' + 'def' = 'abcdef'. Como é necessário uma operação para cada caractere, esse operaçao é executada em O(S), aonde S é a soma dos tamanhos das strings.
+```cpp
+string a = "abc";
+string b = "def";
+cout << a + b << endl;
+```
+
 
 O critério para comparação de strings é muito parecido com o critério de ordenação lexicográfico (do dicionário), mas também funciona para sequencia de caracteres com caracteres especiais (?,-,.,!). Na verdade, o que é feito é comparar caractere à caractere pelo seu valor na tabela ASCII, Caso uma string s1 tenha um caractere com valor menor que o de uma string s2, a comparação termina e s1 é considerada menor que s2. No pior caso, será necessário comparar todos os caracteres de pelo menos uma das strings, então comparação entre strings é executada em O(S) aonde S é o tamanho da menor entre as duas strings.
 
