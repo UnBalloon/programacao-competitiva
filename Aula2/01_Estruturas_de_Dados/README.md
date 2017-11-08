@@ -1,8 +1,8 @@
 
-# STL(Standard Template Library) 
+# Estruturas de dados 
 
 ## Introdução
-STL é uma parte fundamental de C++, pois com o passar do tempo, iremos nos deparar com diversos problemas comuns em relação a dados, com isso podemos criar uma coleção de dados e executar várias operações, como: adicionar, remover, mover, ordenar, alterar dados.
+
 
 
 ## Vector
