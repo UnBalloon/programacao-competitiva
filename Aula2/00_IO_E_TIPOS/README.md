@@ -8,7 +8,7 @@ Hello World
 
 O exemplo hello world mostra como se imprime na tela em c++, usa-se o comando cout. cout é muito parecido com printf, mas você no precisa indicar o tipo da variável na impressão. 
 ```cpp
-	cout << "Hello World!\n";
+cout << "Hello World!\n";
 ```
 
 Leitura
@@ -16,8 +16,8 @@ Leitura
 
 O exemplo leitura mostra como ler variáveis em c++, pode-se usar o comando cin, que é parecido com o scanf, e assim como o cout, não é necessário indicar o tipo.
 ```cpp
-	double y;
-	cin >> y;
+double y;
+cin >> y;
 ```
 
 Importante
