@@ -18,16 +18,14 @@ int main(){
 }
 ```
 
-Esse include inclui todas as bibliotecas padrão do c++, então tem-se suporte a: 
+Esse include nos traz a bilbioteca STL, que inclui todas as bibliotecas padrão do c++, então tem-se suporte a: 
 
 Matematica, strings, estruturas de dados e e diversas funções úteis.
 
+Saber as funções e estruturas de dados da STL é uma parte fundamental de C++, pois com o passar do tempo, iremos nos deparar com diversos problemas comuns em relação a dados, com isso podemos criar uma coleção de dados e executar várias operações, como: adicionar, remover, mover, ordenar, alterar dados.
 
-## Objetivos
-Nesta aula, iremos ter contatos com algumas estruturas de dados (EDs) mais usadas na programação competitiva.
-- Vector
-- Map
-- Set
-- Queue
-
+## Objetivos da aula
+- Aprender a ler input e output em c++
+- Introduzir as estruturas de dados comuns
+- Aumentar a gama de problemas que os alunos são capazes de resolver
 
