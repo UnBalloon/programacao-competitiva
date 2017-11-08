@@ -36,36 +36,51 @@ int n = v.size();
 - Isso abre um universo de possibilidades, como:
 	- Fazer um vetor de char com char, no qual uma letra armazena uma outra letra (Crifa de César)
 	- Vetor de palavras, para armazenar a frequencia de palavras em um texto
+
+- Falar sobre complexidade 
+- Os elementos de um map são inseridos de forma ordenada de acordo com sua key, ou seja, se voce fizer um     map de string, as palavras (keys) ficarão dispostas na ordem lexicográfica (alfabética)
 - Para mais detalhes: http://www.cplusplus.com/reference/map/map/
 ```cpp
-    map<string,int> mp;
-    string nome;
-    cin >> nome;
+    map<string,int> mp; // declaração 
     mp["Thiago"]++; // agora o mapa mp["Thiago"] = 1
-    mp[nome] = 3;
 ```
-- Falar sobre complexidade
-- Os elementos de um map são inseridos de forma ordenada de acordo com sua key, ou seja, se voce fizer um map<string,int>, as palavras (keys) ficarão dispostas na ordem lexicográfica (alfabética)
-- Para poder caminhar pelos elementos de um map, existem algumas maneiras:
+### count()
+Esta função retorna 1 caso exista o elemento com a chave que você esteja procurando e 0 caso contrári.o
 ```cpp
-    string nome;
-    int n;
-    map<string,int> mp;
-    cout << "Digite a quantidade de nomes que deseja inserir" << endl;
-    scanf("%d", &n);
-    for(int i = 0; i < n; i++){
-        cin >> nome;
-        mp[nome]++;
-    }
-    cout << "A frequencia das palavras ficou:" << endl;
-    
-    for(map<string,int>::iterator it = mp.begin(); it != mp.end(); it++){
-            cout << it -> first << " " << it -> second << endl;
-    }
-    
-    /*for(auto x : mp){
-        cout << x.first << " " << x.second << endl;
-    }*/ // Outra forma, só descomentar para ver funcionar, não esquecer de compilar com a flag -std=c++10
-    
+	map<char,int> mp;
+	mp['c'] = 2; 
+	if(mp.count('c')) puts("Meu mapa contém o char c");
+```
+### erase()
+Permite a remoção de um elemento do mapa.
+```cpp
+	map<char,int> mp;
+	mp['c'] = 2; 
+	mp.erase('c');
+	if(mp.count('c')) puts("Meu mapa contem o char c");
+	else puts("Meu mapa nao contem o char c");
+```
+### clear()
+Limpa todo o para para poder utilizar novamente
+```cpp
+	map<char,int> mp;
+
+	for(char i = 'd'; i < 'j'; i++){
+		mp[i]++;
+	}
+
+	for(char i = 'a'; i < 'l'; i++){
+		if(mp.count(i)) printf("%c pertence\n",i);
+		else printf("%c NAO pertence\n",i);
+	}
+	puts("");
+	mp.clear();
+	
+	for(char i = 'a'; i < 'l'; i++){
+		if(mp.count(i)) printf("%c pertence\n",i);
+		else printf("%c NAO pertence\n",i);
+	}
 ```
 
+## Set
+...
