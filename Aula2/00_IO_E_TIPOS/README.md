@@ -9,6 +9,7 @@ Hello World
 O exemplo hello world mostra como se imprime na tela em c++, usa-se o comando cout. cout é muito parecido com printf, mas você no precisa indicar o tipo da variável na impressão. 
 ```cpp
 cout << "Hello World!\n";
+puts("Hello World!"); // imprime com quebra de linha
 ```
 
 Leitura
