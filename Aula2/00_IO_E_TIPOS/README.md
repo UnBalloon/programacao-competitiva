@@ -22,7 +22,7 @@ Importante
 
 
 Strings
--------
+------
 
 C++ tem strings como tipo nativo,  como se fosse um char ou um inteiro. Por esse motivo, há diversas facilidades na manipulação de strings(concatenação, comparação, conversão para inteiro, etc.). 
 
@@ -36,4 +36,6 @@ A conversão para inteiro é bem simples, a única restrição é que caso a str
 Pair
 ----
 
-Pares ordenados também são um tipo padrão do c++, pares ordenados são úteis quando se quer guardar informações que tenham a ver uma com a outra (sem fazer uma struct pra isso), como uma coordenada xy ou a altura e peso de alguém.
+Pares ordenados também são um tipo padrão do c++, pares ordenados são úteis quando se quer guardar informações que tenham a ver uma com a outra (sem fazer uma struct pra isso), como uma coordenada xy ou a altura e peso de alguém. 
+
+Pares podem ser comparados, de forma que o valor da esquerda é comparado antes, caso haja empate, o valor da direita desempata, então(1,0) > (0,1), por exemplo. Comparação entre pares tem complexidade O(1). 
