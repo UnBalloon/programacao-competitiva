@@ -14,13 +14,13 @@ Para se referir a complexidade de um algoritmo, se usa a notação O(complexidad
 Exemplos:
 
 
-```
+```cpp
   printf("Hello World\n");
 ```
 
 Esse código tem complexidade O(1) (também chamado de complexidade constante), porque nenhuma variável de entrada impacta no seu tempo de execução.
 
-```
+```cpp
 int n;
 scanf("%d",&n);
 for(int i = 0; i < 10*n; i++){
@@ -38,7 +38,7 @@ Se você não ~~sabe~~ lembra como multiplicar matrizes visite [aqui](http://www
 
 O código abaixo computa C = A * B, onde A é uma matriz n por p e B é uma matriz p por m.
 
-```
+```cpp
 for(int i = 0; i < n; i++){
     for(int j = 0; j < m; j++){
         C[i][j] = 0;
@@ -54,7 +54,7 @@ Ordenação
 ---------------------
 Um problema bastante estudado é o de ordenação. Existem vários algoritmos resolvem o problema eficientemente, não será mostrado um desses. O código a seguir ordena um vetor ```v``` de tamanho ```n```.
 
-```
+```cpp
 for(int i = 0; i < n; i++){
     for(int j = i; j < n; j++){
         if(v[i] > v[j]){
@@ -75,7 +75,7 @@ Portanto podemos dizer que a complexidade do código acima é O(```(n+1)*n/2```)
 Fibonacci
 ---------
 (Se você ainda não aprendeu recursão, talvez não entenda esse exemplo)
-```
+```cpp
 int fibonacci(int n){
     if(n == 0)
         return 0;
