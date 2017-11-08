@@ -25,11 +25,11 @@
 	- Vetor de palavras, para armazenar a frequencia de palavras em um texto
 - Para mais detalhes: http://www.cplusplus.com/reference/map/map/
 ```cpp
-	map<string,int> mp;
-	string nome;
-	cin >> nome;
-	mp["Thiago"]++; // agora o mapa mp["Thiago"] = 1
-	mp[nome] = 3;
+    map<string,int> mp;
+    string nome;
+    cin >> nome;
+    mp["Thiago"]++; // agora o mapa mp["Thiago"] = 1
+    mp[nome] = 3;
 ```
 - Falar sobre complexidade
 - Os elementos de um map são inseridos de forma ordenada de acordo com sua key, ou seja, se voce fizer um map<string,int>, as palavras (keys) ficarão dispostas na ordem lexicográfica (alfabética)
@@ -52,7 +52,7 @@
     
     /*for(auto x : mp){
         cout << x.first << " " << x.second << endl;
-    }*/ // Outra forma, só descomentar para fer funcionar, não esquecer de compilar com a flag -std=c++10
+    }*/ // Outra forma, só descomentar para ver funcionar, não esquecer de compilar com a flag -std=c++10
     
 ```
 
