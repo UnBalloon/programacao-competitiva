@@ -24,5 +24,5 @@ Importante
 Strings
 -------
 
-C++ tem strings como tipo nativo. - terminar depois
+C++ tem strings como tipo nativo,  como se fosse um char ou um inteiro. Por esse motivo, há diversas facilidades na manipulação de strings(concatenação, comparação, conversão para inteiro, etc.). O exemplo de strings ilustra isso.
 
