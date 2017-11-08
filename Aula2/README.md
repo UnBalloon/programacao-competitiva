@@ -9,7 +9,7 @@ Template
 
 Como já deve ter sido possível observar nos exemplos da aula 1, o template básico que usamos para escrever programas é
 
-```
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
