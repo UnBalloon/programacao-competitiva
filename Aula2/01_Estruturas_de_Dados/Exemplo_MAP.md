@@ -52,10 +52,10 @@ void mergi(int vet[],int ini,int mid,int fim){
 
 void mergesort(int v[],int inicio,int fim){
   int meio;
-  if(fim<=inicio) {
+  if(fim <= inicio) {
     return;
    }
-   meio=(inicio+fim)/2;
+   meio = (inicio + fim) / 2;
    mergesort(v,inicio,meio);
    mergesort(v,meio+1,fim);
    mergi(v,inicio,meio,fim);
@@ -63,61 +63,62 @@ void mergesort(int v[],int inicio,int fim){
 
 int buscab(int v[],int inicio,int fim,int x,int* i,int *f){
   int meio;
-  *i=inicio;
-  *f=fim;
-  if(fim<inicio){
+  *i = inicio;
+  *f = fim;
+  if(fim < inicio){
     return -1;
    }
-  meio=(inicio+fim)/2;
-  if(v[meio]==x){
-  	if(v[inicio]==x){
-  		if(v[fim]==x){
-    		return meio;
+  meio = (inicio+fim)/2;
+  if(v[meio] == x){
+  	if(v[inicio] == x){
+  		if(v[fim] == x){
+    			return meio;
   		}
   		else{
-  			while(v[fim]>x){
+  			while(v[fim] > x){
   				fim--;
   			}
   			return buscab(v,inicio,fim,x,i,f);
   		}
   	}
   	else{
-  		while(v[inicio]<x)
+  		while(v[inicio] < x)
   			inicio++;
   		return buscab(v,inicio,fim,x,i,f);
   	}
   }
-  else if(x<v[meio]){
+  else if(x < v[meio])
     return buscab(v,inicio,meio-1,x,i,f);
-  }
-  else{
+  
+  else
     return buscab(v,meio+1,fim,x,i,f);
-  }
+  
 }
 
 int main(){
-	int n,x,y,vet[31],lido[100000],rep[100000],c,i,j,f,d,ini,fim;
-	long long max;
+	int n, x, y, vet[31], lido[100000], rep[100000], c, i, j, f, d, ini, fim;
+	long long ans;
+	
 	scanf("%d",&n);
-	for(i=0;i<n;i++)
+	for(i = 0; i < n; i++)
 		scanf("%d",&lido[i]);
-	for(i=1;i<=30;i++)
-		vet[i]=pow(2,i);
-	max=0;
+	for(i = 1; i <= 30; i++)
+		vet[i] = pow(2,i);
+	ans = 0;
 	mergesort(lido,0,n-1);
 
-	for(x=0;x<n;x++){
-		for(i=1;i<=30;i++){
-			c=vet[i]-lido[x];
-			f=buscab(lido,0,n-1,c,&ini,&fim);
-			if(f!=-1){
-				max+=fim+1-ini;
-				if(x==ini||x==fim||(x>ini&&x<fim))
-					max--;
+	for(x = 0; x < n; x++){
+		for(i = 1; i <= 30; i++){
+			c = vet[i] - lido[x];
+			f = buscab(lido,0,n-1,c,&ini,&fim);
+			if(f != -1){
+				ans += fim + 1 - ini;
+				if(x >= ini && x <= fim)
+					ans--;
 			}
 		}
 	}
-	printf("%I64d\n",max/2);
+	printf("%lld\n",ans / 2);
 	return 0;
 }
 ```
