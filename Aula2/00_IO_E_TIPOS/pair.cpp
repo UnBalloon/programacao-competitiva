@@ -37,7 +37,6 @@ int main(){
 	else
 		printf("par3 e par4 sao iguais\n");
 	
-	printf("%d %d\n",par3.first, par3.second);
-	swap(par3.ff, par3.ss);
-	printf("%d %d\n",par3.ff, par3.ss);
+	printf("%d %s\n",par3.first, par3.second.c_str());
+	
 }
