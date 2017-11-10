@@ -84,3 +84,20 @@ Limpa todo o para para poder utilizar novamente
 
 ## Set
 ...
+
+
+## Exercícios
+
+- Map
+	- [Pontos de Feno](https://www.urionlinejudge.com.br/judge/pt/problems/view/1261)	 
+	- [Perguntas mais Frequentes](https://www.urionlinejudge.com.br/judge/pt/problems/view/1553)
+	- [Composição de Jingles](https://www.urionlinejudge.com.br/judge/pt/problems/view/1430)
+	- [Decifra](https://www.urionlinejudge.com.br/judge/pt/runs/code/6602221)
+	- [Número Solitário](https://www.urionlinejudge.com.br/judge/pt/problems/view/2091)
+	- [Espécies de Madeira*](https://www.urionlinejudge.com.br/judge/pt/problems/view/1260)
+
+- Vector
+	- [Lista de Chamada](https://www.urionlinejudge.com.br/judge/pt/problems/view/2381)
+	- [System of a Download](https://www.urionlinejudge.com.br/judge/pt/problems/view/2582)
+	- [Número de Envelopes](https://www.urionlinejudge.com.br/judge/pt/problems/view/2341)
+	- [A Lenda de Flavious Josephus*](https://www.urionlinejudge.com.br/judge/pt/problems/view/1030) 
