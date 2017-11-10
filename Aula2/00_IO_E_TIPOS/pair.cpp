@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define ff first
+#define ss second
 
 int main(){
 	
@@ -34,4 +36,8 @@ int main(){
 		printf("par4 é maior\n");
 	else
 		printf("par3 e par4 sao iguais\n");
+	
+	printf("%d %d\n",par3.first, par3.second);
+	swap(par3.ff, par3.ss);
+	printf("%d %d\n",par3.ff, par3.ss);
 }
