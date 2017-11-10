@@ -26,6 +26,34 @@ Importante
 
 É importante ressaltar que c++ não impede de continuar usando o printf e scanf, na verdade, muitas vezes é mais fácil imprimir ou ler em um formato específico usando eles. Além disso, eles são mais rápidos que cin e cout, apesar de ambos terem complexidade constante, o tempo constante de cin e cout é consideravelmente maior. Isso é relevante porque algumas vezes alguns problemas tem input de tamanho ```5*10^5```, e ler isso com cin  já demoraria muito mais que com scanf, então usar cin nesses casos pode exceder o tempo limite do programa. 
 
+Funções já implementadas
+-------
+Na linguagem C++ existem várias funções já implementadas que facilitam nossa vida como:
+### Swap()
+A função swap faz a troca de 2 elementos do mesmo tipo.
+```cpp
+	int v[10];
+	v[5] = 1;   
+	v[3] = 412;
+	swap(v[5],v[3]); // v[5] = 412 e v[3] = 1
+```
+
+### Min() e Max()
+A função min e max retorna o menor/maior elemento respectivamente.
+```cpp
+		int v[10];
+	v[5] = 1;
+	v[3] = 412;
+	int menor = min(v[5],v[3]); // menor = 1
+	int maior = max(v[5],v[3]); // maior = 412
+```
+###to_string
+###sort
+
+###fazer pergunta pra printar cout << (ok ? "yes":"no") << endl;
+###ctype.h
+
+
 
 
 Strings
