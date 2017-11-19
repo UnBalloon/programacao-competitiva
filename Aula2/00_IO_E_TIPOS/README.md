@@ -47,25 +47,22 @@ A função min e max retorna o menor/maior elemento respectivamente.
 	int menor = min(v[5],v[3]); // menor = 1
 	int maior = max(v[5],v[3]); // maior = 412
 ```
-###to_string()
+### to_string()
 Para executar a função to_string, não pode esquecer de compilar com a flag -std=c++11. E como o nome da própria função diz, ela transforma um número em uma string.
 ```cpp
 	int x = 1320;
 	string a = to_string(x); // a = "1320"
-	
 ```
 ### Substituir if por '?'
-A princípio pode parecer um pouco confuso, mas pode ajuda a economizar algumas linhas de código. O operador ? realiza uma pergunta e retora verdadeiro ou falso dependendo do parâmetro passado.
+A princípio pode parecer um pouco confuso, mas pode ajuda a economizar algumas linhas de código. O operador ? realiza uma pergunta e retorna verdadeiro ou falso dependendo do parâmetro passado.
 ```cpp
 	bool q = true;
 	printf("%s\n", q ? "TRUE":"FALSE"); // Se q for True, irá printar uma msg escrito "TRUE" e "FALSE" caso contrário
 
 	int x = q ? 1:0;
-
-
 ```
 
-###ctype.h
+
 
 
 
