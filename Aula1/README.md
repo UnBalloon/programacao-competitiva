@@ -1,8 +1,6 @@
 Complexidade
 ============
 
-O tema da primeira aula é Complexidade de algoritmos.
-
 O que é Complexidade?
 ---------------------
 
