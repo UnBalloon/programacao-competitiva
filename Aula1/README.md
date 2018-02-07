@@ -6,7 +6,7 @@ O que é Complexidade?
 
 Em linhas gerais, a complexidade de um algoritmo é o quanto as variáveis de entrada impactam no seu tempo de execução.
 
-Para se referir a complexidade de um algoritmo, se usa a notação O(complexidade). A quantidade de operações que os computadores atuais executam em um segundo é por volta de 10^8, portanto podemos estimar o tempo de execução de um programa usando análise de complexidade. Basta fazer o cálculo de complexidade e dividir por 10^8, e a resposta será aproximadamente o tempo de execução em segundos.
+Para se referir a complexidade de um algoritmo, se usa a notação Big O, denotada por O(N). A notação Big O tem o seguinte significado: No pior caso de execução deste algoritmo, o número de operações realizdo será proporcional a N. A quantidade de operações que os computadores atuais executam em um segundo é por volta de 10^8, portanto podemos estimar o tempo de execução de um programa usando análise de complexidade. Basta fazer o cálculo de complexidade e dividir por 10^8, e a resposta será aproximadamente o tempo de execução em segundos.
 
 
 Exemplos:
@@ -28,6 +28,20 @@ for(int i = 0; i < 10*n; i++){
 
 
 Esse código tem complexidade O(n), pois o seu tempo tempo de execução cresce linearmente dependendo da variável n.
+
+
+Exponenciação
+-------------
+
+```cpp
+int slow_exp(int base, int exp){
+	if(exp == 0)
+		return 1;
+	return base * slow_exp(base,exp-1);
+}
+```
+
+Também é possível analisar a complexidade de funções recursivas, nessa função, em cada chamada, o expoente decresce em um, atingindo o caso base quando se iguala a 0. Então são feitas O(n) chamadas.
 
 
 Multiplicação de Matrizes
@@ -72,7 +86,6 @@ Portanto podemos dizer que a complexidade do código acima é O(```(n+1)*n/2```)
 
 Fibonacci
 ---------
-(Se você ainda não aprendeu recursão, talvez não entenda esse exemplo)
 ```cpp
 int fibonacci(int n){
     if(n == 0)
@@ -83,7 +96,7 @@ int fibonacci(int n){
 }
 ```
 
-A famosa função de fibonacci. Essa função recursiva é bem bonita de se ver declarada, mas tem uma complexidade horrível.
+A famosa função de fibonacci. Essa função recursiva é bem bonita de se ver declarada, mas não é nada eficiente.
 
 Pense que queremos Calcular Fibonacci(4)
 
@@ -96,7 +109,24 @@ Pense que queremos Calcular Fibonacci(4)
                                / \
                               1   0
                               
-Essa a árvore formada pelas chamadas recursivas, olhe quantas vezes recomputamos as mesmas coisas. A complexidade dessa função é O(```2^n```), pois para cada chamada de fibonacci recursiva, fazemos outras duas, e acabamos recomputando várias vezes as mesmas coisas. Implemente essa função em sua máquina e faça uma chamada de fibonacci(35), já deve ser possível sentir o tempo que o programa leva para processar isso. 
+Essa a árvore formada pelas chamadas recursivas, olhe quantas vezes recomputamos as mesmas coisas. A complexidade dessa função é O(```2^n```), pois para cada chamada de fibonacci recursiva, fazemos outras duas, e acabamos recomputando várias vezes as mesmas coisas. Implemente essa função em sua máquina e faça uma chamada de fibonacci(), já deve ser possível sentir o tempo que o programa leva para processar isso. 
+
+
+Exponenciação rápida
+--------------------
+```cpp
+int fast_exp(int base, int exp){
+	if(exp == 0)
+		return 1;
+	if(exp % 2)
+		return base * fexp(base * base,exp/2);
+	else
+		return fexp(base * base, exp/2);
+}
+
+Essa é uma função que também computa uma exponenciação. É um bom exemplo de como problemas abordados de forma diferente ou usando propriedades matemáticas podem ser resolvidos de forma mas eficiente. Em cada chamada na recursão, o expoente é dividido por 2, atingindo o caso base quando se iguala a 0.
+
+```
 
 [Primo Rápido](00_PrimoRapido)
 ---
