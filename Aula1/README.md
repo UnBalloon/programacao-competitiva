@@ -18,6 +18,9 @@ Exemplos:
 
 Esse código tem complexidade ```O(1)``` (também chamado de complexidade constante), porque nenhuma variável de entrada impacta no seu tempo de execução. A complexidade de memória também é ```O(1)```.
 
+Loops
+=====
+
 ```cpp
 int n;
 scanf("%d",&n);
@@ -52,28 +55,12 @@ for(int i = 0; i < m; i++){
 
 ```
 
+
 Muitas vezes, a complexidade depende de mais de uma variável de entrada. Como não temos nenhuma informação sobre o significado das variáveis, a complexidade é ```O(n+m)```. Se soubéssemos por exemplo que m fosse sempre muito maior que m, poderíamos dizer ```O(m)```. Mais uma vez a memória utilizada não depende de nenhuma variável  de entrada.
 
 
-
-
-Exponenciação
--------------
-
-```cpp
-int slow_exp(int base, int exp){
-	if(exp == 0)
-		return 1;
-	return base * slow_exp(base,exp-1);
-}
-```
-
-Também é possível analisar a complexidade de funções recursivas, nessa função, em cada chamada, o expoente decresce em um, atingindo o caso base quando se iguala a 0. Então são feitas ```O(n)``` chamadas. Quando avaliamos complexidade de memória de funções recursivas, temos que levar em conta a pilha de execução também. São empilhadas n chamadas na pilha, então a complexidade de memória é ```O(n)```.
-
-
-Multiplicação de Matrizes
----------------------
-Se você não ~~sabe~~ lembra como multiplicar matrizes visite [aqui](http://www.somatematica.com.br/emedio/matrizes/matrizes4.php) e [aqui](https://www.youtube.com/watch?v=4cgHNvfMICg).
+Multiplicação de matrizes
+-------------------------
 
 O código abaixo computa C = A * B, onde A é uma matriz n por p e B é uma matriz p por m.
 
@@ -89,8 +76,9 @@ for(int i = 0; i < n; i++){
 ```
 Como os fors estão aninhados a complexidade do código é a multiplicação das complexidades de cada for, sendo então, ```O(n\*m\*p)```. A multiplicação produz a matriz C como resultado, que tem dimenções ```n``` por ```m```, Como é necessário alocar esse espaço, a complexidade de memória é ```O(n*m)```.
 
+
 Ordenação
----------------------
+---------
 Um problema bastante estudado é o de ordenação. Existem vários algoritmos resolvem o problema eficientemente, não será mostrado um desses. O código a seguir ordena um vetor ```v``` de tamanho ```n```.
 
 ```cpp
@@ -106,11 +94,44 @@ for(int i = 0; i < n; i++){
 ```
 A quantidade de vezes que o segundo loop executa depende do i, então é um pouco mais difícil de analisar a complexidade.
 
-Ao longo das iterações do primeiro loop, a quantidade de iterações do segundo é ```n + (n-1) + (n-2) + (n-3) + ... + 1```, ou seja, é soma de [PA](https://educacao.uol.com.br/disciplinas/matematica/progressao-artimetica-pa-formula-da-soma-e-do-termo-geral.htm) e podemos resolver para ```O(```(n+1)*n/2```). Em análise de complexidade só nos importamos com quando as variáveis são muito grandes(tendem a infinito), de um modo bem bruto infinito e infinito/2 dá no mesmo, então podemos escrever a complexidade como ```O(```(n+1)*n```). Novamente quando pensamos em números bem altos ```n``` e ```n+1``` se tornam praticamente a mesma coisa e podemos concluir que a complexidade é ```O(```n^2```).
+Ao longo das iterações do primeiro loop, a quantidade de iterações do segundo é ```n + (n-1) + (n-2) + (n-3) + ... + 1```, ou seja, é soma de [PA](https://educacao.uol.com.br/disciplinas/matematica/progressao-artimetica-pa-formula-da-soma-e-do-termo-geral.htm) e podemos resolver para ```O((n+1)*n/2)```. Em análise de complexidade só nos importamos com quando as variáveis são muito grandes(tendem a infinito), de um modo bem bruto infinito e infinito/2 dá no mesmo, então podemos escrever a complexidade como ```O((n+1)*n)```. Novamente quando pensamos em números bem altos ```n``` e ```n+1``` se tornam praticamente a mesma coisa e podemos concluir que a complexidade é ```O(n^2)```.
 
-Portanto podemos dizer que a complexidade do código acima é ```O(```(n+1)*n/2```), ```O(```(n+1)*n```) ou ```O(```n^2```). Mas geralmente optamos pela forma mais simples que é ```O(```n^2```).
+Portanto podemos dizer que a complexidade do código acima é ```O((n+1)*n/2)```, ```O((n+1)*n)``` ou ```O(n^2)```. Mas geralmente optamos pela forma mais simples que é ```O(n^2)```.
 
 A intuição sobre a complexidade de memória pode acabar te enganando nesse exemplo. O motivo é o seguinte: o código apenas troca os valores de lugar dentro do vetor, não sendo necessário alocar um novo vetor com a resposta(Ao contrário da multiplicação de matrizes), então a complexidade de memória é ```O(1)```.
+
+
+
+Recursão
+========
+
+Exponenciação
+-------------
+```cpp
+int slow_exp(int base, int exp){
+	if(exp == 0)
+		return 1;
+	return base * slow_exp(base,exp-1);
+}
+```
+
+Também é possível analisar a complexidade de funções recursivas, nessa função, em cada chamada, o expoente decresce em um, atingindo o caso base quando se iguala a 0. Então são feitas ```O(n)``` chamadas. Quando avaliamos complexidade de memória de funções recursivas, temos que levar em conta a pilha de execução também. São empilhadas n chamadas na pilha, então a complexidade de memória é ```O(n)```.
+
+
+Exponenciação rápida
+--------------------
+```cpp
+int fast_exp(int base, int exp){
+    if(exp == 0)
+	return 1;
+    if(exp % 2)
+	return base * fast_exp(base * base,exp/2);
+     else
+	return fast_exp(base * base, exp/2);
+}
+```
+Essa é uma função que também computa uma exponenciação. É um bom exemplo de como problemas abordados de forma diferente ou usando propriedades matemáticas podem ser resolvidos de forma mas eficiente. Em cada chamada na recursão, o expoente é dividido por 2, atingindo o caso base quando se iguala a 0. É fácil ver que o número ```2^k``` levaria ```k``` chamadas para atingir o caso base, isso ocorre porque ```log2 (2^k) = k```, então a complexidade é ```O(log N)```
+
 
 
 Fibonacci
@@ -130,11 +151,11 @@ A famosa função de fibonacci. Essa função recursiva é bem bonita de se ver 
 Pense que queremos Calcular Fibonacci(4)
 
                                
-                                      4   
-                                   /    \
-                                  3      2
-                                 / \    / \
-                                2   1  1   0 
+                                     4   
+                                   /   \
+                                  3     2
+                                 / \   / \
+                                2   1 1   0 
                                / \
                               1   0
                               
@@ -142,20 +163,6 @@ Essa a árvore formada pelas chamadas recursivas, olhe quantas vezes recomputamo
 
 A complexidade de memória dessa função pode ser um pouco mais complicada de analisar vamos por partes. No total, serão feitos ```O(2^n)``` chamadas recursivas, e todas elas precisaram de um espaço na pilha de execução, no entanto, as ```2^n``` chamadas não coexistirão na pilha de execução. Olhando bem atentamente e seguindo o fluxo das chamadas recursivas, é possível ver que no máximo um 'ramo' da árvore estará na pilha por vez, o ramo mais longo tem comprimento ```n``` portanto, complexidade de memória ```O(n)```.
 
-
-Exponenciação rápida
---------------------
-```cpp
-int fast_exp(int base, int exp){
-    if(exp == 0)
-	return 1;
-    if(exp % 2)
-	return base * fast_exp(base * base,exp/2);
-     else
-	return fast_exp(base * base, exp/2);
-}
-```
-Essa é uma função que também computa uma exponenciação. É um bom exemplo de como problemas abordados de forma diferente ou usando propriedades matemáticas podem ser resolvidos de forma mas eficiente. Em cada chamada na recursão, o expoente é dividido por 2, atingindo o caso base quando se iguala a 0. É fácil ver que o número 2^k levaria k chamadas para atingir o caso base, isso ocorre porque ```log2 (2^k) = k```, então a complexidade é ```O(log N)
 
 
 
