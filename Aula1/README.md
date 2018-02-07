@@ -6,7 +6,7 @@ O que é Complexidade?
 
 Em linhas gerais, a complexidade de tempo de um algoritmo é o quanto as variáveis de entrada impactam no seu tempo de execução.
 
-Para se referir a complexidade de um algoritmo, se usa a notação Big O, denotada por O(N). A notação Big O tem o seguinte significado: No pior caso de execução deste algoritmo, o número de operações realizdo será proporcional a N. A quantidade de operações que os computadores atuais executam em um segundo é por volta de 10^8, portanto podemos estimar o tempo de execução de um programa usando análise de complexidade. Basta fazer o cálculo de complexidade e dividir por 10^8, e a resposta será aproximadamente o tempo de execução em segundos.
+Para se referir a complexidade de um algoritmo, se usa a notação Big O, denotada por O(N). A notação Big O tem o seguinte significado: No pior caso da execução deste algoritmo, o número de operações realizado será proporcional a N, e por simplicidade, eliminamos constantes e fatores não dominantes. A quantidade de operações que os computadores atuais executam em um segundo é por volta de 10^8, portanto podemos estimar o tempo de execução de um programa usando análise de complexidade. Basta fazer o cálculo de complexidade e dividir por 10^8, e a resposta será aproximadamente o tempo de execução em segundos. Esse mesmo conceito se extende a memória utilizada por um programa, podemos fazer o cálculo de complexidade e dividir o resultado por 10^6, e saberemos quantos MegaBytes serão utilizados pelo programa no pior caso.
 
 
 Exemplos:
@@ -21,13 +21,40 @@ Esse código tem complexidade O(1) (também chamado de complexidade constante), 
 ```cpp
 int n;
 scanf("%d",&n);
+for(int i = 0; i < n; i++){
+    printf("%d\n",i);
+}
+```
+
+Esse código tem complexidade O(n), pois o seu tempo tempo de execução cresce linearmente dependendo da variável n.
+
+
+```cpp
+int n;
+scanf("%d",&n);
 for(int i = 0; i < 10*n; i++){
     printf("%d\n",i);
 }
 ```
 
+Esse código também tem complexidade O(n), porque eliminamos os fatores constantes para manter a simplicidade.
 
-Esse código tem complexidade O(n), pois o seu tempo tempo de execução cresce linearmente dependendo da variável n.
+
+```cpp
+int n,m;
+scanf("%d %d",&n,&m);
+for(int i = 0; i < n; i++){
+    printf("%d\n",i);
+}
+for(int i = 0; i < m; i++){
+    printf("%d\n",i);
+}
+
+```
+
+Muitas vezes, a complexidade depende de mais de uma variável de entrada. Como não temos nenhuma informação sobre o significado das variáveis, a complexidade é O(n+m).
+
+
 
 
 Exponenciação
@@ -127,10 +154,6 @@ int fast_exp(int base, int exp){
 Essa é uma função que também computa uma exponenciação. É um bom exemplo de como problemas abordados de forma diferente ou usando propriedades matemáticas podem ser resolvidos de forma mas eficiente. Em cada chamada na recursão, o expoente é dividido por 2, atingindo o caso base quando se iguala a 0. É fácil ver que o número 2^k levaria k chamadas para atingir o caso base, isso ocorre porque ```log2 (2^k) = k```, então a complexidade é O(log N)
 
 
-Complexidade de memória
------------------------
-
-Para todos os algoritmos, o mesmo conceito de complexidade se extende ao uso de memória do programa
 
 
 [Primo Rápido](00_PrimoRapido)
