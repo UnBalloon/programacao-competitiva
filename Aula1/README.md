@@ -4,7 +4,7 @@ Complexidade
 O que é Complexidade?
 ---------------------
 
-Em linhas gerais, a complexidade de um algoritmo é o quanto as variáveis de entrada impactam no seu tempo de execução.
+Em linhas gerais, a complexidade de tempo de um algoritmo é o quanto as variáveis de entrada impactam no seu tempo de execução.
 
 Para se referir a complexidade de um algoritmo, se usa a notação Big O, denotada por O(N). A notação Big O tem o seguinte significado: No pior caso de execução deste algoritmo, o número de operações realizdo será proporcional a N. A quantidade de operações que os computadores atuais executam em um segundo é por volta de 10^8, portanto podemos estimar o tempo de execução de um programa usando análise de complexidade. Basta fazer o cálculo de complexidade e dividir por 10^8, e a resposta será aproximadamente o tempo de execução em segundos.
 
@@ -127,7 +127,10 @@ int fast_exp(int base, int exp){
 Essa é uma função que também computa uma exponenciação. É um bom exemplo de como problemas abordados de forma diferente ou usando propriedades matemáticas podem ser resolvidos de forma mas eficiente. Em cada chamada na recursão, o expoente é dividido por 2, atingindo o caso base quando se iguala a 0. É fácil ver que o número 2^k levaria k chamadas para atingir o caso base, isso ocorre porque ```log2 (2^k) = k```, então a complexidade é O(log N)
 
 
+Complexidade de memória
+-----------------------
 
+Para todos os algoritmos, o mesmo conceito de complexidade se extende ao uso de memória do programa
 
 
 [Primo Rápido](00_PrimoRapido)
