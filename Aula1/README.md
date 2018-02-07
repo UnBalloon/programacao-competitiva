@@ -119,9 +119,9 @@ int fast_exp(int base, int exp){
     if(exp == 0)
 	return 1;
     if(exp % 2)
-	return base * fexp(base * base,exp/2);
+	return base * fast_exp(base * base,exp/2);
      else
-	return fexp(base * base, exp/2);
+	return fast_exp(base * base, exp/2);
 }
 ```
 Essa é uma função que também computa uma exponenciação. É um bom exemplo de como problemas abordados de forma diferente ou usando propriedades matemáticas podem ser resolvidos de forma mas eficiente. Em cada chamada na recursão, o expoente é dividido por 2, atingindo o caso base quando se iguala a 0. É fácil ver que o número 2^k levaria k chamadas para atingir o caso base, isso ocorre porque ```log2 (2^k) = k```, então a complexidade é O(log N)
