@@ -1,8 +1,8 @@
-Ambiente e ferramentas c++
-==========================
+# Ambiente e ferramentas c++
 
-Template
---------
+
+## Template
+
 
 ```cpp
 #include <bits/stdc++.h>
@@ -15,22 +15,29 @@ int main(){
 
 Esse include nos traz a bilbioteca STL, que inclui todas as bibliotecas padrão do c++, então tem-se suporte a matematica, strings, estruturas de dados e e diversas funções úteis.
 
-IO e Tipos
-==========
+## Compilação
+O comando de compilação que usamos é
+```
+g++ -std=c++11 arquivo.cpp
+```
+É importante usar '-std=c++11' porque isso nos permite usar ferramentas mais recentes da linguagem.
+
+# IO e Tipos
 
 
-Hello World
------------
+
+## Hello World
 
 
-O exemplo hello world mostra como se imprime na tela em c++, usa-se o comando cout. cout é muito parecido com printf, mas você no precisa indicar o tipo da variável na impressão. 
+
+O exemplo hello world mostra como se imprime na tela em c++, usa-se o comando cout. cout é muito parecido com printf, mas você não precisa indicar o tipo da variável na impressão. 
 ```cpp
 cout << "Hello World!\n";
 puts("Hello World!"); // imprime com quebra de linha
 ```
 
-Leitura
--------
+## Leitura
+
 
 O exemplo leitura mostra como ler variáveis em c++, pode-se usar o comando cin, que é parecido com o scanf, e assim como o cout, não é necessário indicar o tipo.
 ```cpp
@@ -38,13 +45,13 @@ double y;
 cin >> y;
 ```
 
-Importante
-----------
+## Importante
+
 
 É importante ressaltar que c++ não impede de continuar usando o printf e scanf, na verdade, muitas vezes é mais fácil imprimir ou ler em um formato específico usando eles. Além disso, eles são mais rápidos que cin e cout, apesar de ambos terem complexidade constante, o tempo constante de cin e cout é consideravelmente maior. Isso é relevante porque algumas vezes alguns problemas tem input de tamanho ```5*10^5```, e ler isso com cin  já demoraria muito mais que com scanf, então usar cin nesses casos pode exceder o tempo limite do programa. 
 
-Funções já implementadas
--------
+## Funções úteis
+
 Na linguagem C++ existem várias funções já implementadas que facilitam nossa vida como:
 ### Swap()
 A função swap faz a troca de 2 elementos do mesmo tipo.
@@ -80,12 +87,8 @@ int x = q ? 1:0;
 ```
 
 
+## Strings
 
-
-
-
-Strings
-------
 
 C++ tem strings como tipo nativo,  como se fosse um char ou um inteiro. Por esse motivo, há diversas facilidades na manipulação de strings(concatenação, comparação, conversão para inteiro, etc.). 
 
@@ -97,6 +100,7 @@ string b = "def";
 
 A concatenação de strings é simplesmente juntar 2 strings, uma após a outra. Então se tenho a string 'abc' e a string 'def',
 'abc' + 'def' = 'abcdef'. Como é necessário uma operação para cada caractere, esse operaçao é executada em O(S), aonde S é a soma dos tamanhos das strings.
+
 ```cpp
 string resultado = a + b;
 ```
@@ -113,7 +117,6 @@ else
 
 A conversão para inteiro é bem simples, a única restrição é que caso a string seja muito grande, seu tamanho estourará o limite para inteiro (ou long long), é executada em O(S) com s sendo o tamanho da string. O mesmo vale para a conversão de inteiro para string.
 
-
 ```cpp
 string s = "123";
 int a = stoi(s);
@@ -122,8 +125,8 @@ int a = stoi(s);
 int a = 123;
 string s = to_string(a);
 ```
-Pair
-----
+## Pair
+
 
 Pares ordenados também são um tipo padrão do c++, pares ordenados são úteis quando se quer guardar informações que tenham a ver uma com a outra (sem fazer uma struct pra isso), como uma coordenada xy ou a altura e peso de alguém. 
 
@@ -139,8 +142,8 @@ if(p1 > p2)
 else
   // faz outra coisa
 ``` 
-Define
------
+## Define
+
 Defines são expressões pré definidas pelo programador, que podem facilitar sua vida reduzindo tempo de escrita. *MUITO* cuidado!!! Elas podem  acabar atrapalhando caso usadas de maneira errada.
 ```cpp
 #include <bits/stdc++.h>
