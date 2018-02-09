@@ -197,7 +197,7 @@ vector<int> v(100,5);
 ```
 
 ### begin() e end()
-É possível obter iterators(ponteiros) que indicam o começo e o fim de um vector usando esses métodos(mais pra frente veremos que quase todas as estruturas tem isso).
+É possível obter iterators(ponteiros) que indicam o começo e o fim de um vector usando esses métodos(mais pra frente veremos que quase todas as estruturas tem isso). Essas operações tem complexidade ```O(1)```
 
 ```cpp
 vector<int> v;
@@ -209,7 +209,7 @@ i++; // i aponta para v[1];
 
 
 ## sort
-A função sort pode ser usada para ordenar um vector. Basta passar os endereços do começo e do fim. 
+A função sort pode ser usada para ordenar um vector. Basta passar os endereços do começo e do fim. A complexidade é ```O(n * log n)```.
 
 ```cpp
 vector<int> v;
@@ -233,7 +233,9 @@ sort(v,v+100);
 
 ### upper_bound e lower_bound
 
-Esses métodos executam busca binária no vetor para achar o primeiro elemento estritamente maior do que um dado, ou o primeiro elemento maior ou igual a um dado, respectivamente. Vale lembrar que para realizar busca binária, o vetor precisa estar ordenado. Essas funções retornam um iterator.
+Esses métodos executam busca binária no vetor para achar o primeiro elemento estritamente maior do que um dado, ou o primeiro elemento maior ou igual a um dado, respectivamente. Vale lembrar que para realizar busca binária, o vetor precisa estar ordenado.A complexidade é ```O(log n)```.
+
+ Essas funções retornam um iterator, se um elemento for encontrado, é retornado um iterator que aponta para ele, caso contrário, é retornado o iterator '.end()', então é necessário verificar que algum resultado foi encontrado.
 
 ```cpp
 vector<int> v;
@@ -256,6 +258,44 @@ u = lower_bound(v.begin(),v.end(),3);
 ```
 
 
+## random_shuffle
+
+Por diversar razões, as vezes pode ser útil embaralhar os elementos do vetor. A função random_shuffle faz isso. A complexidade é ```O(n)```;
+
+```cpp
+random_shuffle(v.begin(),v.end());
+```
+
+## reverse
+
+Também existe um método pronto para trocar a ordem de um vetor. A complexidade é ```O(n)```;
+
+```cpp
+reverse(v.begin(),v.end());
+```
+
+## next_permutation e prev_permutation
+
+Essas funções geram a próxima e prévia permutação de um conjunto de números. Elas são úteis quando se tem que testar todas as ordens possíveis que certos números podem estar. Esse código imprime todas as permutações de {0,1,2,3,4}. A complexidade de uma chamada é ```O(n)```;
+
+```cpp
+
+vector<int> v;
+
+for(int i = 0; i < 5; i++){
+	v.push_back(i);
+}
+
+do{
+	for(int i = 0; i < 5; i++){
+		printf("%d ",v[i]);
+	}
+	printf("\n");
+}while(next_permutation(v.begin(),v.end()));
+
+```
+
+A função retornará falso quando chegar na última permutação possível(vetor ordenado ao contrário).
 
 ## Map
 
