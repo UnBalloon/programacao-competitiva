@@ -142,6 +142,171 @@ if(p1 > p2)
 else
   // faz outra coisa
 ``` 
+
+## iterator
+
+Em linhas gerais, podemos chamar iterators de ponteiros mais inteligentes. Quando usamos os operadores ++ em um ponteiro comum, o que a linguagem faz é: faça aquele ponteiro apontar x posições a frente de onde apontava antes, aonde x é o sizeof() daquele tipo. 
+
+```cpp
+int v[2] = {0,1};
+int* p = v; //p aponta para o começo do vetor(v[0])
+p++; //p agora aponta para v[1]
+```
+
+
+
+
+Mas isso só funciona quando os elementos estão uns ao lado dos outros na memória. Com iterators, o comportamento para esse operador pode ser redefinido, permitindo passar pelos elementos de um objeto da forma que desejarmos.
+
+## auto
+Podemos pedir para o C++ inferir o tipo de uma variável determinando seu tipo como 'auto'.
+```cpp
+auto n = 5; // o compilador sabe que n é um inteiro
+```
+
+
+# Vector
+
+A grosso modo, vector é uma ED no qual se parece a um Array, porém tem seu tamanho expansível. 
+- A diferença principal entre Vector e Array é a sua alocação, no qual a do Array se faz estáticamente, já a do Vector é feita dinamicamente.
+- Para mais detalhes: http://www.cplusplus.com/reference/vector/vector/
+
+```cpp
+	vector<int> v; // declaracao de um vector;
+```
+
+### push_back()
+
+Pode-se inserir elementos em um vector usando push_back. push_back tem complexidade O(1) amortizado. 
+
+```cpp
+	v.push_back(9);
+	v.push_back(2);
+	v.push_back(3);
+```
+
+### size()
+Para saber quantos elementos tem-se atualmente dentro de um vector, podemos usar o método size. size tem complexidade O(1).
+```cpp
+int n = v.size();
+```
+### inicializador
+É possível definir o um tamanho do vetor e valores iniciais para cada um dos elementos do vector. O trecho de código abaixo significa: Crie um vetor de inteiros com 100 posições, cujos elementos tem valor 5.
+```cpp
+vector<int> v(100,5);
+```
+
+### begin() e end()
+É possível obter iterators(ponteiros) que indicam o começo e o fim de um vector usando esses métodos(mais pra frente veremos que quase todas as estruturas tem isso).
+
+```cpp
+vector<int> v;
+v.push_back(1);
+v.push_back(2);
+vector::iterator i = v.begin(); //i aponta para v[0];
+i++; // i aponta para v[1];
+```
+
+
+## sort
+A função sort pode ser usada para ordenar um vector. Basta passar os endereços do começo e do fim. 
+
+```cpp
+vector<int> v;
+v.push_back(4);
+v.push_back(3);
+v.push_back(2);
+v.push_back(1);
+// v = {4,3,2,1}
+sort(v.begin(),v.end());
+// v = {1,2,3,4} 
+``` 
+
+Essa função não se limita a vectors, na verdade, se olharmos bem o que estamos fazendo é passando dois ponteiros para ela, então, ela ordena a região de memória entre esses ponteiros. O que nos permitiria fazer coisas do tipo:
+
+```cpp
+int v[100];
+// código para inicializar os valores
+sort(v,v+100);
+```
+
+
+### upper_bound e lower_bound
+
+Esses métodos executam busca binária no vetor para achar o primeiro elemento estritamente maior do que um dado, ou o primeiro elemento maior ou igual a um dado, respectivamente. Vale lembrar que para realizar busca binária, o vetor precisa estar ordenado. Essas funções retornam um iterator.
+
+```cpp
+vector<int> v;
+v.push_back(1);
+v.push_back(3);
+v.push_back(5);
+v.push_back(7);
+v.push_back(9);
+// procure pelo primeiro elemento maior que 3 nesse vetor
+auto u = upper_bound(v.begin(),v.end(),3);
+
+
+```
+
+
+
+## Map
+
+- Map é uma espécie de vetor que armazena elementos formados por uma chave e valor (key,value)
+- Isso abre um universo de possibilidades, como:
+	- Fazer um vetor de char com char, no qual uma letra armazena uma outra letra (Crifa de César)
+	- Vetor de palavras, para armazenar a frequencia de palavras em um texto
+
+- Falar sobre complexidade 
+- Os elementos de um map são inseridos de forma ordenada de acordo com sua key, ou seja, se voce fizer um     map de string, as palavras (keys) ficarão dispostas na ordem lexicográfica (alfabética)
+- Para mais detalhes: http://www.cplusplus.com/reference/map/map/
+```cpp
+    map<string,int> mp; // declaração 
+    mp["Thiago"]++; // agora o mapa mp["Thiago"] = 1
+```
+### count()
+Esta função retorna 1 caso exista o elemento com a chave que você esteja procurando e 0 caso contrári.o
+```cpp
+	map<char,int> mp;
+	mp['c'] = 2; 
+	if(mp.count('c')) puts("Meu mapa contém o char c");
+```
+### erase()
+Permite a remoção de um elemento do mapa.
+```cpp
+	map<char,int> mp;
+	mp['c'] = 2; 
+	mp.erase('c');
+	if(mp.count('c')) puts("Meu mapa contem o char c");
+	else puts("Meu mapa nao contem o char c");
+```
+### clear()
+Limpa todo o para para poder utilizar novamente
+```cpp
+	map<char,int> mp;
+
+	for(char i = 'd'; i < 'j'; i++){
+		mp[i]++;
+	}
+
+	for(char i = 'a'; i < 'l'; i++){
+		if(mp.count(i)) printf("%c pertence\n",i);
+		else printf("%c NAO pertence\n",i);
+	}
+	puts("");
+	mp.clear();
+	
+	for(char i = 'a'; i < 'l'; i++){
+		if(mp.count(i)) printf("%c pertence\n",i);
+		else printf("%c NAO pertence\n",i);
+	}
+```
+
+## Set
+...
+
+
+
 ## Define
 
 Defines são expressões pré definidas pelo programador, que podem facilitar sua vida reduzindo tempo de escrita. *MUITO* cuidado!!! Elas podem  acabar atrapalhando caso usadas de maneira errada.
@@ -163,12 +328,6 @@ int main(){
 ```
 
 
-
-
-## Objetivos da aula
-- Aprender a ler input e output em c++
-- Introduzir as estruturas de dados comuns
-- Aumentar a gama de problemas que os alunos são capazes de resolver
 
 [IO e Tipos](00_IO_E_TIPOS)
 ----
