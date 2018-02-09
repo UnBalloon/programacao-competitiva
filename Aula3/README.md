@@ -1,3 +1,6 @@
+# Árvores binárias de busca
+
+Uma árvore binária de busca é uma árvore binária(cada nodo pode ter no máximo dois filhos) que satisfaz a seguinte propriedade: para todo nodo,o valor de todos os filhos na subárvore esquerda é menor que o valor do próprio nodo, e o valor de todos os filhos na subárvore direita é maior que o do próprio nodo.
 https://visualgo.net/en/bst
 
 
