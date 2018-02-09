@@ -1,7 +1,12 @@
 # Árvores binárias de busca
 
-Uma árvore binária de busca é uma árvore binária(cada nodo pode ter no máximo dois filhos) que satisfaz a seguinte propriedade: para todo nodo,o valor de todos os filhos na subárvore esquerda é menor que o valor do próprio nodo, e o valor de todos os filhos na subárvore direita é maior que o do próprio nodo.
-https://visualgo.net/en/bst
+Uma árvore binária de busca(BST) é uma árvore binária(cada nodo pode ter no máximo dois filhos) que satisfaz a seguinte propriedade: para todo nodo,o valor de todos os filhos na subárvore esquerda é menor que o valor do próprio nodo, e o valor de todos os filhos na subárvore direita é maior que o do próprio nodo. Aqui há uma demonstração visual de como elas funcionam: https://visualgo.net/en/bst
+
+Essa definição é bastante abrangente, por esse motivo, existem diversos tipos de BSTs: (Splay, Scapegoat, Treap, AVL, Red-Black...)
+
+## Set
+
+Set é mais uma estrutura de dados da STL C++, que representa um conjunto matemático. Sua implementação é feita por uma BST, mais especificamente a AVL.
 
 
 ## Map
@@ -56,8 +61,7 @@ Limpa todo o para para poder utilizar novamente
 	}
 ```
 
-## Set
-...
+
 
 
 

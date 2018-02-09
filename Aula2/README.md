@@ -280,14 +280,15 @@ Essas funções geram a próxima e prévia permutação de um conjunto de númer
 
 ```cpp
 
+int n;
+cin >> n;
 vector<int> v;
-
-for(int i = 0; i < 5; i++){
+for(int i = 0; i < n; i++){
 	v.push_back(i);
 }
-
+// v = {0,1,2,3,..,n-1}
 do{
-	for(int i = 0; i < 5; i++){
+	for(int i = 0; i < n; i++){
 		printf("%d ",v[i]);
 	}
 	printf("\n");
@@ -296,3 +297,9 @@ do{
 ```
 
 A função retornará falso quando chegar na última permutação possível(vetor ordenado ao contrário).
+
+
+<details> 
+  <summary>Bônus: Qual é a complexidade do código acima? </summary>
+   A complexidade é O((n+1)!). Passamos por todas as permuncões do vetor, e em cada permutação, passamos pelo vetor todo imprimindo ele.
+</details>
