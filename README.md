@@ -2,7 +2,7 @@
 
 Esse é o repositório do UnBalloon que contém exercícios e exemplos de código referentes ao curso introdutório à programação competitiva.
 
-Está em construção.
+Está em construção. Por favor, crie uma issue se encontrar qualquer problema de definição, digitação, ou de semântica de código.
 
 Links das aulas
 ------------

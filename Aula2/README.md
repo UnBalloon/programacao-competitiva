@@ -296,13 +296,3 @@ do{
 ```
 
 A função retornará falso quando chegar na última permutação possível(vetor ordenado ao contrário).
-
-
-
-
-[IO e Tipos](00_IO_E_TIPOS)
-----
-[Estruturas de Dados](01_Estruturas_de_Dados)
----
-[Ordenação](02_Ordenacao)
----
