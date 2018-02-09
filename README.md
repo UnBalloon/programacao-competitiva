@@ -17,5 +17,5 @@ os exemplos estão em c++, se você sabe compilar com o gcc, basta compilar como
 
 Caso você não tenha o g++ instalado, basta digitar 
 ```bash
-sudo apt-get install g++ -std=c++11
+sudo apt-get install g++
 ```
