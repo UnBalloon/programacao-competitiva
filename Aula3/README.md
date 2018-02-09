@@ -6,23 +6,81 @@ Essa definição é bastante abrangente, por esse motivo, existem diversos tipos
 
 ## Set
 
-Set é mais uma estrutura de dados da STL C++, que representa um conjunto matemático. Sua implementação é feita por uma BST, mais especificamente a AVL.
+Set é mais uma estrutura de dados da STL C++, que representa um conjunto matemático. Sua implementação é feita por uma BST, mais especificamente a AVL(se balanceia sozinho).
+
+### declaração
+
+Assim como no vector, temos que indicar qual de qual tipo será nosso set.
+
+```cpp
+set<int> conj;
+```
+
+### insert
+
+para inserir no set, utiliza-se o método insert(). A complexidade dessa operação é ```O(log n)```
+```cpp
+set<int> conj;
+conj.insert(1);
+conj.insert(1);
+conj.insert(2);
+
+```
+
+Assim como no conjunto matemático, valores duplicados não contam. Então nosso set teria os valores {1,2} após a execução desse trecho.
+
+
+
+###  erase
+
+Para retirar elementos do set, utiliza-se o método erase(). A complexidade dessa operação é ```O(log n)```
+
+```cpp
+set<int> conj;
+conj.insert(1);
+conj.insert(1);
+conj.erase(1);
+```
+
+Ao fim da execução desse trecho, o conjunto está vazio.
+
+### count
+
+Pode-se verificar se um elemento está no set usando o método count(). A complexidade é ```O(log n)```
+
+```cpp
+set<int> conj;
+conj.insert(1);
+if(conj.count(1)){// retorna 1 se tiver o elemento
+	// faça algo
+}
+
+```
+### size
+
+O método size retorna o tamanho do set, a complexidade é ```O(1)```
+```cpp
+set<int> conj;
+conj.insert(1);
+conj.insert(1);
+conj.insert(2);
+conj.insert(3);
+int x = conj.size(); // x = 3
+
+```
+
+### clear()
+
+Se você quiser reinicializar o set, pode usar o método clear(). Sua complexidade é ```O(n)```, já que precisa-se liberar toda memória alocada.
+
+
 
 
 ## Map
 
-- Map é uma espécie de vetor que armazena elementos formados por uma chave e valor (key,value)
-- Isso abre um universo de possibilidades, como:
-	- Fazer um vetor de char com char, no qual uma letra armazena uma outra letra (Crifa de César)
-	- Vetor de palavras, para armazenar a frequencia de palavras em um texto
+Map é outra estrutura de dados da STL C++, também implementada usando BSTs. Enquanto o set é análogo à um conjunto matemático, o map é análogo a uma função, no sentido que podemos mapear o retorno de uma determinada entrada.
 
-- Falar sobre complexidade 
-- Os elementos de um map são inseridos de forma ordenada de acordo com sua key, ou seja, se voce fizer um     map de string, as palavras (keys) ficarão dispostas na ordem lexicográfica (alfabética)
-- Para mais detalhes: http://www.cplusplus.com/reference/map/map/
-```cpp
-    map<string,int> mp; // declaração 
-    mp["Thiago"]++; // agora o mapa mp["Thiago"] = 1
-```
+
 ### count()
 Esta função retorna 1 caso exista o elemento com a chave que você esteja procurando e 0 caso contrári.o
 ```cpp
