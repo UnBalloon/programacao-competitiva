@@ -78,27 +78,63 @@ Se você quiser reinicializar o set, pode usar o método clear(). Sua complexida
 
 ## Map
 
-Map é outra estrutura de dados da STL C++, também implementada usando BSTs. Enquanto o set é análogo à um conjunto matemático, o map é análogo a uma função, no sentido que podemos mapear o retorno de uma determinada entrada.
+Map é outra estrutura de dados da STL C++, também implementada usando BSTs. Enquanto o set é análogo à um conjunto matemático, o map é análogo a uma função, no sentido que podemos mapear o retorno de uma determinada entrada. 
+
+Para efeitos práticos, o map é bem parecido com set, mas ele permite guardar mais informações além de se o elemento está lá ou não. Maps nos permitem atrelar um dado a aquele elemento.
+
+Mais formalmente, maps armazenam informações do tipo {chave, valor}, aonde os tipos de chave e de valor são definidos na declaração.
 
 
-### count()
-Esta função retorna 1 caso exista o elemento com a chave que você esteja procurando e 0 caso contrári.o
+### Declaração
 ```cpp
-	map<char,int> mp;
-	mp['c'] = 2; 
-	if(mp.count('c')) puts("Meu mapa contém o char c");
+// meu mapa recebe chaves do tipo string e armazena valores inteiros
+map<string,int> meu_mapa;
+// o acesso é como o de um vetor, mas o índice tem o tipo da chave.
+
+mapa["Deivis"] = 2;
+
+cout << mapa["Sei la"] << endl;
+// Isso vai imprimir 0, as chaves que ainda nao tem valores sao inicializados com um valor base quando são acessadas.
 ```
-### erase()
-Permite a remoção de um elemento do mapa.
+
+
+### size
+
+O método size retorna a quantidade de chaves criadas no map. No caso do map, é necessário tomar cuidado pois apenas acessar o valor de uma chave faz com que ela seja criada. A complexidade é ```O(1)```
+
 ```cpp
-	map<char,int> mp;
-	mp['c'] = 2; 
-	mp.erase('c');
-	if(mp.count('c')) puts("Meu mapa contem o char c");
-	else puts("Meu mapa nao contem o char c");
+map<string, int> meu_mapa;
+int x = meu_mapa["Deivis"];
+int size = meu_mapa.size(); // size = 1
 ```
+
+### count
+
+Assim como no set, usa-se count para ver se uma chave está no map ou não, a função retorna 1 caso esteja. A complexidade é ```O(log n)```.
+
+```cpp
+	map<char,int> meu_mapa;
+	meu_mapa['c'] = 2; 
+	if(meu_mapa.count('c')) 
+		puts("Meu mapa contém o char c");
+```
+
+
+### erase
+
+Remove uma chave do map. A complexidade é ```O(log n)```
+```cpp
+	map<char,int> meu_mapa;
+	meu_mapa['c'] = 2; 
+	meu_mapa.erase('c');
+	if(mp.count('c')) 
+		puts("Meu mapa contem o char c");
+	else 
+		puts("Meu mapa nao contem o char c");
+```
+
 ### clear()
-Limpa todo o para para poder utilizar novamente
+Limpa o map. A complexidade é ```O(n)```.
 ```cpp
 	map<char,int> mp;
 
@@ -118,6 +154,8 @@ Limpa todo o para para poder utilizar novamente
 		else printf("%c NAO pertence\n",i);
 	}
 ```
+
+## Percorrendo Map e Set
 
 
 
