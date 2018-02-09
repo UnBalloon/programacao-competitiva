@@ -209,7 +209,7 @@ i++; // i aponta para v[1];
 
 
 ## sort
-A função sort pode ser usada para ordenar um vector. Basta passar os endereços do começo e do fim. A complexidade é ```O(n * log n)```.
+A função sort pode ser usada para ordenar um vector. Basta passar os endereços do começo e do fim. A complexidade é ```O(n * log n)```. A implementação por trás da função sort pode variar dependendo do ambiente, mas é garantido que sua complexidade é essa. Você pode ver mais sobre os algoritmos de ordenação aqui: https://visualgo.net/en/sorting.
 
 ```cpp
 vector<int> v;
