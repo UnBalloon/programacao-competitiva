@@ -102,11 +102,12 @@ A intuição sobre a complexidade de memória pode acabar te enganando nesse exe
 
 
 
-Recursão
-========
+# Recursão
 
-Exponenciação
--------------
+ Também é possível analisar a complexidade de funções recursivas.
+ 
+## Exponenciação
+
 ```cpp
 int slow_exp(int base, int e){
 	if(e == 0)
@@ -115,7 +116,7 @@ int slow_exp(int base, int e){
 }
 ```
 
-Também é possível analisar a complexidade de funções recursivas, nessa função, em cada chamada, o expoente decresce em um, atingindo o caso base quando se iguala a 0. Então são feitas ```O(n)``` chamadas. Quando avaliamos complexidade de memória de funções recursivas, temos que levar em conta a pilha de execução também. São empilhadas n chamadas na pilha, então a complexidade de memória é ```O(n)```.
+ Nessa função, em cada chamada, o expoente decresce em um, atingindo o caso base quando se iguala a 0. Então são feitas ```O(n)``` chamadas. Quando avaliamos complexidade de memória de funções recursivas, temos que levar em conta a pilha de execução também. São empilhadas n chamadas na pilha, então a complexidade de memória é ```O(n)```.
 
 
 Exponenciação rápida

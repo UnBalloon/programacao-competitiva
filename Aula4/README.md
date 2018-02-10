@@ -33,7 +33,7 @@ for(int i = 0; i < q; i++){
 Essa solução teria complexidade `O(q*n)` aonde `q` é o número de consultas, e `n` o tamanho do vetor.
 
 
-# Somas prefixas
+# Somas de prefixos
 
 O vetor de somas prefixas é uma ED que podemos usar para resolver esse tipo de problema de forma mais eficiente. A ideia é construir um vetor P tal que `P[i]` representa a soma do índice 0 até o índice i.
 
