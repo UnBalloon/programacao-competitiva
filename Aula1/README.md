@@ -102,11 +102,12 @@ A intuição sobre a complexidade de memória pode acabar te enganando nesse exe
 
 
 
-Recursão
-========
-Também é possível analisar a complexidade de funções recursivas.
-Exponenciação
--------------
+# Recursão
+
+ Também é possível analisar a complexidade de funções recursivas.
+ 
+## Exponenciação
+
 ```cpp
 int slow_exp(int base, int e){
 	if(e == 0)
