@@ -145,7 +145,13 @@ else
 
 ## Define
 
-Defines são expressões pré definidas pelo programador, que podem facilitar sua vida reduzindo tempo de escrita. *MUITO* cuidado!!! Elas podem  acabar atrapalhando caso usadas de maneira errada.
+Defines são expressões pré definidas pelo programador, que podem facilitar sua vida reduzindo tempo de escrita.Além disso, as vezes muitas dessas expressões são aninhadas, deixando a linha de código muito longa, o que atrapalha um pouco. 
+
+```cpp
+#define a b
+```
+Esse trecho de código pega todas as ocorrências de a e troca por b no momento da compilação.
+
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
@@ -153,7 +159,6 @@ using namespace std;
 #define pb push_back
 #define mp make_pair
 #define ii pair<int,int>
-#define N 100000
 int main(){
 
 	vector<int> v;
