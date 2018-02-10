@@ -208,6 +208,44 @@ for(auto p: mapa){
 }
 ```
 
+# Set e map x vector
+
+É interessante considerar a seguinte ideia: E se usássemos um vetor para indicar se um elemento está ou não no set, ou guardar seu valor no map? (No caso de chaves inteiras). Sim, é possível.
+
+
+## "Set"
+```cpp
+// Max é o maior elemento que pode aparecer
+// set<int> conj;
+vector<bool> conj(MAX,false);
+// insert
+v[9] = true;
+
+// erase
+v[9] = false;
+
+// count
+if(v[9]){
+// faça algo
+}
+```
+
+## "Map"
+
+```cpp
+// map<int,string> mapa;
+vector<string> mapa(MAX);
+//mesmo uso
+mapa[1] = "oie";
+
+// if(mapa.count(2))
+if(mapa[2] != ""){
+	// faça algo
+}
+```
+
+E a vantagem disso é que as operações de acesso e escrita ocorrem em ```O(1)```, e não ```O(log n)```. Mas para fazer isso, é necessário ter memória suficiente, caso o maior elemento for da ordem de 10^9 por exemplo, não teremos memória para tal e seria melhor usar um set ou map.
+
 
 # Função Hash
 
@@ -221,7 +259,7 @@ int hash(int n){
 }
 ```
 
-Antes de entrar na função, ```n``` podia ter qualquer valor abrigado por um tipo inteiro. Agora sabemos que ele tem um valor no intervalo [0,6].
+Antes de entrar na função, ```n``` podia ter qualquer valor abrigado por um tipo inteiro. Agora sabemos que ele tem um valor no intervalo [0,9].
 
 ## Tabela Hash
 
@@ -238,11 +276,6 @@ Por essa razão, a tabela hash não guarda só um elemento numa das suas posiç�
 Isso é de certa forma problemático, pois se tivermos muitas colisões, a eficiência dessa ED cai drasticamente.
 
 ### Diminuindo colisões
-
-
-
-
-
 
 <details> 
   <summary>Bem, mas só ocorreram tantas colisões porque estamos usando um módulo pequeno para manter os números, não bastaria só colocar um número grande no tamanho do módulo, da ordem de 10^9? 
