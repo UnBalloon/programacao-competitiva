@@ -241,7 +241,7 @@ mapa[1] = "oie";
 // if(mapa.count(2))
 if(mapa[2] != ""){
 	// faça algo
-}
+}	
 ```
 
 E a vantagem disso é que as operações de acesso e escrita ocorrem em ```O(1)```, e não ```O(log n)```. Mas para fazer isso, é necessário ter memória suficiente, caso o maior elemento for da ordem de 10^9 por exemplo, não teremos memória para tal e seria melhor usar um set ou map.
@@ -298,6 +298,11 @@ unordered_map<int,int> mapa;
 Os métodos e funcionalidades dessas estruturas de dados são quase em totalidade iguais aos set e map comuns, a maior mudança é relacionada a complexidade das operações.
 
 Enquanto na implementação usando BSTs a maioria das operações tinha complexide logarítmica, na implementação usando hashtables, o caso médio tem complexidade ```O(1)```, mas o pior caso continua sendo ```O(n)```, caso hajam muitas colisões.
+
+
+
+# Ordered_set ?? n sei se isso é necessário
+
 
 
 
