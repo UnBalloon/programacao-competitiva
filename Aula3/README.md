@@ -2,13 +2,13 @@
 
 Uma árvore de busca binária (BST) é uma árvore binária (cada nó pode ter no máximo dois filhos, esquerda e direita) onde cada nó possui uma chave (um elemento de um conjunto com relação de ordem total) e, para todo nó `u`, as chaves de todos os filhos na subárvore esquerda são menores que a chave de `u` e as chaves de todos os filhos na subárvore direita são maiores que a chave de `u`. Aqui há uma demonstração visual de como elas funcionam: https://visualgo.net/en/bst
 
-Uma BST balanceada (pela altura) é uma **estrutura de dados** onde a representação dos dados é uma BST e as operações de modificação garantem que as distâncias da raiz até as folhas na árvore resultante serão limitadas por algum valor em função do número total de nós armazenados, por exemplo `O(lg n)`.
+Uma BST balanceada (pela altura) é uma estrutura de dados (ED) onde a representação dos dados é uma BST e as operações de modificação garantem que as distâncias da raiz até as folhas na árvore resultante serão limitadas por algum valor em função do número total de nós armazenados, por exemplo `O(lg n)`.
 
 Existem diversas BSTs balanceadas com `O(lg n)`: AVL trees, red-black trees, treaps, splay trees, scapegoat trees... A mais fácil de implementar para competições é a treap: https://e-maxx-eng.appspot.com/data_structures/treap.html
 
 ## Set
 
-Set é mais uma estrutura de dados da STL C++, que representa um conjunto matemático. Sua implementação é feita por uma BST balanceada.
+Set é mais uma ED da STL C++, que representa um conjunto matemático. Sua implementação é feita por uma BST balanceada.
 
 ### declaração
 
@@ -80,7 +80,7 @@ Se você quiser reinicializar o set, pode usar o método clear(). Sua complexida
 
 ## Map
 
-Map é outra estrutura de dados da STL C++, também implementada por uma BST balanceada. Enquanto o set é análogo à um conjunto matemático, o map é análogo a uma função, no sentido que podemos mapear o retorno de uma determinada entrada. 
+Map é outra ED da STL C++, também implementada por uma BST balanceada. Enquanto o set é análogo à um conjunto matemático, o map é análogo a uma função, no sentido que podemos mapear o retorno de uma determinada entrada. 
 
 Para efeitos práticos, o map é bem parecido com set, mas ele permite guardar mais informações além de se o elemento está lá ou não. Maps nos permitem atrelar um dado a aquele elemento.
 
@@ -251,7 +251,7 @@ E a vantagem disso é que as operações de acesso e escrita ocorrem em ```O(1)`
 
 # Função Hash
 
-Uma função hash é **qualquer**  função que pode ser usada para mapear dados num intervalo de tamanho arbitrário para um intervalo de tamanho fixo.
+Uma função hash é **qualquer**  função que pode ser usada para mapear dados de um conjunto de tamanho arbitrário para um conjunto de tamanho fixo.
 
 
 ```cpp
@@ -261,11 +261,11 @@ int hash(int n){
 }
 ```
 
-Antes de entrar na função, ```n``` podia ter qualquer valor abrigado por um tipo inteiro. Agora sabemos que ele tem um valor no intervalo [0,9].
+Antes de entrar na função, ```n``` podia ter qualquer valor abrigado pelo tipo `int` (um conjunto bem grande). Agora sabemos que ele é um inteiro no intervalo [0, 9].
 
 ## Tabela Hash
 
-Tabela hash é uma estrutura de dados que faz uso dessa idéia. Cada dado é mapeado por meio da função hash, e armazenado naquela posição da tabela.
+Tabela hash é uma ED que faz uso dessa idéia. Cada dado é mapeado por meio da função hash, e armazenado naquela posição da tabela.
 
 https://visualgo.net/en/hashtable
 
@@ -279,15 +279,15 @@ Isso é de certa forma problemático, pois se tivermos muitas colisões, a efici
 
 ### Diminuindo colisões
 
-<details> 
-  <summary>Bem, mas só ocorreram tantas colisões porque estamos usando um módulo pequeno para manter os números, não bastaria só colocar um número grande no tamanho do módulo, da ordem de 10^9? 
- </summary>
-	Sim, está correto, na verdade, se escolhêssemos módulo 10^9, como os tipos inteiros abrigam um pouco mais do que 2 * 10^9 no máximo, no pior caso, teríamos três colisões. No entanto, teríamos que ter memória para isso, alocar um vetor de tamanho 10^9 já é da ordem de Gigabytes.
-</details>
+Existem diversas formas de melhorar a eficiência de uma tabela hash:
+
+1. Escolher uma função hash com bom espalhamento. `hash(n) = k` é uma função hash, mas com espalhamento ruim (a imagem só possui um único elemento, `k`).
+2. Aumentar o tamanho do contra-domínio da função hash e o tamanho do vetor até um limite aceitável de uso de memória.
+3. Fazer vários níveis de hash, onde cada nível tem sua própria função hash. Assim que uma lista do nível `i` atinge um tamanho limite, ela é substituída por uma nova tabela hash que usa a função hash do nível `i+1`.
 
 # Hashset e Hashmap
 
-Essas duas são estruturas de dados muito parecidas com o set e map, mas não são implementadas com BSTs, sim com hashtables. 
+Equivalentes a sets e maps, implementadas com tabelas hash no lugar de BSTs. Não suportam armazenamento ordenado dos elementos (limitação de tabelas hash).
 
 ## Declaração
 
