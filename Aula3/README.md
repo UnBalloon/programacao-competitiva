@@ -193,7 +193,7 @@ A boa notícia é que tem um jeito um pouco mais simples.
 set<int> conj;
 // codigo que preenche o set
 
-for(int elem: conj){
+for(int elem : conj){
 	printf("%d\n",elem);
 }
 
@@ -205,10 +205,12 @@ map<int,int> mapa;
 // codigo que preenche o map
 
 // p é um par de chave valor
-for(auto p: mapa){
+for(auto& p : mapa){
 	printf("%d %d",p.first,p.second);
 }
 ```
+
+Perceba que no map é possível adicionar `&` após `auto` para modificar o campo `second`.
 
 # Set e map x vector
 
