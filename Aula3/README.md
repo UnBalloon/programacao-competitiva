@@ -227,7 +227,45 @@ Antes de entrar na função, ```n``` podia ter qualquer valor abrigado por um ti
 
 Tabela hash é uma estrutura de dados que faz uso dessa idéia. Cada dado é mapeado por meio da função hash, e armazenado naquela posição da tabela.
 
-![Image of Yaktocat](http://images.slideplayer.com/35/10433564/slides/slide_12jpg)
+https://visualgo.net/en/hashtable
+
+### Colisões
+
+É evidente que quando se tem uma função cujo domínio é maior que o contra-domínio, dois elementos do domínio terão a mesma imagem. Ou seja, estamos propensos a ter dois elementos com o mesmo resultado na função hash.
+
+Por essa razão, a tabela hash não guarda só um elemento numa das suas posições, e sim uma lista desses elementos. 
+
+Isso é de certa forma problemático, pois se tivermos muitas colisões, a eficiência dessa ED cai drasticamente.
+
+### Diminuindo colisões
+
+
+
+
+
+
+<details> 
+  <summary>Bem, mas só ocorreram tantas colisões porque estamos usando um módulo pequeno para manter os números, não bastaria só colocar um número grande no tamanho do módulo, da ordem de 10^9? 
+ </summary>
+	Sim, está correto, na verdade, se escolhêssemos módulo 10^9, como os tipos inteiros abrigam um pouco mais do que 2 * 10^9 no máximo, no pior caso, teríamos três colisões. No entanto, teríamos que ter memória para isso, alocar um vetor de tamanho 10^9 já é da ordem de Gigabytes.
+</details>
+
+# Hashset e Hashmap
+
+Essas duas são estruturas de dados muito parecidas com o set e map, mas não são implementadas com BSTs, sim com hashtables. 
+
+## Declaração
+
+```cpp
+unordered_set<int> conj;
+unordered_map<int,int> mapa;
+```
+
+### Métodos e operações
+Os métodos e funcionalidades dessas estruturas de dados são quase em totalidade iguais aos set e map comuns, a maior mudança é relacionada a complexidade das operações.
+
+Enquanto na implementação usando BSTs a maioria das operações tinha complexide logarítmica, na implementação usando hashtables, o caso médio tem complexidade ```O(1)```, mas o pior caso continua sendo ```O(n)```, caso hajam muitas colisões.
+
 
 
 
