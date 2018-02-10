@@ -301,5 +301,5 @@ A função retornará falso quando chegar na última permutação possível(veto
 
 <details> 
   <summary>Bônus: Qual é a complexidade do código acima? </summary>
-   A complexidade é O((n+1)!). Passamos por todas as permuncões do vetor, e em cada permutação, passamos pelo vetor todo imprimindo ele.
+   A complexidade é ```O(n! * 2 * n) = O(n! * n)```. Passamos por todas as permutações do vetor; e em cada permutação, passamos pelo vetor todo imprimindo ele e calculamos a próxima permutação.
 </details>
