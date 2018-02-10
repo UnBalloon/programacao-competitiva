@@ -293,12 +293,17 @@ Existem diversas formas de melhorar a eficiência de uma tabela hash:
 
 Equivalentes a sets e maps, implementadas com tabelas hash no lugar de BSTs. Não suportam armazenamento ordenado dos elementos (limitação de tabelas hash).
 
-## Declaração
+### Declaração
 
 ```cpp
 unordered_set<int> conj;
 unordered_map<int,int> mapa;
 ```
+
+### Métodos e operações
+Os métodos e funcionalidades dessas estruturas de dados são quase em totalidade iguais aos set e map comuns, a maior mudança é relacionada a complexidade das operações.
+
+Enquanto na implementação usando BSTs a maioria das operações tinha complexide logarítmica, na implementação usando hashtables, o caso médio tem complexidade ```O(1)```, mas o pior caso continua sendo ```O(n)```, caso hajam muitas colisões.
 
 # Multiset e multimap
 
@@ -313,13 +318,6 @@ unordered_multiset<int> conj2;
 unordered_multimap<int,int> mapa2;
 ```
 
-### Métodos e operações
-Os métodos e funcionalidades dessas estruturas de dados são quase em totalidade iguais aos set e map comuns, a maior mudança é relacionada a complexidade das operações.
-
-Enquanto na implementação usando BSTs a maioria das operações tinha complexide logarítmica, na implementação usando hashtables, o caso médio tem complexidade ```O(1)```, mas o pior caso continua sendo ```O(n)```, caso hajam muitas colisões.
-
-
-
-# Ordered_set ?? n sei se isso é necessário
+# Ordered_set TODO
 
 
