@@ -1,12 +1,14 @@
-# Árvores binárias de busca
+# Árvores de busca bináriaf
 
 Uma árvore de busca binária (BST) é uma árvore binária (cada nó pode ter no máximo dois filhos, esquerda e direita) onde cada nó possui uma chave (um elemento de um conjunto com relação de ordem total) e, para todo nó `u`, as chaves de todos os filhos na subárvore esquerda são menores que a chave de `u` e as chaves de todos os filhos na subárvore direita são maiores que a chave de `u`. Aqui há uma demonstração visual de como elas funcionam: https://visualgo.net/en/bst
 
-Essa definição é bastante abrangente, por esse motivo, existem diversos tipos de BSTs: (Splay, Scapegoat, Treap, AVL, Red-Black...)
+Uma BST balanceada (pela altura) é uma **estrutura de dados** onde a representação dos dados é uma BST e as operações de modificação garantem que as distâncias da raiz até as folhas na árvore resultante serão limitadas por algum valor em função do número total de nós armazenados, por exemplo `O(lg n)`.
+
+Existem diversas BSTs balanceadas com `O(lg n)`: AVL trees, red-black trees, treaps, splay trees, scapegoat trees... A mais fácil de implementar para competições é a treap: https://e-maxx-eng.appspot.com/data_structures/treap.html
 
 ## Set
 
-Set é mais uma estrutura de dados da STL C++, que representa um conjunto matemático. Sua implementação é feita por uma BST, mais especificamente a AVL(se balanceia sozinho).
+Set é mais uma estrutura de dados da STL C++, que representa um conjunto matemático. Sua implementação é feita por uma BST balanceada.
 
 ### declaração
 
@@ -78,7 +80,7 @@ Se você quiser reinicializar o set, pode usar o método clear(). Sua complexida
 
 ## Map
 
-Map é outra estrutura de dados da STL C++, também implementada usando BSTs. Enquanto o set é análogo à um conjunto matemático, o map é análogo a uma função, no sentido que podemos mapear o retorno de uma determinada entrada. 
+Map é outra estrutura de dados da STL C++, também implementada por uma BST balanceada. Enquanto o set é análogo à um conjunto matemático, o map é análogo a uma função, no sentido que podemos mapear o retorno de uma determinada entrada. 
 
 Para efeitos práticos, o map é bem parecido com set, mas ele permite guardar mais informações além de se o elemento está lá ou não. Maps nos permitem atrelar um dado a aquele elemento.
 
