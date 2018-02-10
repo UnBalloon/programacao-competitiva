@@ -155,8 +155,79 @@ Limpa o map. A complexidade é ```O(n)```.
 	}
 ```
 
-## Percorrendo Map e Set
+## Percorrendo map e set
 
+Ás vezes é necessário percorrer os elementos no map e no set. Uma maneira de fazer isso é a seguinte:
+
+### set
+```cpp
+set<int> conj;
+// codigo que preenche o set
+
+	//iterator!
+for(auto i = conj.begin(),i != conj.end(); i++){
+	printf("%d\n",*i);
+}
+```
+### map
+```cpp
+map<int,int> mapa;
+// codigo que preenche o map
+
+	//iterator!
+for(auto i = mapa.begin(),i != mapa.end(); i++){
+	// Os *pares* chave valor do map funcionam como um pair (Duh!) 
+					
+	printf("%d %d\n",(*i.first),(*i).second);
+}
+```
+
+## Jeito mais simples
+
+A boa notícia é que tem um jeito um pouco mais simples.
+
+### set
+```cpp
+set<int> conj;
+// codigo que preenche o set
+
+for(int elem: conj){
+	printf("%d\n",elem);
+}
+
+```
+
+### map
+```cpp
+map<int,int> mapa;
+// codigo que preenche o map
+
+// p é um par de chave valor
+for(auto p: mapa){
+	printf("%d %d",p.first,p.second);
+}
+```
+
+
+# Função Hash
+
+Uma função hash é **qualquer**  função que pode ser usada para mapear dados num intervalo de tamanho arbitrário para um intervalo de tamanho fixo.
+
+
+```cpp
+
+int hash(int n){
+	return n % 10;
+}
+```
+
+Antes de entrar na função, ```n``` podia ter qualquer valor abrigado por um tipo inteiro. Agora sabemos que ele tem um valor no intervalo [0,6].
+
+## Tabela Hash
+
+Tabela hash é uma estrutura de dados que faz uso dessa idéia. Cada dado é mapeado por meio da função hash, e armazenado naquela posição da tabela.
+
+![Image of Yaktocat](http://images.slideplayer.com/35/10433564/slides/slide_12jpg)
 
 
 
@@ -176,7 +247,7 @@ int main(){
 
 	vector<int> v;
 	v.pb(N); // inserindo 100000 no vetor
-	vector<ii> v2; //vetor de <int,int>
+	vector<ii> v2; //vetor de pair<int,int>
 	v2.pb(mp(1,0)); //inserindo o par (1,0) no vetor de par
 }
 ```
