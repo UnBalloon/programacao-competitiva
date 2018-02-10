@@ -10,6 +10,7 @@ Links das aulas
 - [Aula 1: Complexidade](Aula1/README.md)
 - [Aula 2: Introdução C++, Estrutura de dados](Aula2/README.md)
 - [Aula 3: Árvores binárias de busca](Aula3/README.md)
+- [Aula 4: Somas Prefixas e Delta encoding](aula4/README.md)
 
 Como compilar os exemplos
 -------------------------
