@@ -165,13 +165,3 @@ A complexidade de memória dessa função pode ser um pouco mais complicada de a
 
 
 
-
-
-[Primo Rápido](00_PrimoRapido)
----
-[Prefix Sum](01_PrefixSum)
----
-[Crivo](02_Crivo)
----
-[Busca Binária](03_BuscaBinaria)
----
