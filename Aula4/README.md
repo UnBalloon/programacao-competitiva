@@ -6,7 +6,77 @@ Suponha que você se depare com o seguinte problema:
 
 Até agora, em qual complexidade sabemos resolver esse problema?
 
+A solução simples seria: 
+```cpp
+int n;
+int q;
+cin >> n;
+vector<int> v(n);
+// leitura dos elementos
+for(int i = 0; i < n; i++){
+    scanf("%d",v+i);
+}
+cin >> q;
+// respondendo as consultas
+for(int i = 0; i < q; i++){
+    int l, r;
+    scanf("%d %d",&l,&r);
+    int soma = 0;
+    for(int j = l; j <= r; j++){
+        soma += v[j];
+    }
+    cout << soma << endl;
+}
+
+```
+
+Essa solução teria complexidade `O(q*n)` aonde `q` é o número de consultas, e `n` o tamanho do vetor.
 
 
+# Somas prefixas
+
+O vetor de somas prefixas é uma ED que podemos usar para resolver esse tipo de problema de forma mais eficiente. A ideia é construir um vetor P tal que `P[i]` representa a soma do índice 0 até o índice i.
+
+Tendo essas informações, para responder uma consulta (l,r) podemos usar a seguinte ideia: sabe-se que em `P[r]` temos a resposta para a consulta (0,r), com isso, podemos agora subtrair a parte que não nos interessa, (0,l-1) ou `P[l-1]`.
+
+## Construção
+
+A construção do vetor de somas prefixas tem complexidade `O(n)`. 
+
+```cpp
+int n;
+cin >> n;
+vector<int> v;
+for(int i = 0; i < n; i++){
+    scanf("%d",v+i);
+}
+vector<int> psum(n);
+int acumulado = 0;
+for(int i = 0; i < n; i++){
+    acumulado += v[i];
+    psum[i] = acumulado;
+}
+```
+
+## Resposta de consulta (l,r)
+
+A resposta às consultas tem complexidade constante, já que são só acessos ao vetor. Apenas tem-se que tomar cuidado quando `l = 0`.
+
+```cpp
+int sum(int l, int r){
+    if(l == 0)
+        return psum[r];
+    else
+        return psum[r] - psum[l-1];
+}
+```
 
 
+## Ressalvas
+
+Vale lembrar que essa ED só pode ser usada quando não há atualização nos valores do vetor, caso haja, é necessário recomputar as somas prefixas do vetor todo em `O(n)`. 
+
+Além disso, esse raciocínio não precisa se extender apenas a somas, funciona para operações como xor, por exemplo.  
+
+
+#Delta encoding
