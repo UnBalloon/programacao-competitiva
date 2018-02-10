@@ -210,7 +210,7 @@ for(auto& p : mapa){
 }
 ```
 
-Perceba que no map é possível adicionar `&` após `auto` para modificar o campo `second`.
+Perceba que no map é possível adicionar `&` após o tipo para modificar o campo `second` (valor mapeado pela chave, campo `first`).
 
 # Set e map x vector
 
