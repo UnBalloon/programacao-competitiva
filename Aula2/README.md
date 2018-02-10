@@ -143,6 +143,32 @@ else
   // faz outra coisa
 ``` 
 
+## Define
+
+Defines são expressões pré definidas pelo programador, que podem facilitar sua vida reduzindo tempo de escrita.Além disso, as vezes muitas dessas expressões são aninhadas, deixando a linha de código muito longa, o que atrapalha um pouco. 
+
+```cpp
+#define a b
+```
+Esse trecho de código pega todas as ocorrências de a e troca por b no momento da compilação.
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+#define pb push_back
+#define mp make_pair
+#define ii pair<int,int>
+int main(){
+
+	vector<int> v;
+	v.pb(N); // inserindo 100000 no vetor
+	vector<ii> v2; //vetor de pair<int,int>
+	v2.pb(mp(1,0)); //inserindo o par (1,0) no vetor de par
+}
+```
+
+
 ## iterator
 
 Em linhas gerais, podemos chamar iterators de ponteiros mais inteligentes. Quando usamos os operadores ++ em um ponteiro comum, o que a linguagem faz é: faça aquele ponteiro apontar x posições a frente de onde apontava antes, aonde x é o sizeof() daquele tipo. 
