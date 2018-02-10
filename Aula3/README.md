@@ -251,7 +251,9 @@ if(mapa[2] != ""){
 E a vantagem disso é que as operações de acesso e escrita ocorrem em ```O(1)```, e não ```O(log n)```. Mas para fazer isso, é necessário ter memória suficiente, caso o maior elemento for da ordem de 10^9 por exemplo, não teremos memória para tal e seria melhor usar um set ou map.
 
 
-# Função hash
+# Tabelas hash
+
+## Função hash
 
 Uma função hash é **qualquer** função que pode ser usada para mapear dados de um conjunto de tamanho arbitrário para um conjunto de tamanho fixo.
 
@@ -287,7 +289,7 @@ Existem diversas formas de melhorar a eficiência de uma tabela hash:
 2. Aumentar o tamanho do contra-domínio da função hash e o tamanho da tabela até um limite aceitável de uso de memória.
 3. Fazer vários níveis de hash, onde cada nível tem sua própria função hash. Assim que uma lista do nível `i` atinge um tamanho limite, ela é substituída por uma nova tabela hash que usa a função hash do nível `i+1`.
 
-# Hashset e Hashmap
+## Hashset e hashmap
 
 Equivalentes a sets e maps, implementadas com tabelas hash no lugar de BSTs. Não suportam armazenamento ordenado dos elementos (limitação de tabelas hash).
 
@@ -296,6 +298,19 @@ Equivalentes a sets e maps, implementadas com tabelas hash no lugar de BSTs. Nã
 ```cpp
 unordered_set<int> conj;
 unordered_map<int,int> mapa;
+```
+
+# Multiset e multimap
+
+Equivalentes a sets e maps, permitindo elementos repetidos no set e chaves repetidas no map.
+
+## Declaração
+
+```cpp
+multiset<int> conj1;
+multimap<int,int> mapa1;
+unordered_multiset<int> conj2;
+unordered_multimap<int,int> mapa2;
 ```
 
 ### Métodos e operações
