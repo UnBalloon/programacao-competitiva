@@ -79,4 +79,5 @@ Vale lembrar que essa ED só pode ser usada quando não há atualização nos va
 Além disso, esse raciocínio não precisa se extender apenas a somas, funciona para operações como xor, por exemplo.  
 
 
-#Delta encoding
+# Delta encoding
+
