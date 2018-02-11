@@ -11,6 +11,17 @@ Links das aulas
 - [Aula 2: Introdução a C++](Aula2/README.md)
 - [Aula 3: Árvores de busca binária e tabelas hash](Aula3/README.md)
 - [Aula 4: Somas de prefixos e delta encoding](Aula4/README.md)
+- [Aula 5: Somas de prefixos e delta encoding](Aula5/README.md)
+- [Aula 6: Somas de prefixos e delta encoding](Aula6/README.md)
+- [Aula 7: Somas de prefixos e delta encoding](Aula7/README.md)
+- [Aula 8: Somas de prefixos e delta encoding](Aula8/README.md)
+- [Aula 9: Somas de prefixos e delta encoding](Aula9/README.md)
+- [Aula 10: Somas de prefixos e delta encoding](Aula10/README.md)
+- [Aula 11: Somas de prefixos e delta encoding](Aula11/README.md)
+- [Aula 12: Somas de prefixos e delta encoding](Aula12/README.md)
+- [Aula 13: Somas de prefixos e delta encoding](Aula13/README.md)
+- [Aula 14: Somas de prefixos e delta encoding](Aula14/README.md)
+- [Aula 15: Somas de prefixos e delta encoding](Aula15/README.md)
 
 Como compilar os exemplos
 -------------------------
