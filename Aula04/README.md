@@ -41,20 +41,12 @@ Tendo essas informações, para responder uma consulta (l,r) podemos usar a segu
 
 ## Construção
 
-A construção do vetor de somas prefixas tem complexidade `O(n)`. 
+A construção do vetor de somas prefixas em `v` tem complexidade `O(n)`. 
 
 ```cpp
-int n;
-cin >> n;
-vector<int> v;
-for(int i = 0; i < n; i++){
-    scanf("%d",v+i);
-}
-vector<int> psum(n);
-int acumulado = 0;
-for(int i = 0; i < n; i++){
-    acumulado += v[i];
-    psum[i] = acumulado;
+vector<int> psum(v.size(), v[0]);
+for(int i = 1; i < v.size(); i++) {
+    psum[i] = v[i] + v[i-1];
 }
 ```
 
@@ -66,7 +58,7 @@ A resposta às consultas tem complexidade constante, já que são só acessos ao
 int sum(int l, int r){
     if(l == 0)
         return psum[r];
-    else
+	else
         return psum[r] - psum[l-1];
 }
 ```
@@ -81,3 +73,37 @@ Além disso, esse raciocínio não precisa se extender apenas a somas, funciona 
 
 # Delta encoding
 
+Imagine um problema parecido, porém com `q` atualizações e no final quer saber o soma de valores de um intervalo. Soma de Prefixos executaria em `O(q*n)`. Delta encoding é uma ED que executa em `O(q)`, pois atualiza em `O(1)`.
+
+A ideia é construir um vetor  `d` tal que  `d[i]` seja a variação (delta) em relação a `d[i-1]`. Assim, somar mais `v`  em `[l, r]` não altera `(l-r)` deltas, apenas `d[l]`  e `d[r+1]` (que são as bordas relativas do intervalo) .
+
+## Construção
+
+A construção do vetor do delta encoding em `v` tem complexidade `O(n)`. 
+
+```cpp
+vector<int> d(v.size(), v[0]);
+for(int i = 1; i < v.size(); i++) {
+    d[i] = v[i] - v[i-1];
+}
+```
+
+## Atualização de [l,r]
+
+A atualização tem complexidade constante, já que são só acessos ao vetor.
+
+```cpp
+void update (int l, int r, int value){
+    d[l] += value; 
+    if (r+1 < d.size()) 
+        d[r+1] -= value;
+}
+```
+
+## Ressalvas
+
+Vale lembrar que essa ED serve para quando se tem muitas atualizações e poucas buscas, já que uma soma no intervalo é  `O(n)`. 
+
+Assim como Soma de Prefixos, pode ser usado de outras formas.
+
+# 
