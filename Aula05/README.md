@@ -108,7 +108,7 @@ void build_block(int id){
 ```
 A complexidade do `build_block` e consequentemente do update é `O(B)`.
 
-Fazer a query agora pode ser um pouco complicado. Caso `l` e `r` estão no mesmo bloco, essa divisão de blocos não nos ajuda em nada e precisamos passar por todos os elementos do intervalo, resolvendo este caso em `O(B)`. Para os outros casos sabemos que existe um intervalo de blocos que estão completamente dentro da query e podemos pegar a resposta para cada com o vetor `sum_block` em tempo `O(n / B)`. Por fim, o resto da query consiste de um sufixo do bloco do l e um prefixo do bloco do r, como no primeiro caso precisamos passar pelo bloco todo para pegar a resposta. Temos tempo de query `O(B + n / B))`.
+Fazer a query agora pode ser um pouco complicado. Caso `l` e `r` estejam no mesmo bloco, essa divisão de blocos não nos ajuda em nada e precisamos passar por todos os elementos do intervalo, resolvendo este caso em `O(B)`. Para os outros casos sabemos que existe um intervalo de blocos que estão completamente dentro da query e podemos pegar a resposta para cada com o vetor `sum_block` em tempo `O(n / B)`. Por fim, o resto da query consiste de um sufixo do bloco do l e um prefixo do bloco do r, como no primeiro caso precisamos passar pelo bloco todo para pegar a resposta. Temos tempo de query `O(B + n / B))`.
 ```cpp
 ll query(int l, int r){
   ll ans = 0;
