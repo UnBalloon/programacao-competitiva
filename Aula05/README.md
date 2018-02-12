@@ -137,18 +137,15 @@ Na última versão, observe que podemos modificar facilmente as funções `build
 
 ## Algoritmo de Mo
 
-Supondo o problema de encontrar a maior frequencia de um elemento em um range, `q, v[i], n < 10^5`. Usaremos uma ideia um pouco não convencional que pode ser aplicada a outros problemas. Mantemos o range e sua respectiva resposta atual. Se conseguirmos adicionar e remover um elemento em qualquer uma das pontas e continuar com a resposta certa, podemos editar o range atual para que seja igual ao range da query.
+Suponha que um problema dê um vetor `v` de tamanho `n`, um inteiro `q` e em seguida `q` consulta, cada consulta dá dois inteiros `l` e `r` e pergunta quantas vezes o elemento que mais aparece no intervalo aparece.
 
+Usaremos uma ideia um pouco não convencional. Manteremos um intervalo e sua respectiva resposta. Se conseguirmos adicionar um elemento na resposta e remover um elemento da resposta podemos editar o intervalo atual para que seja igual da query.
 
-
+No código o intervalo é representado por `[L, R]`, intervalo fechado nos dois extremos.
 
 ```cpp
 struct mystruct{ int id, l, r; };
-bool cmp(mystruct a, mystruct b){
-  if(a.l / B != b.l / B)
-    return a.l / B < b.l / B;
-  return a.r < b.r;
-}
+
 // .. dentro da main
 vector<mystruct> queries;
 for(int i = 0; i < q; i++){
@@ -156,15 +153,93 @@ for(int i = 0; i < q; i++){
   queries.emplace_back(i, l, r);
 }
 
-int L = 0, R = -1; //intervalo vazio
+cur_ans = 0; //variavel global com a resposta atual
+int L = 0, R = -1; //intervalo vazio, opcionalmente
+//pode-se começar com intervalo unitário
+//fazendo L = 0, R = 0 e add(v[0])
 for(auto query : queries){
-  while(R < query.r) add(++R);
-  while(L > query.l) add(--L);
-  while(R > query.r) rem(R--);
-  while(L < query.l) rem(L++);
+  while(R < query.r) R++, add(v[R]);
+  while(L > query.l) L--, add(v[L]);
+  while(R > query.r) rem(v[R]), R--;
+  while(L < query.l) rem(v[L]), L++;
   ans[query.id] = cur_ans;
 }
 
 for(int i = 0; i < q; i++)
   printf("%d\n", ans[i]);
 ```
+
+Se mantermos um vetor `frequency` onde `frequency[x]` é a quantidade de vezes que o elemento `x` aparece no intervalo considerado podemos fazer a função `add` sem problemas.
+
+```cpp
+//considere que frequency está zerado antes
+void add(int val){
+  frequency[val]++;
+  if(frequency[val] > cur_ans)
+    cur_ans = frequency[val];
+}
+```
+
+A função `rem` parece mais complicada pois se uma ocorrencia do elemento que aparece mais vezes for removida a resposta precisa ser decrementada somente se não há mais nenhum elemento com a mesma quantidade de ocorrencia. Usaremos então outro vetor, `howmany` onde `howmany[x]` é a quantidade de `frequency[y] = x` para todo `y` no intervalo considerado. A função `add` também precisa ser alterada com a adição do novo vetor, segue o código:
+
+```cpp
+//considere que frequency e howmany estão zerados antes
+void add(int val){
+  howmany[frequency[val]]--;
+  frequency[val]++;
+  howmany[frequency[val]]++;
+  if(frequency[val] > cur_ans)
+    cur_ans = frequency[val];
+}
+
+void rem(int val){
+  howmany[frequency[val]]--;
+  frequency[val]--;
+  howmany[frequency[val]]++;
+  if(!howmany[cur_ans]) cur_ans--;
+}
+```
+
+Depois de tanto trabalho vamos analisar a complexidade da solução. As funções `add` e `rem` tem complexidade `O(1)`, portanto a complexidade da solução é o quanto os indices `L` e `R` precisam se mexer ao longo das consultas. É fácil perceber que se tivermos alternadamente consultas nos intervalos `[0, 0]` e `[n-1, n-1]` teremos que andar pelo vetor todo sempre, ou seja, `O(q*n)`.
+
+Entretanto, percebemos que se os intervalos não mudassem muito entre si os indices teriam que andar pouco. Já que estamos salvando todas as consultas respondendo todas e só depois mostrando a resposta, tratar as consultas uma outra ordem pode ser melhor para nós.
+
+```cpp
+struct mystruct{ int id, l, r; };
+
+//-------Nova parte A------
+bool cmp(mystruct a, mystruct b){
+  if(a.l / B != b.l / B)
+    return a.l / B < b.l / B;
+  return a.r < b.r;
+}
+//---Fim da nova parte A---
+
+// .. dentro da main
+vector<mystruct> queries;
+for(int i = 0; i < q; i++){
+  scanf("%d %d", &l, &r);
+  queries.emplace_back(i, l, r);
+}
+
+//-------Nova parte A------
+sort(queries.begin(), queries.end(), cmp);
+//---Fim da nova parte A---
+
+cur_ans = 0; //variavel global com a resposta atual
+int L = 0, R = -1; //intervalo vazio, opcionalmente
+//pode-se começar com intervalo unitário
+//fazendo L = 0, R = 0 e add(v[0])
+for(auto query : queries){
+  while(R < query.r) R++, add(v[R]);
+  while(L > query.l) L--, add(v[L]);
+  while(R > query.r) rem(v[R]), R--;
+  while(L < query.l) rem(v[L]), L++;
+  ans[query.id] = cur_ans;
+}
+
+for(int i = 0; i < q; i++)
+  printf("%d\n", ans[i]);
+```
+
+Agora tomando `B = sqrt(n)`, obtemos complexidade `O((q+n)*sqrt(n))`.
