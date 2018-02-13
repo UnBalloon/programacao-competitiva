@@ -2,7 +2,7 @@
 
 Esse é o repositório do curso de programação competitiva que contém links para exercícios e exemplos de código referentes referentes as aulas.
 
-Está em construção. Por favor, crie uma issue se encontrar qualquer problema de definição, digitação, ou de semântica de código.
+Está em construção. Por favor, crie uma issue se encontrar qualquer problema de definição, digitação, ou de semântica de código. Se alguma explicação estiver confusa também peço que crie a issue.
 
 Links das aulas
 ------------
