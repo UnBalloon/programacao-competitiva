@@ -7,6 +7,8 @@ A ideia é a seguinte: Criamos uma árvore, de forma que cada nodo representa a 
 
 Aqui há uma demonstação visual de como funciona: https://visualgo.net/en/segmenttree
 
+
+É interessante entender o funcionamento da segtree pois, por mais que tenhamos o código pronto, quando mudamos de operação ou precisamos inserir long longs, será necessário mexer na sua estrutura interna.
 ## Declaração
 
 Essa é a classe com as funcionalidades implementadas.
@@ -50,7 +52,6 @@ class  SegTree{
     public:
         SegTree(int n):  st(4*n,0){size = n;}
         int query(int l, int  r){return query(0,0,size-1,l,r);}
-        void update_range(int l, int r, int amm){update_range(0,0,size-1,l,r,amm);}
         void update(int i, int amm){update(0,0,size-1,i,amm);}
 };
 ```
@@ -141,6 +142,32 @@ Essa função atualiza um elemento da segtree. Cada parâmetro tem o seguinte si
         st[sti] = f(st[sti*2+1],st[sti*2+2]);
     }
 
+
 ```
+## Interface
+
+Os métodos que mostramos são todos internos da segtree, na hora de chama-los, não precisamos passar tantos parâmetros assim.
+
+```cpp
+ public:
+
+        SegTree(int n):  st(4*n,0){size = n;}
+        int query(int l, int  r){return query(0,0,size-1,l,r);}
+        void update(int i, int amm){update(0,0,size-1,i,amm);}
+```
+### SegTree 
+
+Construtor, recebe o tamanho do vetor.
+
+### query
+
+Executa uma consulta, recebe o intervalo(l,r) da consulta, retorna o resultado.
+
+### update
+Atualiza um índice no vetor recebe o índice e o novo valor.
+
+
+
+
 
 # Lazy propagation
