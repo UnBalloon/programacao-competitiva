@@ -170,4 +170,19 @@ Atualiza um índice no vetor recebe o índice e o novo valor.
 
 
 
-# Lazy propagation
+## Atualizações em intervalos
+
+A segtree que temos até agora faz atualização de uma posição no vetor e consulta de qualquer em intervalo, em `O(log n)`. Mas e se precisarmos atualizar um intervalo, por exemplo: "Todos os elementos da posição 1 até 10 recebem 2". Assim, a melhor forma que teríamos de fazer isso seria
+
+```cpp
+SegTree st(n);
+// preenche segtree
+for(int i = 1 ; i <= 10; i++){
+    st.update(i,2);
+}
+```
+
+O que tem complexidade `O(n * log n)`. Precisamos fazer isso mais rápido.
+
+
+# Lazy progapation
