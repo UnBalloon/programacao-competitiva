@@ -290,7 +290,7 @@ class  SegTree{
     vector<bool> has;
     int size;
 
-    int el_neutro = -(1e9);
+    int el_neutro = 0;
 
     int f(int a, int b){
         return a + b;
