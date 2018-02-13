@@ -170,9 +170,20 @@ Executa uma consulta, recebe o intervalo(l,r) da consulta, retorna o resultado.
 ### update
 Atualiza um índice no vetor recebe o índice e o novo valor.
 
+## Construção
+```cpp
+vector<int> v;
+SegTree st(v.size());
+for(int i = 0; i< v.size();i++){
+    st.update(i,v[i]);
+}
+```
+
+
 ## Atualizações em intervalos
 
 A segtree que temos até agora faz atualização de uma posição no vetor e consulta de qualquer em intervalo, em `O(log n)`. Mas e se precisarmos atualizar um intervalo, por exemplo: "Todos os elementos da posição 1 até 10 recebem 2". Assim, a melhor forma que teríamos de fazer isso seria
+
 
 ```cpp
 SegTree st(n);
