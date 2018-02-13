@@ -235,8 +235,8 @@ A função de propagação é a função que atualiza o valor de um nodo, e post
                 int val = lazy[sti] / (r-l+1);
                 int mid = (stl + str)/2;
                 // O novo valor de um intervalo será o tamanho dele vezes o novo valor dos elementos
-                lazy[sti*2 + 1] += val*(mid-stl+1);
-                lazy[sti*2 + 2] += val*(str - (mid+1) + 1);
+                lazy[sti*2 + 1] = val*(mid-stl+1);
+                lazy[sti*2 + 2] = val*(str - (mid+1) + 1);
                 has[sti*2 + 1] = true;
                 has[sti*2 + 2] = true;
             }
@@ -303,8 +303,8 @@ class  SegTree{
                 int val = lazy[sti] / (r-l+1);
                 int mid = (stl + str)/2;
 
-                lazy[sti*2 + 1] += val*(mid-stl+1);
-                lazy[sti*2 + 2] += val*(str - (mid+1) + 1);
+                lazy[sti*2 + 1] = val*(mid-stl+1);
+                lazy[sti*2 + 2] = val*(str - (mid+1) + 1);
 
                 has[sti*2 + 1] = true;
                 has[sti*2 + 2] = true;
