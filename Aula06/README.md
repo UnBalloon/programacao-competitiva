@@ -228,15 +228,12 @@ A função de propagação é a função que atualiza o valor de um nodo, e post
  void propagate(int sti, int stl, int str){
         // Se há algo para atualizar, atualize()
         if(has[sti])
-            st[sti] = lazy[sti];
+            //O valor desse nodo da segtree será (número de elementos que esse intervalo representa vezes novo valor de cada elemento do intervalo)
+            st[sti] = lazy[sti] * (str - stl + 1);
             // Se o nó representa um segmento de tamanho maior que 1, isto é, não é terminal, propague a atualização para os filhos.
             if(stl != str){
-                // O valor que cada elemento tem é o total do intervalo dividido pelo numero de elementos no intervalo
-                int val = lazy[sti] / (r-l+1);
-                int mid = (stl + str)/2;
-                // O novo valor de um intervalo será o tamanho dele vezes o novo valor dos elementos
-                lazy[sti*2 + 1] = val*(mid-stl+1);
-                lazy[sti*2 + 2] = val*(str - (mid+1) + 1);
+                lazy[sti*2 + 1] = lazy[sti];
+                lazy[sti*2 + 2] = lazy[sti];
                 has[sti*2 + 1] = true;
                 has[sti*2 + 2] = true;
             }
@@ -261,8 +258,8 @@ Essa é a função que realiza a atualização de intervalos. O significado dos 
     void update_range(int sti, int stl, int str, int l,int r, int amm){
     
         if(stl >= l and str <= r){
-            // O valor desse nodo da segtree será (número de elementos que esse intervalo representa vezes novo valor de cada elemento do intervalo)
-            lazy[sti] = amm*(r-l+1);
+            // O valor que será atribuido a todo elemento no intervalo
+            lazy[sti] = amm;
             has[sti] = true;
             propagate(sti, stl, str);
             return;
@@ -298,13 +295,10 @@ class  SegTree{
 
      void propagate(int sti, int stl, int str){
         if(has[sti]){
-            st[sti] = lazy[sti];
+            st[sti] = lazy[sti] * (str - str + 1);
             if(stl != str){
-                int val = lazy[sti] / (r-l+1);
-                int mid = (stl + str)/2;
-
-                lazy[sti*2 + 1] = val*(mid-stl+1);
-                lazy[sti*2 + 2] = val*(str - (mid+1) + 1);
+                lazy[sti*2 + 1] = lazy[sti];
+                lazy[sti*2 + 2] = lazy[sti];
 
                 has[sti*2 + 1] = true;
                 has[sti*2 + 2] = true;
@@ -331,7 +325,7 @@ class  SegTree{
     void update_range(int sti, int stl, int str, int l,int r, int amm){
     
         if(stl >= l and str <= r){
-            lazy[sti] = amm*(r-l+1);
+            lazy[sti] = amm;
             has[sti] = true;
             propagate(sti, stl, str);
             return;
