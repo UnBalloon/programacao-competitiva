@@ -3,7 +3,7 @@
 Segment tree(Segtree) é outra estrutura de dados para lidar com problemas de consulta em intervalos. O que tornas as segtrees poderosas é sua capacidade de fazer atualização  e consulta em intervalos em complexidade `O(log n)`, além do tipo da consulta ser bem abrangente.
 
 
-A ideia é a seguinte: Criamos uma árvore, de forma que cada nodo representa a informação que desejamos saber a respeito de um segmento do vetor, e tem dois filhos, um filho representa a parte esquerda desse intervalo, e o outro, a parte direita. Esse processo recursa até que os intervalos atinjam tamanho 1.
+A ideia é a seguinte: Criamos uma árvore, de forma que cada nodo representa a informação que desejamos saber a respeito de um segmento do vetor, e tem dois filhos, um filho representa a metade esquerda desse intervalo, e o outro, a metade direita. Esse processo recursa até que os intervalos atinjam tamanho 1.
 
 Aqui há uma demonstação visual de como funciona: https://visualgo.net/en/segmenttree
 
