@@ -124,6 +124,10 @@ p++; //p agora aponta para v[1]
 - int : 2^31-1 ~ 2 x 10^9
 - long long: 2^63 -1 ~ 8 x 10 ^18
 
+Isso é levante porque se sabemos que nosso programa poderia por exemplo multiplicar dois números que podem ser da ordem de `10^5`, saberíamos que o resultado é da ordem de 10^10, e precisaríamos de um long long para representá-lo.
+
+Os tipo double de ponto flutuante abriga um valor bem maior, até 10^308, mas como possui erros em sua representação, é melhor sempre usar tipos inteiros quando possível.
+
 ## Funções úteis
 
 Na linguagem C++ existem várias funções já implementadas que facilitam nossa vida como:
@@ -169,12 +173,13 @@ Defines são expressões pré definidas pelo programador, que podem facilitar su
 ```cpp
 #define a b
 ```
-Esse trecho de código pega todas as ocorrências de a e troca por b no momento da compilação.
+Esse trecho de código pega todas as ocorrências de a e troca por b no momento da compilação. Aqui vão estar algumas das macros mais comuns que são usadas.
 
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
-
+#define vi vector<int>
+#define ll long long
 #define pb push_back
 #define mp make_pair
 #define ii pair<int,int>
