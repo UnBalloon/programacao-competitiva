@@ -50,42 +50,6 @@ cin >> y;
 
 É importante ressaltar que c++ não impede de continuar usando o printf e scanf, na verdade, muitas vezes é mais fácil imprimir ou ler em um formato específico usando eles. Além disso, eles são mais rápidos que cin e cout, apesar de ambos terem complexidade constante, o tempo constante de cin e cout é consideravelmente maior. Isso é relevante porque algumas vezes alguns problemas tem input de tamanho ```5*10^5```, e ler isso com cin  já demoraria muito mais que com scanf, então usar cin nesses casos pode exceder o tempo limite do programa. 
 
-## Funções úteis
-
-Na linguagem C++ existem várias funções já implementadas que facilitam nossa vida como:
-### Swap()
-A função swap faz a troca de 2 elementos do mesmo tipo.
-```cpp
-	int v[10];
-	v[5] = 1;   
-	v[3] = 412;
-	swap(v[5],v[3]); // v[5] = 412 e v[3] = 1
-```
-
-### Min() e Max()
-A função min e max retorna o menor/maior elemento respectivamente.
-```cpp
-int v[10];
-v[5] = 1;
-v[3] = 412;
-int menor = min(v[5],v[3]); // menor = 1
-int maior = max(v[5],v[3]); // maior = 412
-```
-### to_string()
-Para executar a função to_string, não pode esquecer de compilar com a flag -std=c++11. E como o nome da própria função diz, ela transforma um número em uma string.
-```cpp
-int x = 1320;
-string a = to_string(x); // a = "1320"
-```
-### Substituir if por '?'
-A princípio pode parecer um pouco confuso, mas pode ajuda a economizar algumas linhas de código. O operador ? realiza uma pergunta e retorna verdadeiro ou falso dependendo do parâmetro passado.
-```cpp
-bool q = true;
-printf("%s\n", q ? "TRUE":"FALSE"); // Se q for True, irá printar uma msg escrito "TRUE" e "FALSE" caso contrário
-
-int x = q ? 1:0;
-```
-
 
 ## Strings
 
@@ -143,6 +107,61 @@ else
   // faz outra coisa
 ``` 
 
+
+## iterator
+
+Em linhas gerais, podemos chamar iterators de ponteiros mais inteligentes. Quando usamos os operadores ++ em um ponteiro comum, o que a linguagem faz é: faça aquele ponteiro apontar x posições a frente de onde apontava antes, aonde x é o sizeof() daquele tipo. 
+
+```cpp
+int v[2] = {0,1};
+int* p = v; //p aponta para o começo do vetor(v[0])
+p++; //p agora aponta para v[1]
+```
+
+## Capacidade dos tipos
+
+É válido ressaltar que os tipos primitivos tem limitações na magnitude do número que representam:
+- int : 2^31-1 ~ 2 x 10^9
+- long long: 2^63 -1 ~ 8 x 10 ^18
+
+## Funções úteis
+
+Na linguagem C++ existem várias funções já implementadas que facilitam nossa vida como:
+### Swap()
+A função swap faz a troca de 2 elementos do mesmo tipo.
+```cpp
+	int v[10];
+	v[5] = 1;   
+	v[3] = 412;
+	swap(v[5],v[3]); // v[5] = 412 e v[3] = 1
+```
+
+### Min() e Max()
+A função min e max retorna o menor/maior elemento respectivamente.
+```cpp
+int v[10];
+v[5] = 1;
+v[3] = 412;
+int menor = min(v[5],v[3]); // menor = 1
+int maior = max(v[5],v[3]); // maior = 412
+```
+### to_string()
+Para executar a função to_string, não pode esquecer de compilar com a flag -std=c++11. E como o nome da própria função diz, ela transforma um número em uma string.
+```cpp
+int x = 1320;
+string a = to_string(x); // a = "1320"
+```
+### Substituir if por '?'
+A princípio pode parecer um pouco confuso, mas pode ajuda a economizar algumas linhas de código. O operador ? realiza uma pergunta e retorna verdadeiro ou falso dependendo do parâmetro passado.
+```cpp
+bool q = true;
+printf("%s\n", q ? "TRUE":"FALSE"); // Se q for True, irá printar uma msg escrito "TRUE" e "FALSE" caso contrário
+
+int x = q ? 1:0;
+```
+
+
+
 ## Define
 
 Defines são expressões pré definidas pelo programador, que podem facilitar sua vida reduzindo tempo de escrita.Além disso, as vezes muitas dessas expressões são aninhadas, deixando a linha de código muito longa, o que atrapalha um pouco. 
@@ -169,15 +188,6 @@ int main(){
 ```
 
 
-## iterator
-
-Em linhas gerais, podemos chamar iterators de ponteiros mais inteligentes. Quando usamos os operadores ++ em um ponteiro comum, o que a linguagem faz é: faça aquele ponteiro apontar x posições a frente de onde apontava antes, aonde x é o sizeof() daquele tipo. 
-
-```cpp
-int v[2] = {0,1};
-int* p = v; //p aponta para o começo do vetor(v[0])
-p++; //p agora aponta para v[1]
-```
 
 
 
