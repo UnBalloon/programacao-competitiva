@@ -151,7 +151,7 @@ class  SegTree{
 ## Interface
 
 Os métodos que mostramos são todos internos da segtree, na hora de chama-los, não precisamos passar tantos parâmetros assim.
-
+    
 ```cpp
  public:
 
