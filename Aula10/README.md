@@ -51,3 +51,23 @@ Uma árvore é um tipo de grafo. Para ser uma árvore, o grafo precisa ser conex
 
 DAG é uma sigla para `Directed Acyclic Graph`, ou seja, um grafo acíclico e direcionado. É um termo bastante usado.
 
+### Grafos bipartidos
+
+Um grafo bipartido é um grafo tal que é possível dividir seus vértices em dois grupos, de forma que só hajam arestas ligando vértices do primeiro ao segundo grupo.
+
+
+
+## Representação de um grafo
+
+Mas como representar um grafo em código?
+
+Na verdade é bem mais simples do que parece. Para cada vértice, temos que manter apenas uma lista das arestas que saem daquele vértice.
+
+Nessa representação, a i-ésima posição no vector de fora `vector<int>`, esse vector representam as arestas que saem daquele vértice.
+```cpp
+vector<vector<int>> graph(GRAPH_MAX_SIZE);
+
+graph[0].push_back(1); // adiciona a aresta (0,1)
+graph[1].push_back(0); // adiciona a aresta (1,0)
+```
+
