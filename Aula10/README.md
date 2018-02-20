@@ -74,7 +74,7 @@ Uma das formas de percorrer um grafo é fazer um percorrimento em largura. Come�
 
 Esse comportamento é implementado usando-se uma fila. Primeiro insere-se na fila o vértice inicial, e começa-se a desenfileirar da fila enquando houver algum nodo. Quando um vértice `a` é desenfileirado, enfileram-se todos os vértice adjacentes a `a` que não foram visitados. Caso não marquemos os visitados, e o grafo tiver ciclos, nosso programa não terminará.
 
-O algoritmo a baixo é um BFS que simplesmente percorre o grafo. e
+O algoritmo a baixo é um BFS que simplesmente percorre o grafo.
 
 ```cpp
 void bfs(int start){
