@@ -12,7 +12,7 @@ Um grafo é definido simplesmente por um conjunto de vértices, e outro conjunto
 
 ### Grafo simples
 
-Grafo simples é um grafo cujas arestas não tem peso, não possui loops, e nem arestas múltiplas. Loops são arestas do tipo `(u,u)`,  ou seja, que saem do vértice `u`, e vão para o vértice `u`. Um grafo com arestas múltiplas é um grafo que tem duas aresta iguais, que tem mesma origem e mesmo destino.
+Grafo simples é um grafo cujas arestas não tem peso, não possui loops, e nem arestas múltiplas. Loops são arestas do tipo `(u,u)`,  ou seja, que saem do vértice `u`, e vão para o vértice `u`. Um grafo com arestas múltiplas é um grafo que tem pelo menos duas arestas que tem mesma origem e mesmo destino.
 
 ### Grafos direcionados
 
