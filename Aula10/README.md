@@ -111,7 +111,7 @@ A implementação do DFS mais comum é recursiva, por ser mais intuitiva. Assim 
 vector<vector<int>> graph;
 vector<bool> visited;     // globais, inicializados na main.
 
-bool dfs(int vertex){ // na main chamamos dfs(start), aonde start é o vértice que começamos o dfs
+void dfs(int vertex){ // na main chamamos dfs(start), aonde start é o vértice que começamos o dfs
     visited[vertex] = true;
 
     for(int w: graph[vertex]){
