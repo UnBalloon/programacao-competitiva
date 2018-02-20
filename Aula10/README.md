@@ -12,11 +12,11 @@ Um grafo é definido simplesmente por um conjunto de vértices, e outro conjunto
 
 ### Grafo simples
 
-Grafo simples é um grafo cujas arestas não tem peso, não possui loops, e nem arestas múltiplas. Loops são arestas do tipo `(u,u)`,  ou seja, que saem do vértice `u`, e vão para o vértice `u`. Um grafo com arestas múltiplas é um grafo que tem pelo menos duas arestas que tem mesma origem e mesmo destino.
+Grafo simples é um grafo que não cujas arestas não tem peso, não possui loops, e nem arestas múltiplas. Loops são arestas do tipo `(u,u)`,  ou seja, que saem do vértice `u`, e vão para o vértice `u`. Um grafo com arestas múltiplas é um grafo que tem duas aresta iguais.
 
 ### Grafos direcionados
 
-Existem grafos direcionados e não direcionados. No caso dos direcionados, significa que cada aresta tem uma direção, ou seja, se é possível chegar de a em b, não significa que é possível chegar de b em a.
+Existem grafos direcionados e não direcionados. No caso dos não direcionados, significa que cada aresta tem uma direção, ou seja, se é possível chegar de a em b, não significa que é possível chegar de b em a.
 
 ### Ciclos
 
@@ -36,13 +36,9 @@ Um grafo que não é conexo pode ter várias componentes conexas (grafos conexos
 
 ### Componentes fortemente conexas
 
-Já nos casos do grafos direcionados, o termo usado é esse, também conhecidos por SCCs(Strongly Connectec Components). A definição mais 'formal' é a seguinte: dentro de uma componente conexa de um grafo direcionado, para todo vértice `a` e `b`, deve ser possível de chegar de `b` partindo de `a` e em `a` partindo de `b`.
+Já nos casos do grafos direcionados, o termo usado é esse, também chamados por SCCs(Strongly Connectec Components). A definição mais 'formal' é a seguinte: dentro de uma componente conexa de um grafo direcionado, para todo vértice `a` e `b`, deve ser possível de chegar de `b` partindo de `a` e em `a` partindo de `b`.
 
 Basicamente o que a definição acima está dizendo é: uma componente fortemente conexa é um ciclo, mas é importante lembrar que se dois ciclos se juntam, formam um ciclo maior, logo, uma componente maior.
-
-
-
-
 ### Árvore
 
 Uma árvore é um tipo de grafo. Para ser uma árvore, o grafo precisa ser conexo, não ter ciclos e ter `n-1` arestas, aonde n é o número de vértices.
@@ -70,4 +66,6 @@ vector<vector<int>> graph(GRAPH_MAX_SIZE);
 graph[0].push_back(1); // adiciona a aresta (0,1)
 graph[1].push_back(0); // adiciona a aresta (1,0)
 ```
+
+## Percorrimento em profundidade
 
