@@ -298,6 +298,7 @@ u = lower_bound(v.begin(),v.end(),3);
 
 ```
 
+Usando essas funções, também é possível determinar o primeiro elemento 'menor ou igual' ou 'menor que' algum `x`. Por exemplo, se lower_bound nos retorna a primeira posição do primeiro elemento maior ou igual a `x`, o elemento anterior a x é o primeiro elemento menor que `x`. Então basta subtrair 1 do iterator de retorno.
 
 ## random_shuffle
 
