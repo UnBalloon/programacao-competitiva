@@ -169,7 +169,7 @@ A complexidade de memória dessa função pode ser um pouco mais complicada de a
 
 Na disciplina, haverão diversos exercícios de fixação do conteúdo de cada semana, mas para ficar bom em resolver problemas, é necessário mais prática. As ferramentas para isso são os juízes online(OJs), que contam com competições(contests) semanais e **muitos** exercícios para que você pratique. 
 
-Normalmente, nos contests semanais, os problemas estão (ou pelo menos tentam fazer assim) ordenados em ordem de dificuldade, então, um bom exercício seria pegar vários contests desses OJs e resolver vários problemas 'A'. Quando os problemas 'A' parecerem simples, vá para os problemas 'B', assim que você conseguir resolver consistentemente os problemas 'A' e 'B', você já estará com uma base sólida boa de resolução de problemas.
+Normalmente, nos contests semanais, os problemas estão (ou pelo menos tentam fazer assim) ordenados em ordem de dificuldade, então, um bom exercício seria pegar vários contests desses OJs e resolver vários problemas 'A'. Quando os problemas 'A' parecerem simples, vá para os problemas 'B', assim que você conseguir resolver consistentemente os problemas 'A' e 'B', você já estará com uma base sólida de resolução de problemas.
 
 - [Codeforces](http://www.codeforces.com)
 - [AtCoder](http://atcoder.jp/)
