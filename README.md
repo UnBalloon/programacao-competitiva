@@ -15,13 +15,11 @@ Links das aulas
 - [Aula 6: Segment Trees](Aula06/README.md)
 - [Aula 7: Binary Indexed Trees(BITs)](Aula07/README.md)
 - [Aula 8: Busca binária](Aula08/README.md)
-- [Aula 9: Mais busca binária](Aula09/README.md)
-- [Aula 10: Grafos](Aula10/README.md)
-- [Aula 11: Representação e percorrimento de grafos](Aula11/README.md)
-- [Aula 12: Mais grafos](Aula12/README.md)
-- [Aula 13: Algoritmo de dijkstra](Aula13/README.md)
-- [Aula 14: Programação dinâmica](Aula14/README.md)
-- [Aula 15: Mais programação dinâmica](Aula15/README.md)
+- [Aula 9: Grafos](Aula9/README.md)
+- [Aula 10: Mais grafos](Aula10/README.md)
+- [Aula 11: Algoritmo de dijkstra](Aula11/README.md)
+- [Aula 12: Programação dinâmica](Aula12/README.md)
+- [Aula 13: Mais programação dinâmica](Aula13/README.md)
 
 Como compilar os exemplos
 -------------------------
