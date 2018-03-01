@@ -165,4 +165,8 @@ Essa a árvore formada pelas chamadas recursivas, olhe quantas vezes recomputamo
 A complexidade de memória dessa função pode ser um pouco mais complicada de analisar vamos por partes. No total, serão feitos ```O(2^n)``` chamadas recursivas, e todas elas precisaram de um espaço na pilha de execução, no entanto, as ```2^n``` chamadas não coexistirão na pilha de execução. Olhando bem atentamente e seguindo o fluxo das chamadas recursivas, é possível ver que no máximo um 'ramo' da árvore estará na pilha por vez, o ramo mais longo tem comprimento ```n``` portanto, complexidade de memória ```O(n)```.
 
 
+# Juízes Online
 
+Na disciplina, haverão diversos exercícios de fixação do conteúdo de cada semana, mas para ficar bom em resolver problemas, é necessário mais prática. As ferramentas para isso são os juízes online, que contam com competições semanais e **muitos** exercícios para que você pratique.
+
+ [Codeforces](codeforces.com)
