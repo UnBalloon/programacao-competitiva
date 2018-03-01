@@ -169,4 +169,4 @@ A complexidade de memória dessa função pode ser um pouco mais complicada de a
 
 Na disciplina, haverão diversos exercícios de fixação do conteúdo de cada semana, mas para ficar bom em resolver problemas, é necessário mais prática. As ferramentas para isso são os juízes online, que contam com competições semanais e **muitos** exercícios para que você pratique.
 
- [Codeforces](https://www.codeforces.com)
+ [Codeforces](http://www.codeforces.com)
