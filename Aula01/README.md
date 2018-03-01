@@ -167,8 +167,22 @@ A complexidade de memória dessa função pode ser um pouco mais complicada de a
 
 # Juízes Online
 
-Na disciplina, haverão diversos exercícios de fixação do conteúdo de cada semana, mas para ficar bom em resolver problemas, é necessário mais prática. As ferramentas para isso são os juízes online, que contam com competições semanais e **muitos** exercícios para que você pratique.
+Na disciplina, haverão diversos exercícios de fixação do conteúdo de cada semana, mas para ficar bom em resolver problemas, é necessário mais prática. As ferramentas para isso são os juízes online(OJs), que contam com competições(contests) semanais e **muitos** exercícios para que você pratique. 
+
+Normalmente, nos contests semanais, os problemas estão (ou pelo menos tentam fazer assim) ordenados em ordem de dificuldade, então, um bom exercício seria pegar vários contests desses OJs e resolver vários problemas 'A'. Quando os problemas 'A' parecerem simples, vá para os problemas 'B', assim que você conseguir resolver consistentemente os problemas 'A' e 'B', você já estará com uma base sólida boa de resolução de problemas.
 
 - [Codeforces](http://www.codeforces.com)
 - [AtCoder](http://atcoder.jp/)
 - [CSAcademy](https://csacademy.com/)
+
+## Codeforces
+
+Usaremos o Codeforces durante o curso, os exercícios que preparamos vão estar hospedados lá. Codeforces conta com contests semanais no site, no entanto, na minha opinião(Gabriel), as competições semanais do codeforces podem ser um pouco difíceis pra quem está começando.
+
+## AtCoder
+
+O atcoder é um juiz japonês, o motivo de incluir ele nessa lista de recomendações é que ele conta com um ``Beginner Contest" que é bem mais amigável que os contests do Codeforces. Ele acontece Sábado às 9 da manhã.
+
+## CSAcademy
+
+O CSAcademy é OJ mais novo, mas com uma interface muito amigável e com contests também mais fáceis do que no codeforces. 
