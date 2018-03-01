@@ -177,7 +177,7 @@ Normalmente, nos contests semanais, os problemas estão (ou pelo menos tentam fa
 
 ## Codeforces
 
-Usaremos o Codeforces durante o curso, os exercícios que preparamos vão estar hospedados lá. Codeforces conta com contests semanais no site, no entanto, na minha opinião(Gabriel), as competições semanais do codeforces podem ser um pouco difíceis pra quem está começando.
+Usaremos o Codeforces durante o curso, os exercícios que preparamos vão estar hospedados lá. Codeforces conta com contests semanais no site, no entanto, na minha opinião(Gabriel), as competições semanais do codeforces podem ser um pouco difíceis pra quem está começando(e portanto, desmotivadoras).
 
 ## AtCoder
 
