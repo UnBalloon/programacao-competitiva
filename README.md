@@ -15,7 +15,7 @@ Links das aulas
 - [Aula 6: Segment Trees](Aula06/README.md)
 - [Aula 7: Binary Indexed Trees(BITs)](Aula07/README.md)
 - [Aula 8: Busca binária](Aula08/README.md)
-- [Aula 9: Grafos](Aula9/README.md)
+- [Aula 9: Grafos](Aula09/README.md)
 - [Aula 10: Mais grafos](Aula10/README.md)
 - [Aula 11: Algoritmo de dijkstra](Aula11/README.md)
 - [Aula 12: Programação dinâmica](Aula12/README.md)
