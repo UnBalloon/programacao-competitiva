@@ -100,6 +100,10 @@ void bfs(int start){
 
 }
 ```
+A complexidade desse código é `O(n+m)`, temos no máximo n vértices enfileirados, e no loop interno, cada iteração é considerar uma aresta, como não estamos voltando no grafo, não passaremos por uma aresta mais que duas vezes naquele loop. Então, em todas as chamadas, aquele loop iterará no pior caso m vezes.
+
+
+
 
 ## Percorrimento em profundidade
 
@@ -121,5 +125,5 @@ void dfs(int vertex){ // na main chamamos dfs(start), aonde start é o vértice 
     }    
 }
 ```
-
+A complexidade desse código é `O(n+m)`, temos no máximo `n` chamadas recursivas, e no loop interno às chamadas, assim como no BFS, estaremos considerando uma aresta e não passaremos nela mais de uma vez. Então no máximo `m` iterações ao longo de todas as chamadas.
 
