@@ -29,11 +29,11 @@ Caso você não tenha o g++ instalado, basta digitar
 ```bash
 sudo apt-get install g++
 ```
-
+<!-- 
 
 <body>
     <h1>hello world</h1>
     <div data-pym-src="https://www.jdoodle.com/embed/v0/oEO"></div>
 </body>
 
-<script src="https://www.jdoodle.com/assets/jdoodle-pym.min.js" type="text/javascript"></script>
+<script src="https://www.jdoodle.com/assets/jdoodle-pym.min.js" type="text/javascript"></script> -->
