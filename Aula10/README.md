@@ -64,4 +64,40 @@ A complexidade desse código é a complexidade de um DFS, porque é isso que est
 
 ### Não-direcionado
 
-O algoritmo é  mais simples no caso
+O algoritmo é mais simples no caso do não direcionado. Também faremos uma DFS, mas na nessa DFS, iremos pra todos os nós adjacentes, exceto o nó que chamou aquele, para que não fiquemos voltando.
+
+Se fizermos isso, e acabarmos num nó que já foi visitado, isso significa que tem um caminho de volta para aquele nó sem ser voltando por onde já passamos, o que configura um ciclo no grafo não-direcionado.
+
+```cpp
+int GRAPH_SIZE = 1e5;
+vector<vector<int>> graph;
+bool visited[GRAPH_SIZE+1]; //inicializado como false
+
+bool has_cycle(int node, int last){
+    // voltamos pra um nodo que já visitados, há um ciclo.
+    if(visited[node])
+        return true;
+    visited[node] = true;
+
+    bool b = false;
+    for(auto v: graph[node]){
+        // visitamos todos os adjacentes, menos o que chamou essa instância da função.
+        if(v != last){
+            b |= has_cycle(v,node);
+        }
+    }
+    return b;
+}
+
+int main(){
+    // preenche o grafo
+
+    bool cycle = false;
+    for(int i = 0; i < GRAPH_SIZE; i++){
+        if(!visited[i]){
+            cycle |= has_cycle(i,-1);
+        }
+    }
+}
+
+```
