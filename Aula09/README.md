@@ -1,129 +1,348 @@
-# Grafos
+# Segment Trees
 
-Um dos assuntos mais frequentes são problemas relacionados a grafos, ou que podem ser representados como grafos, apesar de não ser óbvio à primeira vista.
-
-## Conceitos
-
-Há diversos tipos e atributos de um grafo:
-
-### O que é um grafo?
-
-Um grafo é definido simplesmente por um conjunto de vértices, e outro conjunto de arestas. Essas arestas ligam dois vértices, e podem ter pesos atrelados à elas.
-
-### Grafo simples
-
-Grafo simples é um grafo que não cujas arestas não tem peso, não possui loops, e nem arestas múltiplas. Loops são arestas do tipo `(u,u)`,  ou seja, que saem do vértice `u`, e vão para o vértice `u`. Um grafo com arestas múltiplas é um grafo que tem duas aresta iguais.
-
-### Grafos direcionados
-
-Existem grafos direcionados e não direcionados. No caso dos não direcionados, significa que cada aresta tem uma direção, ou seja, se é possível chegar de a em b, não significa que é possível chegar de b em a.
-
-### Ciclos
-
-A definição de ciclo é um pouco diferente dependendo se o grafo é direcionado ou não.
-
- Caso o grafo não seja direcionado, e hajam dois caminhos diferentes de um vértice `a` para um vértice `b`, então há um ciclo.
-
- Caso contrário, ou seja, caso o grafo seja direcionado, para que haja um ciclo é necessário que exista um vértice `a` tal que seja possível voltar a `a` partindo dele mesmo.
-
-### Conexo
-
-Um grafo conexo é um grafo tal que para dois vértices quaisquer u e w, sempre existe um caminho de u para w.
-
-### Componentes conexas
-
-Um grafo que não é conexo pode ter várias componentes conexas (grafos conexos tem somente uma componente). Essencialmente, uma componente conexa é um pedaço conexo do grafo. Esse conceito é usado no caso de grafos não-direcionados.
-
-### Componentes fortemente conexas
-
-Já nos casos do grafos direcionados, o termo usado é esse, também chamados por SCCs(Strongly Connectec Components). A definição mais 'formal' é a seguinte: dentro de uma componente conexa de um grafo direcionado, para todo vértice `a` e `b`, deve ser possível de chegar de `b` partindo de `a` e em `a` partindo de `b`.
-
-Basicamente o que a definição acima está dizendo é: uma componente fortemente conexa é um ciclo, mas é importante lembrar que se dois ciclos se juntam, formam um ciclo maior, logo, uma componente maior.
-### Árvore
-
-Uma árvore é um tipo de grafo. Para ser uma árvore, o grafo precisa ser conexo, não ter ciclos e ter `n-1` arestas, aonde n é o número de vértices.
-
-### DAG
-
-DAG é uma sigla para `Directed Acyclic Graph`, ou seja, um grafo acíclico e direcionado. É um termo bastante usado.
-
-### Grafos bipartidos
-
-Um grafo bipartido é um grafo tal que é possível dividir seus vértices em dois grupos, de forma que só hajam arestas ligando vértices do primeiro ao segundo grupo.
+Segment tree(Segtree) é outra estrutura de dados para lidar com problemas de consulta em intervalos. O que tornas as segtrees poderosas é sua capacidade de fazer atualização  e consulta em intervalos em complexidade `O(log n)`, além do tipo da consulta ser bem abrangente.
 
 
+A ideia é a seguinte: Criamos uma árvore, de forma que cada nodo representa a informação que desejamos saber a respeito de um segmento do vetor, e tem dois filhos, um filho representa a metade esquerda desse intervalo, e o outro, a metade direita. Esse processo recursa até que os intervalos atinjam tamanho 1.
 
-## Representação de um grafo
+Aqui há uma demonstação visual de como funciona: https://visualgo.net/en/segmenttree
 
-Mas como representar um grafo em código?
 
-Na verdade é bem mais simples do que parece. Para cada vértice, temos que manter apenas uma lista das arestas que saem daquele vértice.
+É interessante entender o funcionamento da segtree pois, por mais que tenhamos o código pronto, quando mudamos de operação ou precisamos inserir long longs, será necessário mexer na sua estrutura interna.
 
-Nessa representação, a i-ésima posição no vector de fora `vector<int>`, esse vector representam as arestas que saem daquele vértice. Então, cada vértice tem um número associado a ele.
+## Representação
+
+Nossa segtree será representada como um vetor. Cada nodo terá um id nesse vetor, e o conteúdo dessa posição representa a informação que aquele nodo guarda. A raiz da segtree será o nodo 0, que guarda a informação sobre o vetor todo. A partir do índice `id` de um nodo, podemos obter os filhos sem colisões da seguinte forma: índice dos filhos esquerdo e direito são `(id*2 + 1,id*2 +2)`, respectivamente.
 
 ```cpp
-vector<vector<int>> graph(GRAPH_MAX_SIZE);
+    vector<int> st;
+    int size;
 
-graph[0].push_back(1); // adiciona a aresta (0,1)
-graph[1].push_back(0); // adiciona a aresta (1,0)
 ```
 
-## Percorrimento em largura
 
-Uma das formas de percorrer um grafo é fazer um percorrimento em largura. Começamos a explorar os vértices do grafo a partir de um certo vértice `a`. E a ordem que vamos navegando entre os vértices é de forma que os mais próximos a `a` sempre serão visitados antes. Então, primeiro `a` será visitado, depois os vértices que são adjacentes a `a`(distância 1), depois os vértices que estão a duas arestas de distância, e assim por diante. Como os vértices mais próximos são sempre visitados antes, esse algoritmo serve para, por exemplo, dizer qual a distância mínima entre dois vértices no grafo.
+## Operação
 
-Esse comportamento é implementado usando-se uma fila. Primeiro insere-se na fila o vértice inicial, e começa-se a desenfileirar da fila enquando houver algum nodo. Quando um vértice `a` é desenfileirado, enfileram-se todos os vértice adjacentes a `a` que não foram visitados. Caso não marquemos os visitados, e o grafo tiver ciclos, nosso programa não terminará.
-
-O algoritmo a baixo é um BFS que simplesmente percorre o grafo.
+Essa função define que informação queremos saber a respeito dos elementos do vetor. Nese caso é uma segtree que computa o máximo de intervalos, mas poderia ser soma, mínimo, produto,  xor, gcd, mmc(lcm), or e and lógicos etc.
 
 ```cpp
-void bfs(int start){
+    int f(int a, int b){
+        return max(a,b);
+    }
+```
+
+## Elemento neutro
+O elemento neutro depende da operação. Como queremos saber os máximos, o elemento neutro dessa operação seria um número muito baixo, que nunca será o máximo.
+
+ Caso não saiba a definição de elemento neutro, a definição é a seguinte: `e` é um elemento neutro da operação f se `f(e,x) = x` para todo `x`.
+
+ Caso fosse uma soma, nosso elemento neutro seria 0, caso fosse um produto, seria 1, etc..
+```cpp
+ int el_neutro = -(1e9 + 7);
+```
+
+## Consulta
+
+A  função recursiva abaixo responde às consultas na segtree. Cada parâmetro tem o seguinte significado:
+
+- `sti`: id do nodo que estamos na segment tree
+- `stl`: limite inferior do intervalo que aquele nodo representa(inclusivo)
+- `str`: limite superior do intervalo que aquele nodo representa(inclusivo)
+- `l`  : limite inferior do intervalo que queremos fazer a consulta
+- `r`  : limite superior do intervalo que queremos fazer a consulta
+
+```cpp
+int query(int sti, int stl, int str, int l, int r){
+    //O nodo está fora do intervalo que estamos interessados, retorne o elemento neutro que não afeta a consulta
+        if(str < l || r < stl) 
+            return el_neutro;
+
+    // O nodo está completamente incluído no intervalos que estamos interessados, retorne a informação contida naquele nodo.
+        if(stl >= l and str <= r)
+            return st[sti];
+
+    // Se chegarmos aqui, é porque esse Nodo está parcialmente contido no intervalo que estamos interessados. Então, continuamos procurando nos filhos.
+        int mid = (str+stl)/2;
+
+        return f(query(sti*2+1,stl,mid,l,r),query(sti*2+2,mid+1,str,l,r));
+    }
+```
+## Atualização
+
+Essa função atualiza um elemento da segtree. Cada parâmetro tem o seguinte significado:
+- `sti`: id do nodo que estamos na segment tree
+- `stl`: limite inferior do intervalo que aquele nodo representa(inclusivo)
+- `str`: limite superior do intervalo que aquele nodo representa(inclusivo)
+- `i`  : índice do **vetor** que queremos atualizar
+- `amm`: novo valor daquele índice no vetor
+
+```cpp
+    void update(int sti, int stl, int str, int i, int amm){
+        // Chegamos no índice que queremos, vamos atualizar o valor
+        if(stl == i and str == i){
+            st[sti] = amm;
+            return;
+        }
+        // O intervalo que estamos não contem o índice que queremos atualizar, retorne
+        if(stl > i or str < i)
+            return;
+        
+        // O intervalo contém o índice, mas temos que chegar no nodo específico, recurse para os filhos.
+        int mid = (stl + str)/2;
+
+        update(sti*2+1,stl,mid,i,amm);
+        update(sti*2+2,mid+1,str,i,amm);
+        // Após os filhos mais em baixo, precisamos atualizar o valor desse nodo
+        st[sti] = f(st[sti*2+1],st[sti*2+2]);
+    }
+
+
+```
+## Declaração
+
+Essa é a classe com as funcionalidades implementadas.
+```cpp
+class  SegTree{
+    vector<int> st;
+    int size;
+
+    int el_neutro = -(1e9 + 7);
+
+    int f(int a, int b){
+        return max(a,b);
+    }
+
+    int query(int sti, int stl, int str, int l, int r){
+        if(str < l || r < stl)
+            return el_neutro;
+
+
+        if(stl >= l and str <= r)
+            return st[sti];
+
+        int mid = (str+stl)/2;
+
+        return f(query(sti*2+1,stl,mid,l,r),query(sti*2+2,mid+1,str,l,r));
+    }
+
+    void update(int sti, int stl, int str, int i, int amm){
+        if(stl == i and str == i){
+            st[sti] += amm;
+            return;
+        }
+
+        if(stl > i or str < i)
+            return;
+        int mid = (stl + str)/2;
+        update(sti*2+1,stl,mid,i,amm);
+        update(sti*2+2,mid+1,str,i,amm);
+        st[sti] = f(st[sti*2+1],st[sti*2+2]);
+    }
+
+
+    public:
+        SegTree(int n):  st(4*n,0){size = n;}
+        int query(int l, int  r){return query(0,0,size-1,l,r);}
+        void update(int i, int amm){update(0,0,size-1,i,amm);}
+};
+```
+
+
+## Interface
+
+Os métodos que mostramos são todos internos da segtree, na hora de chama-los, não precisamos passar tantos parâmetros assim.
     
-    queue<int> q;
-    q.push(start);
+```cpp
+ public:
 
-    vector<bool> visited(GRAPH_MAX_SIZE,false);
+        SegTree(int n):  st(4*n,0){size = n;}
+        int query(int l, int  r){return query(0,0,size-1,l,r);}
+        void update(int i, int amm){update(0,0,size-1,i,amm);}
+```
+### SegTree 
 
-    while(q.size()){//Enquanto houver vértices na fila
+Construtor, recebe o tamanho do vetor.
 
-        // Retire o vértice da frente
-        int u = q.front();
-        q.pop();
-        visited[u] = true;
+### query
 
-        for(int w: graph[u]){ // Para cada vértice adjacente a u
-            if(!visited[w]){
-                q.push(w);
+Executa uma consulta, recebe o intervalo(l,r) da consulta, retorna o resultado.
+
+### update
+Atualiza um índice no vetor recebe o índice e o novo valor.
+
+## Construção
+```cpp
+vector<int> v;
+SegTree st(v.size());
+for(int i = 0; i< v.size();i++){
+    st.update(i,v[i]);
+}
+```
+
+
+## Atualizações em intervalos
+
+A segtree que temos até agora faz atualização de uma posição no vetor e consulta de qualquer em intervalo, em `O(log n)`. Mas e se precisarmos atualizar um intervalo, por exemplo: "Todos os elementos da posição 1 até 10 recebem 2". Assim, a melhor forma que teríamos de fazer isso seria
+
+
+```cpp
+SegTree st(n);
+// preenche segtree
+for(int i = 1 ; i <= 10; i++){
+    st.update(i,2);
+}
+```
+
+O que tem complexidade `O(n * log n)`. Precisamos fazer isso mais rápido.
+
+# Lazy progapation
+
+Lazy propagation é uma alteração na segtree que nos permite fazer atualizações em intervalos em `O(log n)`.
+
+## A ideia
+
+Em nossa abordagem anterior, o que tornava a execução lenta é que procurávamos o nodo responsável por cada elemento que precisava ser atualizado.
+
+ Para acelerar esse processo, podemos usar uma ideia parecida com a da consulta, em vez de atualizar individualmente os elementos, podemos atualizar a resposta nos intervalos que os contém, e postergar a atualização nos filhos.
+ 
+  Para implementar lazy propagation, cada configuração de segtree vai requerer uma implementação um pouco diferente, por isso, será necessário entender o que cada parte do código está fazendo.
+
+  O exemplo a seguir será de uma segtree de soma, aonde a atualização de intervalo vai setar todos os elementos para um qualquer.
+
+ ## vetor de lazy
+
+ A ideia é introduzir um vetor extra com o seguinte significado: Quando eu passar no nodo identificado por id, em uma consulta, ou outra atualização, preciso atualizar seu valor para `lazy[id]`. O vetor has indica se há uma atualização para ser feita naquele nodo.
+
+ ```cpp
+    vector<int> st;
+    vector<int> lazy;
+    vector<bool> has;
+    int size;
+ ```
+
+ ## A propagação
+
+A função de propagação é a função que atualiza o valor de um nodo, e posterga a atualização para os filhos. Precisamos chamar essa função toda vez que passamos por algum nodo. 
+
+ ```cpp
+ void propagate(int sti, int stl, int str){
+        // Se há algo para atualizar, atualize()
+        if(has[sti])
+            //O valor desse nodo da segtree será (número de elementos que esse intervalo representa vezes novo valor de cada elemento do intervalo)
+            st[sti] = lazy[sti] * (str - stl + 1);
+            // Se o nó representa um segmento de tamanho maior que 1, isto é, não é terminal, propague a atualização para os filhos.
+            if(stl != str){
+                lazy[sti*2 + 1] = lazy[sti];
+                lazy[sti*2 + 2] = lazy[sti];
+                has[sti*2 + 1] = true;
+                has[sti*2 + 2] = true;
             }
+            // agora não é mais necessário atualizar esse nodo
+            has[sti] = false;
+        }
+    }
+ ```
+
+## A função de atualização em intervalo
+
+Essa é a função que realiza a atualização de intervalos. O significado dos argumentos é:
+
+- `sti`: id do nodo que estamos na segment tree
+- `stl`: limite inferior do intervalo que aquele nodo representa(inclusivo)
+- `str`: limite superior do intervalo que aquele nodo representa(inclusivo)
+- `l`: limite inferior do intervalo que queremos atualizar no **vetor**
+- `r`: limite superior do intervalo que queremos atualizar  no **vetor**
+- `amm`: novo valor dos elementos nesse intervalo
+
+```cpp
+    void update_range(int sti, int stl, int str, int l,int r, int amm){
+    
+        if(stl >= l and str <= r){
+            // O valor que será atribuido a todo elemento no intervalo
+            lazy[sti] = amm;
+            has[sti] = true;
+            propagate(sti, stl, str);
+            return;
+        }
+
+        if(stl > r  or str < l)
+            return;
+
+        int mid = (stl + str)/2;
+
+        update_range(sti*2+1,stl,mid,l,r,amm);
+        update_range(sti*2+2,mid+1,str,l,r,amm);
+        st[sti] = f(st[sti*2+1],st[sti*2+2]);
+    }
+```
+
+## Versão final
+
+Essa é a versão final da nossa ED.
+
+```cpp
+class  SegTree{
+    vector<int> st;
+    vector<int> lazy;
+    vector<bool> has;
+    int size;
+
+    int el_neutro = 0;
+
+    int f(int a, int b){
+        return a + b;
+    }
+
+     void propagate(int sti, int stl, int str){
+        if(has[sti]){
+            st[sti] = lazy[sti] * (str - str + 1);
+            if(stl != str){
+                lazy[sti*2 + 1] = lazy[sti];
+                lazy[sti*2 + 2] = lazy[sti];
+
+                has[sti*2 + 1] = true;
+                has[sti*2 + 2] = true;
+            }
+            has[sti] = false;
         }
     }
 
-}
-```
-A complexidade desse código é `O(n+m)`, temos no máximo n vértices enfileirados, e no loop interno, cada iteração é considerar uma aresta, como não estamos voltando no grafo, não passaremos por uma aresta mais que duas vezes naquele loop. Então, em todas as chamadas, aquele loop iterará no pior caso m vezes.
+    int query(int sti, int stl, int str, int l, int r){
+        propagate(sti, stl, str);
+
+        if(str < l || r < stl)
+            return el_neutro;
 
 
+        if(stl >= l and str <= r)
+            return st[sti];
 
+        int mid = (str+stl)/2;
 
-## Percorrimento em profundidade
+        return f(query(sti*2+1,stl,mid,l,r),query(sti*2+2,mid+1,str,l,r));
+    }
 
-outra forma de percorrer um grafo é fazer percorrimento em profundidade, também de chamado de DFS(Depth-first search). O algoritmo  se chama assim porque funciona de uma forma que sempre vamos 'mergulhar' no grafo o mais fundo que pudermos. Quando não for mais possível ir mais fundo no grafo, voltamos até que seja ir mais fundo novamente, sem repetir vértices já visitados.
-
-A implementação do DFS mais comum é recursiva, por ser mais intuitiva. Assim como o exemplo anterior, esse programa simplesmente percorre o grafo, mas na ordem que um DFS percorre.
-
-```cpp
-vector<vector<int>> graph;
-vector<bool> visited;     // globais, inicializados na main.
-
-void dfs(int vertex){ // na main chamamos dfs(start), aonde start é o vértice que começamos o dfs
-    visited[vertex] = true;
-
-    for(int w: graph[vertex]){
-        if(!visited[w]){
-            dfs(w);
+    void update_range(int sti, int stl, int str, int l,int r, int amm){
+    
+        if(stl >= l and str <= r){
+            lazy[sti] = amm;
+            has[sti] = true;
+            propagate(sti, stl, str);
+            return;
         }
-    }    
-}
-```
-A complexidade desse código é `O(n+m)`, temos no máximo `n` chamadas recursivas, e no loop interno às chamadas, assim como no BFS, estaremos considerando uma aresta e não passaremos nela mais de uma vez. Então no máximo `m` iterações ao longo de todas as chamadas.
 
+        if(stl > r  or str < l)
+            return;
+        int mid = (stl + str)/2;
+        update_range(sti*2+1,stl,mid,l,r,amm);
+        update_range(sti*2+2,mid+1,str,l,r,amm);
+        st[sti] = f(st[sti*2+1],st[sti*2+2]);
+    }
+
+    public:
+        SegTree(int n):  st(4*n,0), lazy(4*n,0),has(4*n,false){size = n;}
+        int query(int l, int  r){return query(0,0,size-1,l,r);}
+        void update_range(int l, int r, int amm){update_range(0,0,size-1,l,r,amm);}
+};
+
+```
