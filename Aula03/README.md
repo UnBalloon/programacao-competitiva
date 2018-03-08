@@ -317,7 +317,3 @@ multimap<int,int> mapa1;
 unordered_multiset<int> conj2;
 unordered_multimap<int,int> mapa2;
 ```
-
-# Ordered_set TODO
-
-
