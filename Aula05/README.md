@@ -39,7 +39,7 @@ O vetor de somas prefixas é uma ED que podemos usar para resolver esse tipo de 
 
 Tendo essas informações, para responder uma consulta (l,r) podemos usar a seguinte ideia: sabe-se que em `P[r]` temos a resposta para a consulta (0,r), com isso, podemos agora subtrair a parte que não nos interessa, (0,l-1) ou `P[l-1]`.
 
-## Construção
+## Construção 
 
 A construção do vetor de somas prefixas em `v` tem complexidade `O(n)`. 
 
@@ -64,16 +64,39 @@ int sum(int l, int r){
 ```
 
 
-## Ressalvas
+## Ressalvas 
 
-Vale lembrar que essa ED só pode ser usada quando não há atualização nos valores do vetor, caso haja, é necessário recomputar as somas prefixas do vetor todo em `O(n)`. 
+Vale lembrar que essa ED é mais interessante de ser usada quando não há atualização nos valores do vetor, caso haja, é necessário recomputar as somas prefixas do vetor todo em `O(n)`, o que não é uma complexidade atrativa. 
 
-Além disso, esse raciocínio não precisa se extender apenas a somas, funciona para operações como xor, por exemplo.  
+8Além disso, esse raciocínio não precisa se extender apenas a somas, funciona para operações como xor, por exemplo.  
 
 
-# Delta encoding
+# Problemas de atualização em intervalos
 
-Imagine um problema parecido, porém com `q` atualizações e no final quer saber o soma de valores de um intervalo. Soma de Prefixos executaria em `O(q*n)`. Delta encoding é uma ED que executa em `O(q)`, pois atualiza em `O(1)`.
+Agora suponha que você se depare com um problema do seguinte tipo:
+
+Você recebe um vetor `v` , inicialmente com todos seus números zerados, e `q` queries. cada query virá representada por 3 inteiros (l,r,x). Ao receber cada query, a mudança esperada é: "Para cada número no vetor, seja `i` o seu índice. Se `l <= i <= r`, v[i] deve ter x adicionado ao seu valor.
+
+A primeira solução que já vem a cabeça é a seguinte:
+
+```cpp
+int n,q;
+	
+	scanf("%d %d",&n,&q);
+	vi v(n,0);
+
+	for (int i = 0; i < q; ++i){
+		int l,r,x;
+		scanf("%d %d %d",&l,&r,&x);
+
+		for (int j = l; j <= r; ++j){
+			v[j] += x;
+		}
+	}
+```
+
+Nessa solução, para cada uma das `q` queries, o pior caso seria `l = 0` e `r = n-1`, que faz o laço interno iterar `n` vezes, o que nos dá uma complexidade `O(n*q)`.
+
 
 A ideia é construir um vetor  `d` tal que  `d[i]` seja a variação (delta) em relação a `d[i-1]`. Assim, somar mais `v`  em `[l, r]` não altera `(l-r)` deltas, apenas `d[l]`  e `d[r+1]` (que são as bordas relativas do intervalo) .
 
