@@ -6,21 +6,21 @@ Está em construção. Por favor, crie uma issue se encontrar qualquer problema 
 
 # Links das aulas
 
-## Prova 1
+## Prova 1 - Complexidade, resolução de problemas, e EDs mais usadas
 - [Aula 1: Complexidade](Aula01/README.md)
 - [Aula 2: Introdução a C++](Aula02/README.md)
 - [Aula 3: Árvores de busca binária e tabelas hash](Aula03/README.md)
 - [Aula 4: Bitwise Operations e bitmasks](Aula04/README.md)
 - [Aula 5: Somas de prefixos e Delta Encoding](Aula05/README.md)
 
-## Prova 2
+## Prova 2 - Busca binária, teoria dos números , TBD e estruturas eficientes para atualizações em intervalo
 
 - [Aula 6: Busca binária](Aula06/README.md)
 - [Aula 7: Matemática](Aula07/README.md)
 - [Aula 8: Aula 8 - TBD](Aula08/README.md)
 - [Aula 9: Árvore de segmentos](Aula09/README.md)
 
-## Prova 3
+## Prova 3 - Grafos em geral e programação dinâmica
 
 - [Aula 10: Conceitos e representação de grafos](Aula10/README.md)
 - [Aula 11: Percorrimento de grafos e suas aplicações](Aula11/README.md)
