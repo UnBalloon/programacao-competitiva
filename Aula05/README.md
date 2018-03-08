@@ -99,6 +99,9 @@ Nessa solução, para cada uma das `q` queries, o pior caso seria `l = 0` e `r =
 
 Delta encoding é uma técnica para resolver problemas desse tipo. Precisamos fazer atualizações em intervalos, mas como o vetor só precisa ser visualizado no final, o que fazemos é fazer todas de uma vez só no final. A ideia por trás dessa solução funciona da seguinte forma: Vamos criar um vetor auxiliar `delta`, que é o vetor que vai acumular as atualizações. 
 
+
+## Atualização do intervalo (l,r)
+
 Dessa forma, quando estivermos lendo uma query (l,r,x), faremos o seguinte:
 
 ```cpp
@@ -112,6 +115,9 @@ for(int i = 0; i < q; i++){
 ```
 
 O trecho de código acima é o delta encoding por si só, o nome é esse porque estamos codificando a informação de que precisamos atualizar aquele intervalo. A parte interessante, é que nesse laço, nossa atualização funciona em `O(1)`.
+
+
+## Obtendo os valores após várias atualizações
 
 Tendo as informações organizadas dessa forma, isso nos permite percorrer o vetor `delta` da esquerda pra direita obtendo os valores finais do vetor, em `O(n)`.
 
