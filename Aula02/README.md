@@ -269,7 +269,20 @@ int v[100];
 // código para inicializar os valores
 sort(v,v+100);
 ```
+Uma outra aplicação interessante que podemos fazer com a função sort é definir qual será nosso critério de ordenação. E para isso passaremos para a função um terceiro argumento, uma função de comparação implementada por nós ```sort(v.begin(),v.end(), comparacao)```, esse argumento fica a critério do programador nomeá-lo da maneira que achar adequada (aqui chamei de comparação para facilitar), o importante é implementá-lo de maneira correta.
 
+Toda função de comparação terá sua identidade fixa, ela sempre retornará um ``` bool ``` e receberá dois parâmetros que devem ser do mesmo tipo da estrutura que você está ordenando, no nosso caso um  ``` vector <int> ``` então receberemos dois parâmetros do tipo inteiro, ``` bool comparacao(int a, int b) ```.
+
+O que nossa função de comparação quer saber é se o valor de ``` a ``` deve vir antes do valor de ``` b ``` no vetor final ordenado, e para responder a essa pergunta usaremos o retorno da função como true e false. Usaremos um exemplo para que fique mais claro.
+
+```cpp
+bool comparacao(int a, int b){
+  if(a > b) return true;
+  return false;
+}
+```
+
+Na função acima estamos retornando true caso o valor de ```a``` seja superior ao valor de ```b```, ou seja, estamos pedindo para que ```a``` venha antes de ```b```. Caso ```b``` seja superior a ```a``` retornamos false o que indica que esses valores devem ser trocados de posição. Com isso nosso vetor será ordenado de forma decrescente.
 
 ### upper_bound e lower_bound
 
