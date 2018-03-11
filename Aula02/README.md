@@ -133,10 +133,10 @@ Na linguagem C++ existem várias funções já implementadas que facilitam nossa
 ### Swap()
 A função swap faz a troca de 2 elementos do mesmo tipo.
 ```cpp
-	int v[10];
-	v[5] = 1;   
-	v[3] = 412;
-	swap(v[5],v[3]); // v[5] = 412 e v[3] = 1
+int v[10];
+v[5] = 1;   
+v[3] = 412;
+swap(v[5],v[3]); // v[5] = 412 e v[3] = 1
 ```
 
 ### Min() e Max()
@@ -212,7 +212,7 @@ A grosso modo, vector é uma ED no qual se parece a um Array, porém tem seu tam
 - Para mais detalhes: http://www.cplusplus.com/reference/vector/vector/
 
 ```cpp
-	vector<int> v; // declaracao de um vector;
+vector<int> v; // declaracao de um vector;
 ```
 
 ### push_back()
@@ -220,9 +220,9 @@ A grosso modo, vector é uma ED no qual se parece a um Array, porém tem seu tam
 Pode-se inserir elementos em um vector usando push_back. push_back tem complexidade O(1) amortizado. 
 
 ```cpp
-	v.push_back(9);
-	v.push_back(2);
-	v.push_back(3);
+v.push_back(9);
+v.push_back(2);
+v.push_back(3);
 ```
 
 ### size()
