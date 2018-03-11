@@ -269,6 +269,9 @@ int v[100];
 // código para inicializar os valores
 sort(v,v+100);
 ```
+
+### função de comparação 
+
 Uma outra aplicação interessante que podemos fazer com a função sort é definir qual será nosso critério de ordenação. E para isso passaremos para a função um terceiro argumento, uma função de comparação implementada por nós ```sort(v.begin(),v.end(), comparacao)```, esse argumento fica a critério do programador nomeá-lo da maneira que achar adequada (aqui chamei de comparação para facilitar), o importante é implementá-lo de maneira correta.
 
 Toda função de comparação terá sua identidade fixa, ela sempre retornará um ``` bool ``` e receberá dois parâmetros que devem ser do mesmo tipo da estrutura que você está ordenando, no nosso caso um  ``` vector <int> ``` então receberemos dois parâmetros do tipo inteiro, ``` bool comparacao(int a, int b) ```.
