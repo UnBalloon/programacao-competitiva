@@ -305,7 +305,7 @@ Os métodos e funcionalidades dessas estruturas de dados são quase em totalidad
 
 Enquanto na implementação usando BSTs a maioria das operações tinha complexide logarítmica, na implementação usando hashtables, o caso médio tem complexidade ```O(1)```, mas o pior caso continua sendo ```O(n)```, caso hajam muitas colisões.
 
-# Multiset e multimap
+<!-- # Multiset e multimap
 
 Equivalentes a sets e maps, permitindo elementos repetidos no set e chaves repetidas no map.
 
@@ -316,4 +316,4 @@ multiset<int> conj1;
 multimap<int,int> mapa1;
 unordered_multiset<int> conj2;
 unordered_multimap<int,int> mapa2;
-```
+``` -->
