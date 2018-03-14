@@ -39,6 +39,7 @@ A ^ B = (101)2 ^ (011)2 = (110)2 = 6
 16 >> 4 = 1  
 
 #### Tabela-verdade
+
 | X | Y | X&Y | X\|Y | X^Y |
 |---|---|-----|-----|-----|
 | 0 | 0 |  0  |  0  |  0  |
@@ -46,12 +47,65 @@ A ^ B = (101)2 ^ (011)2 = (110)2 = 6
 | 1 | 0 |  0  |  1  |  1  |
 | 1 | 1 |  1  |  1  |  0  |
 
-# Exemplos de otimizações com operações bitwise
------------------------------------------------
-// TODO
+
+## Usando inteiros para representar conjuntos
+
+Há uma forma de representar conjuntos a partir de inteiros. Se enchergarmos um inteiro como uma sequência de bits, e cada bit representar a inclusão ou não-inclusão de um elemento, podemos representar conjuntos de até 32 elementos usando inteiros. Ou seja, se você enumerar os elementos de 0 a 31, o i-ésimo bit ligado significa que o i-ésimo elemento está incluso no conjunto.
+
+### Inserindo elementos
+
+```cpp
+int conj = 0; // conjunto vazio
+
+conj |= (1 << 3); // insira o elemento número 3;
+conj |= (1 << 0); // insira o elemento número 0;
+
+```
+
+### Removendo elementos
+
+```cpp
+conj &= ~(1 << 3);//remova o elemento número 3.
+conj &= ~(1 << 0);//remova o elemento número 0.
+```
+
+
+
+### Checando se um elemento está no conjunto
+
+```cpp
+
+//retornará positivo caso o terceiro bit esteja ligado.
+if((1 << 3) & conj){
+
+}
+```
+
+### União
+
+```cpp
+
+int conj1;
+int conj2;
+
+int uni = conj1 | conj2;
+```
+
+### Interseção
+
+```cpp
+
+int conj1;
+int conj2;
+
+int inter = conj1 & conj2;
+```
+
+
 
 # Gerando todos os subconjuntos de um conjunto
 ----------------------------------------------
+
 Suponha que você tenha um conjunto S = {a,b,c}.  
 Para formar um subconjunto de S, podemos escolher ou não o elemento **a** (2 opções), escolher ou não o elemento **b** (2 opções de novo) e escolher ou não o elemento **c** (2 opções novamente). Logo, podemos formar um subconjunto de S de 2\*2\*2 maneiras diferentes. 
 Um conjunto de N elementos possui 2^N subconjuntos. S possui 2^3 = 8 subconjuntos.
