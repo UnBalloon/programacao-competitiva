@@ -46,31 +46,86 @@ A ^ B = (101)2 ^ (011)2 = (110)2 = 6
 | 1 | 0 |  0  |  1  |  1  |
 | 1 | 1 |  1  |  1  |  0  |
 
-# Exemplos de otimizações com operações bitwise
------------------------------------------------
-// TODO
+# Manipulando bits
+------------------
 
-# Gerando todos os subconjuntos de um conjunto
-----------------------------------------------
-Suponha que você tenha um conjunto S = {a,b,c}.  
+
+# Representando conjunto com bits - bitmasks
+--------------------------------------------
+Suponha que tenhamos conjunto universo com 8 elementos, U = {a,b,c,d,e,f,g,h}.  
+Vamos associar cada elemento de U a um bit: 
+
+a -> bit 7  
+b -> bit 6  
+c -> bit 5  
+d -> bit 4  
+e -> bit 3  
+f -> bit 2  
+g -> bit 1  
+h -> bit 0  
+
+Com essa associação, podemos representar qualquer subconjunto de U como uma máscara de 8 bits. Exemplo:
+| Conjunto | Bitmask |
+| -------- | ------- |
+| {b,c,f,h} | 01100101 |
+|  {a}       | 10000000 |
+| {}         | 00000000 |
+
+#### Adicionar um elemento ao conjunto
+Para adicionarmos um elemento a um conjunto que está representado como uma bitmask é simples. Basta apenas setarmos o bit correspondente ao elemento na bitmask do conjunto.
+
+```cpp
+int addElement(int bitmask, int elementPosition) {
+  bitmask = bitmsak | (1 << elementPosition);
+  return bitmask;
+}
+```
+
+#### Checar se um conjunto contem um elemento
+Essa operação é a mesma de checar se um dado bit está setado na bitmask.
+```cpp
+bool hasElement(int bitmask, int elementPosition){
+  bool ret = ((bitmask & (1 << elementPosition)) != 0);
+  return ret;
+}
+```
+
+#### União de 2 conjuntos
+Um elemento estará presente na união de 2 conjuntos se e somente se pelo menos um dos conjuntos contiver este elemento. Com base nisso e na tabela-verdade, podemos ver que a máscara que representa a união de duas máscaras é o OR delas.
+```cpp
+int union(int bitmaskA, int bitmaskB){
+  return (bitmaskA | bitmaskB);
+}
+```
+
+#### Interseção de 2 conjuntos
+Um elemento estará presente na interseção de 2 conjuntos se e somente se os 2 conjuntos contiverem este elemento. Logo, a máscara que representa a interseção de duas máscaras é o AND delas.
+```cpp
+int intersection(int bitmaskA, int bitmaskB){
+  return (bitmaskA & bitmaskB);
+}
+```
+
+#### Gerando todos os subconjuntos de um conjunto
+Suponha que você tenha um conjunto S = {p,q,r}.  
 Para formar um subconjunto de S, podemos escolher ou não o elemento **a** (2 opções), escolher ou não o elemento **b** (2 opções de novo) e escolher ou não o elemento **c** (2 opções novamente). Logo, podemos formar um subconjunto de S de 2\*2\*2 maneiras diferentes. 
 Um conjunto de N elementos possui 2^N subconjuntos. S possui 2^3 = 8 subconjuntos.
 
 Ok, agora vamos representar cada elemento do conjunto S com um bit, como S tem 3 elementos, precisamos de 3 bits para isso:  
-**a** = bit 2,  
-**b** = bit 1,  
-**c** = bit 0  
+**p** = bit 2,  
+**q** = bit 1,  
+**r** = bit 0  
 
 Com esta associação de elementos e bits, podemos representar todos os subconjuntos de S como uma palavra de 3 bits. Veja:
 
 0 = (000)2 = {}  
-1 = (001)2 = {c}  
-2 = (010)2 = {b}  
-3 = (011)2 = {b, c}  
-4 = (100)2 = {a}  
-5 = (101)2 = {a, c}  
-6 = (110)2 = {a, b}  
-7 = (111)2 = {a, b, c}  
+1 = (001)2 = {r}  
+2 = (010)2 = {q}  
+3 = (011)2 = {q, r}  
+4 = (100)2 = {p}  
+5 = (101)2 = {p, r}  
+6 = (110)2 = {p, q}  
+7 = (111)2 = {p, q, r}  
 
 Como temos 2^N subconjuntos em um conjunto de N elementos, passando por todos os números de [0, 2^N - 1] é possível representar todos os subconjuntos de um conjunto.  
 Código para printar todos os subconjuntos de um conjunto:
@@ -86,6 +141,3 @@ void possibleSubsets(char S[], int N) {
 }
 ```
 
-# Alguns truques com bits
--------------------------
-// TODO
