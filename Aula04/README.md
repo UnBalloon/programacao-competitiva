@@ -49,6 +49,22 @@ A ^ B = (101)2 ^ (011)2 = (110)2 = 6
 
 # Manipulando bits
 ------------------
+#### Checando se um determinado bit está ligado
+Para checarmos de um jeito eficiente se o i-ésimo bit de um número N está ligado, basta apenas checar se o AND de 2^i e N é diferente de 0. Como vimos anteriormente, o número 2^i é simplesmente o número 1 shiftado de i bits (1 << i).
+```cpp
+bool isSet(int bitPosition, int number) {
+  bool ret = ((number & (1 << bitPosition)) != 0);
+  return ret;
+}
+```
+
+#### Ligando um determinado bit em um número
+Para ligar o i-ésimo bit de um número N, basta apenas fazermos o OR de 2^i com N.
+```cpp
+bool setBit(int bitPosition, int number) {
+  return (number | (1 << bitPosition) );
+}
+```
 
 
 # Representando conjunto com bits - bitmasks
@@ -66,6 +82,7 @@ g -> bit 1
 h -> bit 0  
 
 Com essa associação, podemos representar qualquer subconjunto de U como uma máscara de 8 bits. Exemplo:
+
 | Conjunto | Bitmask |
 | -------- | ------- |
 | {b,c,f,h} | 01100101 |
@@ -109,7 +126,7 @@ int intersection(int bitmaskA, int bitmaskB){
 
 #### Gerando todos os subconjuntos de um conjunto
 Suponha que você tenha um conjunto S = {p,q,r}.  
-Para formar um subconjunto de S, podemos escolher ou não o elemento **a** (2 opções), escolher ou não o elemento **b** (2 opções de novo) e escolher ou não o elemento **c** (2 opções novamente). Logo, podemos formar um subconjunto de S de 2\*2\*2 maneiras diferentes. 
+Para formar um subconjunto de S, podemos escolher ou não o elemento **p** (2 opções), escolher ou não o elemento **q** (2 opções de novo) e escolher ou não o elemento **r** (2 opções novamente). Logo, podemos formar um subconjunto de S de 2\*2\*2 maneiras diferentes. 
 Um conjunto de N elementos possui 2^N subconjuntos. S possui 2^3 = 8 subconjuntos.
 
 Ok, agora vamos representar cada elemento do conjunto S com um bit, como S tem 3 elementos, precisamos de 3 bits para isso:  
