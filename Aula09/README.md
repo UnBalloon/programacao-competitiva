@@ -295,7 +295,7 @@ class  SegTree{
 
      void propagate(int sti, int stl, int str){
         if(has[sti]){
-            st[sti] = lazy[sti] * (str - str + 1);
+            st[sti] = lazy[sti] * (str - stl + 1);
             if(stl != str){
                 lazy[sti*2 + 1] = lazy[sti];
                 lazy[sti*2 + 2] = lazy[sti];
