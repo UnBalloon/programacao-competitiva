@@ -45,7 +45,7 @@ A construção do vetor de somas prefixas em `v` tem complexidade `O(n)`.
 ```cpp
 vector<int> psum(v.size(), v[0]);
 for(int i = 1; i < v.size(); i++) {
-    psum[i] = v[i] + v[i-1];
+    psum[i] = v[i] + psum[i-1];
 }
 ```
 
