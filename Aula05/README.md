@@ -128,7 +128,7 @@ Então, é por esse motivo que guardamos a informação daquela forma no vetor. 
 Dessa forma, a versão final: 
 
 ```cpp
-vector<int> delta(n,0);
+vector<int> delta(n+5,0);
 vector<int> v(n);
 
 for(int i = 0; i < q; i++){
