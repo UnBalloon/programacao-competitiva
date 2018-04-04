@@ -165,7 +165,7 @@ Essa a árvore formada pelas chamadas recursivas, olhe quantas vezes recomputamo
 A complexidade de memória dessa função pode ser um pouco mais complicada de analisar vamos por partes. No total, serão feitos ```O(2^n)``` chamadas recursivas, e todas elas precisaram de um espaço na pilha de execução, no entanto, as ```2^n``` chamadas não coexistirão na pilha de execução. Olhando bem atentamente e seguindo o fluxo das chamadas recursivas, é possível ver que no máximo um 'ramo' da árvore estará na pilha por vez, o ramo mais longo tem comprimento ```n``` portanto, complexidade de memória ```O(n)```.
 
 
-# Juízes Online
+# Juízes Online - Como praticar
 
 Na disciplina, haverão diversos exercícios de fixação do conteúdo de cada semana, mas para ficar bom em resolver problemas, é necessário mais prática. As ferramentas para isso são os juízes online(OJs), que contam com competições(contests) semanais e **muitos** exercícios para que você pratique. 
 
@@ -186,3 +186,27 @@ O atcoder é um juiz japonês, o motivo de incluir ele nessa lista de recomenda�
 ## CSAcademy
 
 O CSAcademy é OJ mais novo, mas com uma interface muito amigável e com contests também mais fáceis do que no codeforces. 
+
+
+## Vereditos
+
+Quando você submete alguma solução para algum problema em um juiz online, o juiz vai dar um veredito.
+
+### Accepted (AC)
+
+Seu problema foi aceito. Tudo certo.
+
+### Wrong Answer (WA)
+
+O seu programa imprimiu uma resposta diferente do que o juíz esperava. (Ou talvez, num formato diferente). Nessa ocasião, sua solução não foi aceito. 
+
+Deve-se checar por overflows, formato de saída ou casos de borda que seu código pode não estar tratando.
+
+### Time Limit Exceeded (TLE)
+
+O seu programa excedeu o tempo que o juiz estipulou como aceitável para a solução daquele problema. Sua solução não foi aceita. (É muito provavel que) Seu programa tem uma solução com complexidade ruim. Você deve pensar em uma forma de obter a resposta com uma complexidade menor, quem sabe usando algumas das aulas escritas aqui nesse repositório!
+
+### Memory Limit Exceeded (MLE)
+
+O seu programa usou mais memória do que o juiz estipulou como aceitável. Assim como no caso do tempo, provavelmente sua complexidade de memória deve estar alta. É possível diminuir o tamanho de alguns vetores utilizados? É possível que essa memória venha por conta da pilha de execução?Provavelmente com chamadas recursivas exponenciais, como Fibonacci.
+
