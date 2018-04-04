@@ -16,7 +16,7 @@ Grafo simples é um grafo que não cujas arestas não tem peso, não possui loop
 
 ### Grafos direcionados
 
-Existem grafos direcionados e não direcionados. No caso dos não direcionados, significa que cada aresta tem uma direção, ou seja, se é possível chegar de a em b, não significa que é possível chegar de b em a.
+Existem grafos direcionados e não direcionados. No caso dos direcionados, significa que cada aresta tem uma direção, ou seja, se é possível chegar de a em b, não significa que é possível chegar de b em a.
 
 ### Ciclos
 
