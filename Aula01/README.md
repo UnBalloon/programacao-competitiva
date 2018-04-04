@@ -210,3 +210,7 @@ O seu programa excedeu o tempo que o juiz estipulou como aceitável para a solu�
 
 O seu programa usou mais memória do que o juiz estipulou como aceitável. Assim como no caso do tempo, provavelmente sua complexidade de memória deve estar alta. É possível diminuir o tamanho de alguns vetores utilizados? É possível que essa memória venha por conta da pilha de execução?Provavelmente com chamadas recursivas exponenciais, como Fibonacci.
 
+### Runtime Error (RTE)
+
+O seu programa foi encerrado com algum erro durante a execução. Isso pode ser divisão por 0, acesso de memória não alocada (segmentation fault), ou qualquer exceção que faça que seja interrompida a execução.
+
