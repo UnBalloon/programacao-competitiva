@@ -10,11 +10,11 @@ O motivo de ser um número primo é que adicionam algumas propriedades a mais qu
 
 As seguintes propriedades valem no cálculo do módulo: 
 
-`(a + b) % c = ((a % c) + (b % c) % c)`
+`(a + b) % c = ((a % c) + (b % c)) % c`
 
-`(a * b) % c = ((a % c) * (b % c) % c)`
+`(a * b) % c = ((a % c) * (b % c)) % c`
 
-O que isso quer dizer é que se a resposta está sendo computada por meio de adições e multiplicações, e no final vocẽ precisa tirar o módulo dela, você pode tirar módulo em todas as operações intermediárias que isso não afetará a resposta.
+O que isso quer dizer é que se a resposta está sendo computada por meio de adições e multiplicações, e no final você precisa tirar o módulo dela, você pode tirar módulo em todas as operações intermediárias que isso não afetará a resposta.
 
 Então, por exemplo:
 
@@ -29,7 +29,7 @@ int main(){
   int mod = 1e9+7;
   int n;
   scanf("%d",&n);
-  printf("%lld\n",exp(n) % mod);
+  printf("%lld\n", exp(n) % mod);
 }
 
 ```
@@ -49,9 +49,8 @@ long long exp(int p){
 
 int main(){
   int n;
-  cin >> n;
   scanf("%d",&n);
-  printf("%lld\n",exp(n));
+  printf("%lld\n", exp(n));
 }
 
 ```
@@ -161,7 +160,7 @@ Podemos resolver vários problemas usando isso pois `x` será divisor de `m` e a
 vector<int> primos_ate_n(int N){
   vector<int> qnt_div(N, 0);
   for(int x = 1; x < N; x++){
-    for(int m = i; m < N; m += x){
+    for(int m = x; m < N; m += x){
       qnt_div[m]++; // aqui descobrimos que x é divisor de m
     }
   }
@@ -182,7 +181,7 @@ vector<int> primos_ate_n(int N){
   vector<int> primos;
   for(int x = 2; x < N; x++) if(marcacao[x] == 1){
     primos.push_back(x);
-    for(int m = i+i; m < N; m += x){
+    for(int m = x+x; m < N; m += x){
       marcacao[m] = 0; // aqui descobrimos que m não é primo
     }
   }
