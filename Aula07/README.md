@@ -1,8 +1,64 @@
 ## Matemática
 
+### Módulo
+
+Diversos problemas em juízes online (e competições) costumam pedir a resposta módulo algum primo alto (bastante comum 1e9 + 7). O motivo disso é evitar overflow. Por exemplo: finja que você tem o seguinte problema: Imprimir o resultado de 3^x (0 <= x <= 100), por exemplo. Esse resultado claramente excede 2^64 (limite de long long), então não faz muito sentido pedir o resultado por si só (na verdade, alguns problemas realmente pedem coisas do tipo, nesses casos, o recomendado é usar python, que não tem overflow). Então pedem o resultado módulo 10^9 + 7, ou algum primo muito alto.
+
+O motivo de ser um número alto é minimizar a chance de seu programa imprimir a computar a resposta errada (e por sorte ser igual em módulo a resposta correta) e o juíz aceitá-la.
+
+O motivo de ser um número primo é que as duas propriedades a seguir só valem para números primos:
+
+`(a + b) % c = ((a % c) + (b % c) % c)`
+
+`(a * b) % c = ((a % c) * (b % c) % c)`
+
+O que isso quer dizer é que se a resposta está sendo computada por meio de adições e multiplicações, e no final vocẽ precisa tirar o módulo dela, você pode tirar módulo em todas as operações intermediárias que isso não afetará a resposta.
+
+Então, por exemplo:
+
+```cpp
+long long exp(int p){
+  if(p == 0)
+    return 1;
+  return 3ll * exp(p-1);
+}
+
+int main(){
+  int mod = 1e9+7;
+  int n;
+  cin >> n;
+  scanf("%d",&n);
+  printf("%lld\n",exp(n) % mod);
+}
+
+O código acima gera overflow, a resposta vai estourar o limite de long long (já terá se tornado negativa) quando tirarmos o mod. No entanto, conceitualmente, ele está correto.
+
+Então, usando as propriedades vistas em cima, podemos fazer:
+
+```cpp
+int mod = 1e9+7;
+
+long long exp(int p){
+  if(p == 0)
+    return 1;
+  return (3ll * exp(p-1)) % mod;
+}
+
+int main(){
+  int n;
+  cin >> n;
+  scanf("%d",&n);
+  printf("%lld\n",exp(n));
+}
+
+```
+
+De forma que o código acima imprime (3^n) % (1000000007), sem causar overflow.
+
+
 ### Divisores
 
-Um problema recorrente é o de encontrar divisores de um número positivo. A maneira mais simples de resolvê-lo seria passar por todos os números e testar se o resto da divisão é 0, ou seja, se é divisível
+Um problema recorrente é o de encontrar divisores de um número positivo. A maneira mais simples de resolvê-lo seria passar por todos os números e testar se o resto da divisão é 0, ou seja, se é divisível.
 
 ```c++
 vector<long long> all_divisors(long long n){
