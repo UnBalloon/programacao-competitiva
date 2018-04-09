@@ -8,6 +8,8 @@ O motivo de ser um número alto é minimizar a chance de seu programa imprimir a
 
 O motivo de ser um número primo é que adicionam algumas propriedades a mais que podemos usar para calcular a resposta, como o inverso multiplicativo, mas não abordaremos isso aqui.
 
+As seguintes propriedades valem no cálculo do módulo: 
+
 `(a + b) % c = ((a % c) + (b % c) % c)`
 
 `(a * b) % c = ((a % c) * (b % c) % c)`
