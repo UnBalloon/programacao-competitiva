@@ -2,9 +2,9 @@
 
 ### Módulo
 
-Diversos problemas em juízes online (e competições) costumam pedir a resposta módulo algum primo alto (bastante comum 1e9 + 7). O motivo disso é evitar overflow. Por exemplo: finja que você tem o seguinte problema: Imprimir o resultado de 3^x (0 <= x <= 100), por exemplo. Esse resultado claramente excede 2^64 (limite de long long), então não faz muito sentido pedir o resultado por si só (na verdade, alguns problemas realmente pedem coisas do tipo, nesses casos, o recomendado é usar python, que não tem overflow). Então pedem o resultado módulo 10^9 + 7, ou algum primo muito alto.
+Diversos problemas em juízes online (e competições) costumam pedir a resposta módulo algum primo alto (bastante comum 10^9 + 7). O motivo disso é evitar overflow. Por exemplo: finja que você tem o seguinte problema: Imprimir o resultado de 3^`x` (0 <= `x` <= 100), por exemplo. Esse resultado claramente excede 2^64 (limite de long long), então não faz muito sentido pedir o resultado por si só (na verdade, alguns problemas realmente pedem coisas do tipo, nesses casos, o recomendado é usar python, que não tem overflow). Então pedem o resultado módulo 10^9 + 7, ou algum primo muito alto.
 
-O motivo de ser um número alto é minimizar a chance de seu programa imprimir a computar a resposta errada (e por sorte ser igual em módulo a resposta correta) e o juíz aceitá-la.
+O motivo de ser um número alto é minimizar a chance de seu programa a computar a resposta errada (e por sorte ser igual em módulo a resposta correta) e o juíz aceitá-la.
 
 O motivo de ser um número primo é que adicionam algumas propriedades a mais que podemos usar para calcular a resposta, como o inverso multiplicativo, mas não abordaremos isso aqui.
 
