@@ -6,7 +6,7 @@ Diversos problemas em juízes online (e competições) costumam pedir a resposta
 
 O motivo de ser um número alto é minimizar a chance de seu programa imprimir a computar a resposta errada (e por sorte ser igual em módulo a resposta correta) e o juíz aceitá-la.
 
-O motivo de ser um número primo é que as duas propriedades a seguir só valem para números primos:
+O motivo de ser um número primo é que as duas propriedades a seguir só valem quando `c` é um número primo:
 
 `(a + b) % c = ((a % c) + (b % c) % c)`
 
