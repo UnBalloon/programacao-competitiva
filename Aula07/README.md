@@ -31,6 +31,8 @@ int main(){
   printf("%lld\n",exp(n) % mod);
 }
 
+```
+
 O código acima gera overflow, a resposta vai estourar o limite de long long (já terá se tornado negativa) quando tirarmos o mod. No entanto, conceitualmente, ele está correto.
 
 Então, usando as propriedades vistas em cima, podemos fazer:
