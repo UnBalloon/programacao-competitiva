@@ -29,3 +29,71 @@ Suponha um vetor ordenado de tamanho N onde vamos aplicar o algoritmo de busca b
 Existem muitas aplicações interessantes relacionadas a busca binária. Nesse documento ressaltamos apenas a aplicação mais simples para que se torne simples e didático esse primeiro contato com o algoritmo.
 
 Só foi falado que a quantidade de passos da busca bínaria é `O(log2(n))`, e em cada passo avaliamos se achamos o que queremos ou para qual metade está o que procurarmos. Esta avaliação pode ser simples, como no exemplo e ser `O(1)`, mas pode ser bem complexa e demorar `O(m)`, fazendo o algoritmo rodar em tempo `O(m*log2(n))`.
+
+## Exemplo de código
+
+Consideremos o problema de achar o indice do primeiro elemento maior ou igual um `x` num vetor `v` de tamanho `n`.
+
+```c++
+int v[MAXN], n; // vetor global para facilitar o código
+
+// funcao que retorna se id é uma resposta válida pro nosso problema
+bool check(int id, int x){
+    return v[id] >= x;
+}
+
+// retorna o indice do primeiro elemento >= x, considerando que o vetor v está ordenado
+// se todos os elementos sao menores que x, retorna -1
+int lower_bound(int x){
+    int L, R, ans;
+    L = 0; // começo do intervalo que consideraremos
+    R = n-1; // fim do intervalo que consideraremos
+    ans = n; // começamos a resposta com um valor fora do vetor, inválido para marcar se conseguimos achar alguma resposta ou nao
+    while(L <= R){ // enquanto tiver algum número no intervalo
+        int mid = (L+R)/2;
+        if(check(mid, x)){ // se esse mid é uma resposta apropriada
+            ans = mid; // achamos uma nova resposta para o problema
+            R = mid-1; // se mid é uma resposta temos que tentar procurar uma resposta menor(nesse problema em especifico)
+        }
+        else{ // se mid nao é uma resposta pro nosso problema
+            L = mid+1; // precisamos procurar em indices maiores(neste problema)
+        }
+    }
+    if(ans == n) return -1; // se ans ainda é n depois da busca binária, então nunca achamos resposta
+    return ans;
+}
+```
+
+Perceba que se quisermos achar o indice do último elemento maior ou igual um `x` num vetor `v` de tamanho `n`.
+
+```c++
+int v[MAXN], n; // vetor global para facilitar o código
+
+// funcao que retorna se id é uma resposta válida pro nosso problema
+bool check(int id, int x){
+    return v[id] >= x;
+}
+
+// retorna o indice do primeiro elemento >= x, considerando que o vetor v está ordenado
+// se todos os elementos sao menores que x, retorna -1
+int lower_bound(int x){
+    int L, R, ans;
+    L = 0; // começo do intervalo que consideraremos
+    R = n-1; // fim do intervalo que consideraremos
+    ans = n; // começamos a resposta com um valor fora do vetor, inválido para marcar se conseguimos achar alguma resposta ou nao
+    while(L <= R){ // enquanto tiver algum número no intervalo
+        int mid = (L+R)/2;
+        if(check(mid, x)){ // se esse mid é uma resposta apropriada
+            ans = mid;  // achamos uma nova resposta para o problema
+            L = mid+1; // se mid é uma resposta temos que tentar procurar uma resposta maior(nesse problema em especifico)
+        }
+        else{ // se mid nao é uma resposta pro nosso problema
+            R = mid-1; // precisamos procurar em indices menores(neste problema)
+        }
+    }
+    if(ans == n) return -1; // se ans ainda é n depois da busca binária, então nunca achamos resposta
+    return ans;
+}
+```
+
+Em ambos os exemplos a complexidade de checar se mid é uma resposta válida para o problema é `O(1)`. Portanto a complexidade total é `O(lg n)`.
