@@ -220,7 +220,7 @@ vector<int> primos_ate_n(int N){
 ```
 
 
-## Decomposição em fatores primos
+## Decomposição(fatoração) em fatores primos
 
 Aprendemos na escola que todo número é composto por fatores primos, existindo uma única fatoração pra cada número.
 
