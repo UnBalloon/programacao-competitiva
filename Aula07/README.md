@@ -224,6 +224,7 @@ vector<int> primos_ate_n(int N){
 
 Aprendemos na escola que todo número é composto por fatores primos, existindo uma única fatoração pra cada número.
 
+Uma primeira abordagem possível seria passar por todos os números e ir dividindo sempre que possível.
 
 ```c++
 // retorna vetor de pair<primo, expoente> da fatoração
@@ -244,11 +245,13 @@ vector<pair<long long, int>> fatora(long long n){
 }
 ```
 
-A primeira vista parece que temos que testar se `p` é primo. Entretanto passamos por `p` de forma crescente e sempre que podemos dividimos `n` por `p` então a condição `(n % p == 0)` só será verdade para `p` primos.
+A primeira vista,como queremos decompor em fatores primos, parece que temos que testar se `p` é primo. Entretanto passamos por `p` de forma crescente e sempre que podemos dividimos `n` por `p` então a condição `(n % p == 0)` só será verdade para `p` primos.  
+
+Isso ocorre porque todos os fatores primos de um número são menores ou iguais a ele próprio, então quando chegamos em um número, é impossível que ele divida o número e não seja primo, pois se não for, os números primos que o compoem deveriam ter sido contabilizados numa iteração anterior.
 
 Apesar do código acima rodar bem para vários exemplos, no pior caso `n` é primo e o código é executado em `O(n)`.
 
-Podemos melhorar a complexidade com uma simples observação. É possivel ter um primo maior que a `sqrt(n)`, por exemplo, 10 tem 5 como fator e `5 > sqrt(10)`, mas é impossível ter dois primos maiores que a raiz. Se tivermos `a > sqrt(n)` e `b > sqrt(n)`, quando multiplicamos temos que `a * b > sqrt(n) * sqrt(n)` e `a * b > n`.
+Podemos melhorar a complexidade com uma simples observação. É possivel ter **apenas** um primo maior que a `sqrt(n)`, por exemplo, 10 tem 5 como fator e `5 > sqrt(10)`, mas é impossível ter dois primos maiores que a raiz. Se tivermos `a > sqrt(n)` e `b > sqrt(n)`, quando multiplicamos temos que `a * b > sqrt(n) * sqrt(n)` e `a * b > n`.
 
 ```c++
 vector<pair<long long, int>> fatora(long long n){
@@ -270,9 +273,7 @@ vector<pair<long long, int>> fatora(long long n){
 
 ## Fatoração em O(lg n) para números até N
 
-É possível fatores números ate um limite `N` em `O(lg n)` após preprocessamento `O(n lg n)`.
-
-Para isto computamos o vetor `lp` de tamanho `N` onde `lp[x] = algum primo divisor de x`. Podemos fazê-lo passando por todos os multiplos de primos.
+É possível fatorar números ate um limite `N` em `O(lg n)` após preprocessamento `O(n log( log n))`. O que fazemos é uma pequena modificação no código do crivo, para que enquanto fazemos o crivo, preenchamos um vetor auxiliar `lp`, aonde `lp[x]` representa o menor número primo que divide `x`.
 
 ```c++
 vector<int> lp(N, -1);
@@ -284,7 +285,7 @@ for(int x = 2; x < N; x++)
   }
 ```
 
-Tendo este vetor podemos fatorar um numero `x` com o seguinte procedimento
+Tendo este vetor podemos fatorar um numero `x` com o seguinte procedimento.
 
 ```c++
 vector<pair<int, int>> fatora(int x){
