@@ -1,8 +1,12 @@
-## Matemática
+# Matemática
 
-### Módulo
+## Resposta Módulo
 
-Diversos problemas em juízes online (e competições) costumam pedir a resposta módulo algum primo alto (bastante comum 10^9 + 7). O motivo disso é evitar overflow. Por exemplo: finja que você tem o seguinte problema: Imprimir o resultado de 3^`x` (0 <= `x` <= 100), por exemplo. Esse resultado claramente excede 2^64 (limite de long long), então não faz muito sentido pedir o resultado por si só (na verdade, alguns problemas realmente pedem coisas do tipo, nesses casos, o recomendado é usar python, que não tem overflow). Então pedem o resultado módulo 10^9 + 7, ou algum primo muito alto.
+Diversos problemas em juízes online (e competições) costumam pedir a resposta módulo algum primo alto (bastante comum 10^9 + 7). O motivo disso é evitar overflow. Por exemplo: finja que você tem o seguinte problema: 
+
+Imprimir o resultado de 3^`x` (0 <= `x` <= 100), por exemplo. Esse resultado claramente excede 2^64 (limite de long long), então não faz muito sentido pedir o resultado por si só (na verdade, alguns problemas realmente pedem coisas do tipo, nesses casos, o recomendado é usar python, que não tem overflow). 
+
+Então pedem o resultado módulo 10^9 + 7, ou algum primo muito alto, para que não force as pessoas a usarem uma linguagem ou outra.
 
 O motivo de ser um número alto é minimizar a chance de seu programa a computar a resposta errada (e por sorte ser igual em módulo a resposta correta) e o juíz aceitá-la.
 
@@ -58,7 +62,7 @@ int main(){
 De forma que o código acima imprime (3^n) % (1000000007), sem causar overflow.
 
 
-### Divisores
+## Divisores
 
 Um problema recorrente é o de encontrar divisores de um número positivo. A maneira mais simples de resolvê-lo seria passar por todos os números e testar se o resto da divisão é 0, ou seja, se é divisível.
 
@@ -112,7 +116,7 @@ vector<long long> all_divisors(long long n){
 
 com complexidade `O(sqrt(n))`.
 
-###### Observações
+### Observações
 Um número primo tem somente dois divisores positivos, assim podemos checar se um numero `x` é primo usando `all_divisors(x).size() == 2` ou modificando um pouco a rotina e ter uma melhor constante na complexidade
 ```c++
 vector<long long> is_prime(long long n){
@@ -126,9 +130,7 @@ vector<long long> is_prime(long long n){
 }
 ```
 
-## Todos os múltiplos de todos os números até N
-
-### Todos os múltiplos de x até N
+## Passar por todos os múltiplos de x até N
 Consideramos multiplos de `x` os números: `x, 2*x, 3*x, 4*x, ...` ou, escrevendo de outra forma, `x, x+x, x+x+x, x+x+x+x, ...`
 
 Caso queiramos fazer algo com todos os múltiplos de `x` até um limite `N` podemos usar a simples rotina
@@ -139,7 +141,7 @@ for(int m = x; m < N; m += x){ // m é sempre multiplo de x
 ```
 Que é executada em `O(N/x)`.
 
-### Todos os múltiplos de todos os números até N
+## Passar por todos os múltiplos de todos os números até N
 
 Se passarmos por todos os números `x` entre 1 e `N` e para cada um deles achar todos os múltiplos `m`.
 
@@ -155,15 +157,39 @@ for(int x = 1; x < N; x++){
 
 O código acima parece ser executado em `O(N^2)`, mas podemos definir uma cota bem menor, com algumas observações. O código é executado em `N/1 + N/2 + ... + N/(N-1) + N/N` passos. Podemos botar o `N` em evidencia `N*(1/1 + 1/2 + 1/3 + ... + 1/(N-1) + 1/N)`. A soma dentro dos parenteses é menor que a área abaixo da curva da função `1/x`, a integral é `ln(x)`(mas relaxa que não precisa lembrar das coisas de cálculo 1). Portanto `O(N*(1/1 + 1/2 + 1/3 + ... + 1/(N-1) + 1/N)) = O(N*lg N)`.
 
-Podemos resolver vários problemas usando isso pois `x` será divisor de `m` e assim para todo `m` também passaremos por todos os divisores deles. Por exemplo, para encontrar todos os primos ate `N` podemos contar a quantidade de divisores que cada elemento tem e no final ver quais tem quantidade 2.
+Podemos resolver vários problemas usando isso pois `x` será divisor de `m` e assim para todo `m` também passaremos por todos os divisores deles. 
+
+## Contando os divisores de vários números
+
+Por exemplo, usando essa abordagem, poderíamos usar esses 2 laços aninhados para gerar um vetor `div` que informa quantos divisores todos os números até `n` tem.
+
+Perceba que esses dois laços executam em `O(n * log n)`, enquanto repetir o algoritmo de contar os divisores de cada número individualmente teria complexidade `sqrt(1) + sqrt(2) + ... + sqrt(n)` = O(n * sqrt(n)), ou seja, tem complexidade melhor.
+
+A abordagem abaixo funciona porque sempre que chegamos em um número `m` no laço mais interno, significa que temos um divisor a mais. 
+
+Na primeira iteração passamos por todos os números, já que começamos e 1 e estamos incrementando de 1 em 1, todos os números são divisíveis por 1, então todos ganham um divisor a mais no vetor.
+
+Na segunda iteração, passamos apenas pelos números múltiplos de 2, em todos os números que chegarmos, significa que esse número é divisível por 2 (ou seja, sabemos que ele tem um divisor a mais). E repetimos esse raciocínio para todos os números. 
+
+
 ```c++
-vector<int> primos_ate_n(int N){
-  vector<int> qnt_div(N, 0);
+vector<int> computa_divisores(int N){
+vector<int> qnt_div(N, 0);
   for(int x = 1; x < N; x++){
     for(int m = x; m < N; m += x){
       qnt_div[m]++; // aqui descobrimos que x é divisor de m
     }
   }
+  return qnt_div;
+}
+```
+
+## Pegando todos os números primos até `N`
+
+Em particular, sabendo a quantidade de divisores de cada número, podemos varrer esse vetor vendo quais números são primos (tem 2 divisores).
+
+```cpp
+vector<int> primos_ate_n(int N){
   vector<int> primos;
   for(int x = 1; x < N; x++){
     if(qnt_div[x] == 2)
@@ -173,7 +199,11 @@ vector<int> primos_ate_n(int N){
 }
 ```
 
-Ou usar um outra ideia, marcar inicialmente todos os números entre 1 e `N` como possiveis primos. Passando em ordem crescente e quando encontramos um primo marcamos os múltiplos do primo como não primos.
+## Crivo de erastótenes
+
+A abordagem acima tem uma complexidade aceitável, e passaria no tempo para a maioria dos problemas. No entanto, existe um algoritmo com uma ideia semelhante, mas que com algumas observações baixa essa complexidade de `O(n * log n)` para `O(n * log( log n))`. O log já abaixa muito um número, se aplicamos ele novamente, abaixamos mais ainda, ou seja, isso é quase linear.
+
+A ideia usada é marcar inicialmente todos os números entre 1 e `N` como possiveis primos. Passando em ordem crescente e quando encontramos um primo marcamos os múltiplos do primo como não primos.
 
 ```c++
 vector<int> primos_ate_n(int N){
@@ -190,13 +220,14 @@ vector<int> primos_ate_n(int N){
 ```
 
 
-## Fatoração
+## Decomposição em fatores primos
 
-A primeira forma seria algo como
+Aprendemos na escola que todo número é composto por fatores primos, existindo uma única fatoração pra cada número.
+
 
 ```c++
 // retorna vetor de pair<primo, expoente> da fatoração
-// fatora(36) = [{2, 2}, {3, 2}]
+// fatora(36) = [{2, 2}, {3, 2}] ou seja, 36 = 2^2 + 3^2
 vector<pair<long long, int>> fatora(long long n){
   vector<pair<long long, int>> ans;
   for(long long p = 2; p <= n; p++){
@@ -237,7 +268,7 @@ vector<pair<long long, int>> fatora(long long n){
 }
 ```
 
-### Fatoração em O(lg n) para números até N
+## Fatoração em O(lg n) para números até N
 
 É possível fatores números ate um limite `N` em `O(lg n)` após preprocessamento `O(n lg n)`.
 
@@ -270,20 +301,3 @@ vector<pair<int, int>> fatora(int x){
 ```
 
 A complexidade do procedimento acima é `O(quantidade de fatores)`, que é limitado por `O(lg n)`, da para ver que no pior caso todos os fatores são 2(menor primo) e a complexidade é o `k` de `2^k = n`.
-
-## Fatoração de n!
-
-Para encontrar o expoente de um primo `p` na fatoração de `n!`. Contamos a quantidade de vezes que aparece um número ate `n` com expoente pelo menos 1, depois a quantidade de vezes que aparece um número ate `n` com expoente pelo menos 2 e assim por diante. Ou seja, `n/p + n/(p^2) + n/(p^3) + ...` considerando a divisão inteira. A rotina em c++ seria:
-
-```c++
-long long expoente_em_fatorial(long long p, long long n){
-  long long ans = 0, tmp = p;
-
-  while(tmp <= n){ // enquanto floor(n/tmp) não da 0
-    ans += n / tmp;
-    tmp *= p; // muda de p para p^2, de p^2 para p^3 e assim por diante
-  }
-
-  return ans;
-}
-```
