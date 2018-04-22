@@ -238,7 +238,7 @@ vector<pair<long long, int>> fatora(long long n){
         n /= p;
         expoente++;
       }
-      ans.emplace_back(a, expoente);
+      ans.emplace_back(p, expoente);
     }
   }
   return ans;
