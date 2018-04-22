@@ -273,7 +273,7 @@ vector<pair<long long, int>> fatora(long long n){
 
 ## Fatoração em O(lg n) para números até N
 
-É possível fatorar números ate um limite `N` em `O(lg n)` após preprocessamento `O(n log( log n))`. O que fazemos é uma pequena modificação no código do crivo, para que enquanto fazemos o crivo, preenchamos um vetor auxiliar `lp`, aonde `lp[x]` representa o menor número primo que divide `x`.
+É possível fatorar números ate um limite `N` em `O(lg n)` após preprocessamento `O(n log( log n))`. O que fazemos é uma pequena modificação no código do crivo, para que enquanto fazemos o crivo, preenchamos um vetor auxiliar `lp`, aonde `lp[x]` representa o maior número primo que divide `x`.
 
 ```c++
 vector<int> lp(N, -1);
