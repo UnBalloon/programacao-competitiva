@@ -30,8 +30,9 @@ Existem muitas aplicações interessantes relacionadas a busca binária. Nesse d
 
 Só foi falado que a quantidade de passos da busca bínaria é `O(log2(n))`, e em cada passo avaliamos se achamos o que queremos ou para qual metade está o que procurarmos. Esta avaliação pode ser simples, como no exemplo e ser `O(1)`, mas pode ser bem complexa e demorar `O(m)`, fazendo o algoritmo rodar em tempo `O(m*log2(n))`.
 
-## Exemplo de código
+## Exemplos de código
 
+### Implementação de lower_bound
 Consideremos o problema de achar o indice do primeiro elemento maior ou igual um `x` num vetor `v` de tamanho `n`.
 
 ```c++
@@ -97,3 +98,19 @@ int lower_bound(int x){
 ```
 
 Em ambos os exemplos a complexidade de checar se mid é uma resposta válida para o problema é `O(1)`. Portanto a complexidade total é `O(lg n)`.
+
+
+
+### Esboço
+
+
+### Código base para busca binária na resposta
+
+#### Valor mínimo
+
+```cpp
+long long l = a;// sei que a resposta não é menos que a
+long long r = b;// sei que a resposta não é mais que a (as vezes esse chute tem que ser bom, para evitar overflow)
+while(r > l+1){ // repita enquanto o intervalo tiver tamanho >2
+}
+```
