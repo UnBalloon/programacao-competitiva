@@ -61,6 +61,8 @@ Na verdade é bem mais simples do que parece. Para cada vértice, temos que mant
 
 Nessa representação, a i-ésima posição no vector de fora `vector<int>`, esse vector representam as arestas que saem daquele vértice. Então, cada vértice tem um número associado a ele.
 
+<img src="http://danielamaral.wikidot.com/local--files/agmmo/Grafo.png">
+
 ```cpp
 vector<vector<int>> graph(GRAPH_MAX_SIZE);
 
