@@ -61,12 +61,33 @@ Na verdade é bem mais simples do que parece. Para cada vértice, temos que mant
 
 Nessa representação, a i-ésima posição no vector de fora `vector<int>`, esse vector representam as arestas que saem daquele vértice. Então, cada vértice tem um número associado a ele.
 
+### Exemplo 
 <img src="http://danielamaral.wikidot.com/local--files/agmmo/Grafo.png">
 
 ```cpp
-vector<vector<int>> graph(GRAPH_MAX_SIZE);
+vector<vector<int>> graph(7);
 
-graph[0].push_back(1); // adiciona a aresta (0,1)
-graph[1].push_back(0); // adiciona a aresta (1,0)
-// lembrando que no caso de grafos não direcionados, quando adicionamos (0,1) precisamos sempre adicionar (1,0) junto.
+graph[4].push_back(6);
+graph[6].push_back(4);
+
+graph[4].push_back(5);
+graph[5].push_back(4);
+
+graph[4].push_back(3);
+graph[3].push_back(4); 
+
+graph[2].push_back(3);
+graph[3].push_back(2); 
+
+graph[2].push_back(5);
+graph[5].push_back(2); 
+
+graph[4].push_back(6);
+graph[6].push_back(4); 
+
+graph[2].push_back(1);
+graph[1].push_back(2); 
+
+
+// lembrando que no caso de grafos não direcionados, quando adicionamos (a,b) precisamos sempre adicionar (b,a) junto.
 ```
