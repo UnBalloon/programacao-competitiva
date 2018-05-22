@@ -66,4 +66,5 @@ vector<vector<int>> graph(GRAPH_MAX_SIZE);
 
 graph[0].push_back(1); // adiciona a aresta (0,1)
 graph[1].push_back(0); // adiciona a aresta (1,0)
+// lembrando que no caso de grafos não direcionados, quando adicionamos (0,1) precisamos sempre adicionar (1,0) junto.
 ```
