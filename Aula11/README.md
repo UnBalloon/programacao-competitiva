@@ -167,3 +167,8 @@ int main(){
 ```
 
 A complexidade desse código também é `O(n+m)`, pelo mesmo motivo do código anterior.
+
+
+## VideoAulas complementares
+
+https://www.youtube.com/watch?v=zaBhtODEL0w
