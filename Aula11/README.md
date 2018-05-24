@@ -103,8 +103,8 @@ bool has_cycle(int node){
     cor[node] = CINZA;
     // este vértice está na pilha agora
     for(auto v: graph[node]){
-        b |= dfs(v); // basta que uma instância do dfs detecte ciclo para
-                    // que esse 'true' se propague pela pilha toda.
+        b |= has_cycle(v); // basta que uma instância do dfs detecte ciclo para
+        // que esse 'true' se propague pela pilha toda.
     }
     cor[node] = PRETO;
     // este vértice saiu da pilha

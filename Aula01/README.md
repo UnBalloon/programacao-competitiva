@@ -213,4 +213,3 @@ O seu programa usou mais memória do que o juiz estipulou como aceitável. Assim
 ### Runtime Error (RTE)
 
 O seu programa foi encerrado com algum erro durante a execução. Isso pode ser divisão por 0, acesso de memória não alocada (segmentation fault), ou qualquer exceção que faça que seja interrompida a execução.
-
