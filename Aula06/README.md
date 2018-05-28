@@ -152,3 +152,7 @@ if(check(l)){
     ans = l;
 }
 ```
+
+## Exemplos de problemas com busca binária
+
+TODO ??
