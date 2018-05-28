@@ -127,7 +127,10 @@ Essas são as duas ocasiões aonde a função de checagem é monótona e é poss
 bool check(int val){
     // nessa função checamos se uma resposta satisfaz as condições para ser uma resposta válida, e retornamos um booleano dependendo disso.
 }
-
+.
+.
+.
+//(dentro da main)
 long long l = a;// sei que a resposta não é menos que a
 long long r = b;// sei que a resposta não é mais que b (as vezes esse chute tem que ser bom, para evitar overflow)
 
@@ -142,4 +145,10 @@ while(r > l+1){// repita enquanto o intervalo tiver tamanho > 2
     }
 }
 // Ao final desse laço, a resposta pode estar em l ou r.
+// Queremos minimizar a resposta, então se l for válido, 
+// ficaremos com l, e caso contrário,  com r
+ll ans = r;
+if(check(l)){
+    ans = l;
+}
 ```
