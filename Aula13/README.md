@@ -96,3 +96,5 @@ int main(){
 
 }
 ```
+
+Assim como no BFS, podemos facilmente adicionar um vetor indicando os predecessores de cada vértice, dessa forma podemos obter não só a informação dos custos, mas também a sequência de vértices que a origina.
