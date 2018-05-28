@@ -49,18 +49,18 @@ int lower_bound(int x){
     int L, R, ans;
     L = 0; // começo do intervalo que consideraremos
     R = n-1; // fim do intervalo que consideraremos
-    ans = n; // começamos a resposta com um valor fora do vetor, inválido para marcar se conseguimos achar alguma resposta ou nao
-    while(L <= R){ // enquanto tiver algum número no intervalo
+    ans = n; // começamos a resposta com um valor fora do vetor, inválido para marcar se conseguimos achar alguma resposta ou nao
+    while(L <= R){ // enquanto tiver algum número no intervalo
         int mid = (L+R)/2;
-        if(check(mid, x)){ // se esse mid é uma resposta apropriada
+        if(check(mid, x)){ // se esse mid é uma resposta apropriada
             ans = mid; // achamos uma nova resposta para o problema
-            R = mid-1; // se mid é uma resposta temos que tentar procurar uma resposta menor(nesse problema em especifico)
+            R = mid-1; // se mid é uma resposta temos que tentar procurar uma resposta menor(nesse problema em especifico)
         }
-        else{ // se mid nao é uma resposta pro nosso problema
+        else{ // se mid nao é uma resposta pro nosso problema
             L = mid+1; // precisamos procurar em indices maiores(neste problema)
-        }
+        }
     }
-    if(ans == n) return -1; // se ans ainda é n depois da busca binária, então nunca achamos resposta
+    if(ans == n) return -1; // se ans ainda é n depois da busca binária, então nunca achamos resposta
     return ans;
 }
 ```
@@ -81,18 +81,18 @@ int lower_bound(int x){
     int L, R, ans;
     L = 0; // começo do intervalo que consideraremos
     R = n-1; // fim do intervalo que consideraremos
-    ans = n; // começamos a resposta com um valor fora do vetor, inválido para marcar se conseguimos achar alguma resposta ou nao
-    while(L <= R){ // enquanto tiver algum número no intervalo
+    ans = n; // começamos a resposta com um valor fora do vetor, inválido para marcar se conseguimos achar alguma resposta ou nao
+    while(L <= R){ // enquanto tiver algum número no intervalo
         int mid = (L+R)/2;
-        if(check(mid, x)){ // se esse mid é uma resposta apropriada
+        if(check(mid, x)){ // se esse mid é uma resposta apropriada
             ans = mid;  // achamos uma nova resposta para o problema
-            L = mid+1; // se mid é uma resposta temos que tentar procurar uma resposta maior(nesse problema em especifico)
+            L = mid+1; // se mid é uma resposta temos que tentar procurar uma resposta maior(nesse problema em especifico)
         }
-        else{ // se mid nao é uma resposta pro nosso problema
+        else{ // se mid nao é uma resposta pro nosso problema
             R = mid-1; // precisamos procurar em indices menores(neste problema)
-        }
+        }
     }
-    if(ans == n) return -1; // se ans ainda é n depois da busca binária, então nunca achamos resposta
+    if(ans == n) return -1; // se ans ainda é n depois da busca binária, então nunca achamos resposta
     return ans;
 }
 ```
