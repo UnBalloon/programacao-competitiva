@@ -1,6 +1,6 @@
 ## Dijkstra
 
-O algoritmo de Dijkstra é um algoritmo muito conhecido para percorrimento de grafos cujas arestas te pesos, ele nos permite percorrer os vértices na ordem de distância para um vértice fonte. 
+O algoritmo de Dijkstra é um algoritmo muito conhecido para percorrimento de grafos cujas arestas tem pesos, ele nos permite percorrer os vértices na ordem de distância para um vértice fonte. E efetivamente descobrir essas distâncias.
 
 Mais especificamente, de uma forma tal que considerando o vértice fonte como `s`, se o menor caminho de `s` para um vértice `u` é estritamente menor que o menor caminho de `s` para um outro vértice `v`, com certeza visitaremos `u` antes de `v`.
 
@@ -14,11 +14,17 @@ Assim como no BFS, teremos essa fila que ditará a ordem com que os nodos serão
 
 Pra qualquer par `p` na fila, `(p.first,p.second)` significa: Consigo chegar no vértice `p.second` por um caminho de custo `p.first`. Por isso no começo da execução enfileiramos o par `(0, s)`, dizendo: consigo chegar no vértice fonte pagando 0, afinal já estamos nele no começo do percorrimento.
 
-Quando desinfileiramos um vértice, assim como no BFS, consideramos todas as arestas que partem dele, agora com pesos. 
+Quando desinfileiramos um vértice, assim como no BFS, consideramos seguir por todas as arestas que partem dele, agora com pesos.
 
+ Bem, para cada aresta, sabemos seu destino e seu peso, então, a informação que podemos tirar disso é que podemos ir para aquele destino com o custo da aresta somado com o custo para chegar no vértice que acabamos de desinfileirar. 
 
+Na implementação do BFS, na hora de verificar se devíamos enfileirar algo, verificavamos apenas se aquele destino já tinha sido enfileirado antes, usando um vetor pra armazenar essa informação. 
 
-Há diversas formas de implementar o algoritmo, é possível usar um vetor indicando quais vértices foram visitados, assim como no BFS e DFS, mas outra forma é usar um vetor que indica as menores distâncias
+Na nossa implementação, ao invés de um vetor marcando quais já foram enfileirados, usaremos um vetor indicando o melhor custo conhecido para se atingir cada vértice.
+
+O motivo disso é que não há mais garantia que na primeira vez que enfileiramos um vértice já obtivemos o melhor custo para chegar nele. Pode ser que posteriormente enfileiremos um custo menor pra chegar nesse vértice. 
+
+Então, na hora de enfileirarmos, verificaremos se aquele enfileiramento é vantajoso, isto é, se ele melhora o melhor custo que já conhecíamos para chegar em algum vértice. De começo assumimos o custo infinito para chegar em todos.	
 
 
 ### Implementação
