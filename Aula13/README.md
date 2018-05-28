@@ -1,5 +1,28 @@
 ## Dijkstra
 
+O algoritmo de Dijkstra é um algoritmo muito conhecido para percorrimento de grafos cujas arestas te pesos, ele nos permite percorrer os vértices na ordem de distância para um vértice fonte. 
+
+Mais especificamente, de uma forma tal que considerando o vértice fonte como `s`, se o menor caminho de `s` para um vértice `u` é estritamente menor que o menor caminho de `s` para um outro vértice `v`, com certeza visitaremos `u` antes de `v`.
+
+A forma como o algoritmo opera é muito parecida com o BFS, mas em vez de usarmos uma fila, usamos uma fila de prioridades(priorizando menores valores). O motivo de usarmos essa outra estrutura de dados é que usar uma fila não gera mais o mesmo comportamento que desejamos quando as arestas passam a ter pesos. 
+
+Como as arestas tem pesos, nosso grafo será um `vector<pair<int,int>> grafo[n]` ao invés de um `vector<int> grafo[n]`.
+
+### A ideia
+
+Assim como no BFS, teremos essa fila que ditará a ordem com que os nodos serão desenfileirados (visitados). Mas agora Nossa Fila é de prioridades abriga pares ao invés de apenas um inteiro.
+
+Pra qualquer par `p` na fila, `(p.first,p.second)` significa: Consigo chegar no vértice `p.second` por um caminho de custo `p.first`. Por isso no começo da execução enfileiramos o par `(0, s)`, dizendo: consigo chegar no vértice fonte pagando 0, afinal já estamos nele no começo do percorrimento.
+
+Quando desinfileiramos um vértice, assim como no BFS, consideramos todas as arestas que partem dele, agora com pesos. 
+
+
+
+Há diversas formas de implementar o algoritmo, é possível usar um vetor indicando quais vértices foram visitados, assim como no BFS e DFS, mas outra forma é usar um vetor que indica as menores distâncias
+
+
+### Implementação
+
 ```c++
 #include <bits/stdc++.h>
 
@@ -43,7 +66,7 @@ void dijkstra(int start){
 			tie(v, w) = edge;
 
 			// se a distancia ate o u somado com o peso
-			// da aresta é melhor do que a distancia ate o v que
+			// da aresta é menor do que a distancia ate o v que
 			// tinhamos antes, melhoramos a distancia ate o v
 			if(d[v] > d[u] + w){
 				d[v] = d[u] + w;
