@@ -99,18 +99,47 @@ int lower_bound(int x){
 
 Em ambos os exemplos a complexidade de checar se mid é uma resposta válida para o problema é `O(1)`. Portanto a complexidade total é `O(lg n)`.
 
+Muitas pessoas ja viram o exemplo de realizar busca binária em vetores, mas quando se fala em busca binária na resposta, ficam confusas. Na verdade, busca binária em vetores é busca binária na resposta, mas a resposta é um índice.
+
+## Condições para aplicar busca binária
+
+Nem sempre é possível aplicar busca binária para encontrar uma resposta: um exemplo seria um vetor não ordenado. Se o vetor não estivesse ordenado, por exemplo se estivéssemos fazendo o lower_bound, e um valor de mid não fosse válido, não poderíamos descartar toda a metade de baixo, pois a resposta poderia estar naquele pedaço.
+
+Dizemos que é possível aplicar busca binária em um problema quando a checagem se um valor satisfaz as condições apresenta **monotonicidade**.  Então por exemplo, no exemplo acima, estamos buscando pelo menor índice do vetor que satisfaz a condição "ser maior ou igual a `x`". 
+
+A função check para essa situação é monótona, se um valor do vetor satisfizer a condição, todos os valores a direita também vão satisfazê-la, e de forma análoga, todos os valores a esquerda de um índice que não satisfaz a condição, também não vão satisfazer.
+
+No exemplo acima, estamos procurando por um mínimo que satisfaz a propriedade, então se a função for monótona, até algum valor todas as checagens serão falsas, e após isso, todas serão verdadeiras.
+
+Se estivéssemos procurando por um máximo, ocorreria um comportamento parecido. Até certo ponto todos os valores satisfariam a condição, e após algum valor, todos não satisfariam. Um exemplo seria se estivéssemos procurando pelo maior valor <= `x`. 
+
+Essas são as duas ocasiões aonde a função de checagem é monótona e é possível aplicar busca binária. Se não houver essa garantia, não poderemos cortar os intervalos na metade como sempre fazemos.
 
 
-### Esboço
 
-
-### Código base para busca binária na resposta
+### Código base para busca binária
 
 #### Valor mínimo
 
+
+
 ```cpp
-long long l = a;// sei que a resposta não é menos que a
-long long r = b;// sei que a resposta não é mais que a (as vezes esse chute tem que ser bom, para evitar overflow)
-while(r > l+1){ // repita enquanto o intervalo tiver tamanho >2
+bool check(int val){
+    // nessa função checamos se uma resposta satisfaz as condições para ser uma resposta válida, e retornamos um booleano dependendo disso.
 }
+
+long long l = a;// sei que a resposta não é menos que a
+long long r = b;// sei que a resposta não é mais que b (as vezes esse chute tem que ser bom, para evitar overflow)
+
+while(r > l+1){// repita enquanto o intervalo tiver tamanho > 2
+    long long mid = (l + r)/2;
+    if(check(mid)){ // mid é válido
+        r = mid; // como queremos minimizar a resposta, e mid é uma resposta válida
+                //descartamos tudo a direita de mid (mas não mid)
+    }
+    else{
+        l = mid+1; // Se mid não é válido, descartamos ele e tudo abaixo.
+    }
+}
+// Ao final desse laço, a resposta pode estar em l ou r.
 ```
