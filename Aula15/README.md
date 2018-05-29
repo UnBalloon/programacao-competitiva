@@ -1,5 +1,12 @@
 # Programação dinâmica	
-	 
+
+Explicação
+
+# Exemplos	 
+
+## Fibonacci 
+
+Calcular o valor da função de fibonacci
 ```cpp	
 int tb[1005];	
 	
@@ -18,7 +25,9 @@ int main(){
 	memset(tb,-1,sizeof(tb));	
 }	
 ```	
-	
+
+## Problema das moedas
+
 ```cpp	
 int tb[1005];	
 	
@@ -39,3 +48,4 @@ int main(){
 	memset(tb,-1,sizeof(tb));	
 }	
 ```
+
