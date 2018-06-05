@@ -16,17 +16,16 @@ void bfs(int start){
     q.push(start);
 
     vector<bool> visited(GRAPH_MAX_SIZE,false);
-
+    visited[start] = true;
     while(q.size()){//Enquanto houver vértices na fila
 
         // Retire o vértice da frente
         int u = q.front();
         q.pop();
-        visited[u] = true;
-
         for(int w: graph[u]){ // Para cada vértice adjacente a u
-            if(!visited[w]){
+            if(not visited[w]){
                 q.push(w);
+                visited[w] = true;
             }
         }
     }
