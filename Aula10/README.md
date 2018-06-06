@@ -91,3 +91,11 @@ graph[1].push_back(2);
 
 // lembrando que no caso de grafos não direcionados, quando adicionamos (a,b) precisamos sempre adicionar (b,a) junto.
 ```
+
+## Representação da grafos implícitos
+
+
+
+
+## Representação de Grafos em 'Grids'
+
