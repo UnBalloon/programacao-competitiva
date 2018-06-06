@@ -49,3 +49,11 @@ int main(){
 }	
 ```
 
+
+# VideoAulas complementares
+
+## MIT (esse professor é top)
+https://www.youtube.com/watch?v=OQ5jsbhAv_M
+
+## HackerRank
+https://www.youtube.com/watch?v=P8Xa2BitN3I
