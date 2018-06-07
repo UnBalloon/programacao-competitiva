@@ -54,8 +54,11 @@ int main(){
 
 ## MIT (esse professor é top)
 https://www.youtube.com/watch?v=OQ5jsbhAv_M
+
 https://www.youtube.com/watch?v=ENyox7kNKeY
+
 https://www.youtube.com/watch?v=ocZMDMZwhCY
+
 https://www.youtube.com/watch?v=tp4_UXaVyx8
 
 
