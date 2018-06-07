@@ -94,8 +94,13 @@ graph[1].push_back(2);
 
 ## Representação da grafos implícitos
 
+Considere o seguinte problema para guiar a explicação: http://codeforces.com/problemset/problem/520/B
 
+A principio, nao parece exatamente muito fácil relacionar esse problema com grafos. Onde estão os vértices e as arestas? Na verdade nesse problema há o que chamamos de grafo implícito.
 
+Podemos considerar os vértices como o número mostrado pelo display, e as arestas como os vértices que consigo alcançar apertando os botões, a partir do vértice que estou. Mas nós não vamos criar uma estrutura de lista de adjacências em memória igual ao caso anterior, não precisamos. A única coisa que precisamos é saber quais vértices podemos atingir a partir de um vértice `x`, então quando formos percorrer esse grafo implícito, como todos os vértices seguem essa regra, não precisamos criar as arestas propriamente ditas. Apenas sabemos que é possível atingir os vértices `x-1` e `2x`. 
+
+O mesmo ocorre pra representação de jogos de turno, por exemplo jogo da velha ou damas. Podemos considerar uma configuração do tabuleiro como um vértice, e as arestas ligando para todas as configurações possíveis de atingir segundo as regras de jogada.
 
 ## Representação de Grafos em 'Grids'
 
