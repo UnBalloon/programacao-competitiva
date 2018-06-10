@@ -162,7 +162,7 @@ int dp(int i){
 }
 ```
 
-com a nossa função, observe a árvore chamada para `dp(0)`.
+com a nossa função, observe a árvore chamada para `dp(0)` sobre o vetor [9, 17, 9].
 
 ![](https://i.imgur.com/cNojrbJ.jpg)
 
