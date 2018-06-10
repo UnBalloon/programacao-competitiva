@@ -167,27 +167,44 @@ com a nossa função, observe a árvore chamada para `dp(0)` sobre o vetor [9, 1
 ![](https://i.imgur.com/cNojrbJ.jpg)
 
 
+Desenhando a árvore, fica mais fácil de perceber porque funciona, todos os caminhos possíveis até as folhas dessa árvore são todas as nossas opções válidas de escolha! Dessa forma, podemos escolher o caminho que soma mais valor, no caso o caminho que pega o primeiro e o terceiro item.
+
+E ao que tudo indica, essa função realmente resolve nosso problema. Mas qual será a complexidade da nossa solução?
+
+ Da pra perceber também que nossa árvore de recorrência está tendo sobreposição. Chegamos no subproblema do índice 2 por dois caminhos diferentes, e recomputamos a sua árvore inteira, que é pequena por causa do exemplo, mas poderia ser muito grande! Na verdade a velocidade com que essa árvore cresce é igual à do fibonacci, mas em vez de chamar (n-1) e (n-2) estamos chamando (i+1) e (i+2). Então essa solução funciona em `O(2^n)`.
+
+Então, para nos aproveitarmos da sobreposição, vamos aplicar programação dinâmica ao problema. Nossa recorrência que resolve o problema já está pronta.
+
+DP(k) = 0, se k >= n
+DP(k) = max(DP(K+1), moedas[k] + DP(K+2)), caso contrário.
+
+Basta memorizar os estados no nosso código anterior:
 
 ```cpp
 int tb[1005];
 
-int size;
-vi valor;
+int n;
+vector<int> moedas;
 
-int dp(int n){
-	if(n >= size)
+int dp(int i){
+	if(i >= n)
 		return 0;
-	if(tb[n] != -1)
-		return tb[n];
+	if(tb[i] != -1)
+		return tb[i];
 
-	tb[n] = max(dp(n+1), dp(n+2) + valor[n]);
-	return tb[n];
+	tb[i] = max(dp(i+1), dp(i+2) + moedas[i]);
+	return tb[i];
 }
 
 int main(){
 	memset(tb,-1,sizeof(tb));
+
+	// logica para ler o input
 }
 ```
+
+Agora temos a mesma funcionalidade de testar todas as possibilidades, mas computamos cada subproblema apenas um número constante de vezes. Pela mesma argumentação do fibonacci, essa solução agora fica `O(n)`.
+
 
 ## Maior subsequencia crescente
 No problema de achar a maior [subsequencia](https://en.wikipedia.org/wiki/Subsequence) crescente recebemos um vetor v de N elementos e é pedido o tamanho da maior subsequencia(ou seja, apagando elementos em quaisquer posições) desse vetor que é totalmente crescente. Por exemplo, a maior subsequencia crescente de [2, 5, 3, 1, 4, 6] é [2, 3, 4, 6] e aqui retornaríamos 4 que é o tamanho.
