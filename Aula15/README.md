@@ -67,21 +67,36 @@ Então, aqui nessa modificação, adicionamos a tabela pra salvar nossos valores
 
  Bem, na recorrência, os números maiores só chamam números menores. Inclusive isso é o que faz a recorrência terminar em algum momento. Por esse motivo, uma vez que chegamos num problema, só chamamos a recursão pra números menores que aquele. Então nas chamadas de dp(n-1) e dp(n-2) , não haverá ocorrido nenhuma chamada para dp(n), e já preencheremos a tabela. 
  
- Quando ocorrer uma chamada de dp(n) novamente, a tabela já estará preenchida e não começaremos novamente uma recorrência, e os únicos números que chamarão dp(n) são n+1 e n+2, então dessa forma, dp(n) só poderá ser chamada no máximo 3 vezes, para todo n, e em cada chamada, nosso trabalho tem complexidade constante. Então `O(3*n)` = `O(n)`.
+ Quando ocorrer uma chamada de dp(n) novamente, a tabela já estará preenchida e não começaremos novamente uma recorrência, e os únicos números que chamarão dp(n) são n+1 e n+2, então dessa forma, dp(n) só poderá ser chamada no máximo 3 vezes, para todo n, e em cada chamada, nosso trabalho tem complexidade constante. Então `O(3*n)` = `O(n)`. Então com programação dinâmica, transformamos algo exponencial em algo linear! incrível, não?
 
 ### Estrutura básica
+
+Na verdade, todas as programações dinâmicas podem ser codadas nessa mesmas estrutura do fibonacci. Primeiro nós pensamos em uma função recursiva que calcule a resposta a partir de força bruta, depois, adicionamos uma tabela e salvamos o que já computamos para evitar retrabalho computacional.
+
 
 ```cpp
 
 // podem ser vários argumentos, mas quase sempre todos são inteiros
-tipo_retorno f(argumentos){
-	// checa se a funcao já foi chamada com exatamente os mesmos argumentos
-	// se ja foi, então só retorna o valor salvo na tabela
 
+
+// vamos colocar tamanhos na nossa tabela
+// que comportem o que precisemos, se arg1 vai no máximo até 1000 e arg2 até 200, podemos ter dimensões de 1005 e 205 por exemplo
+int tabela[1005][205];
+
+int dp(int arg1,int arg2){
 	// checa casos base, ou seja, 
 	// os casos que sabemos responder sem recorrência
-
-	// calcula a resposta
+	if(é um caso base da recorrência)
+		return resposta;
+	
+	// checa se a funcao já foi chamada com exatamente os mesmos argumentos
+	// se ja foi, então só retorna o valor salvo na 	tabela
+	if(tabela[arg1][arg2] != -1){
+		return tabela[arg1][arg2];
+	}
+	
+	// Não é um caso base, então temos que 
+	// fazer a recorrência para computar a resposta
 	// essa parte geralmente é a mais complexa
 
 	// salva a resposta na tabela
@@ -89,6 +104,8 @@ tipo_retorno f(argumentos){
 	// retorna resposta
 }
 ```
+
+Normalmente, a parte mais complicada é pensar na função recursiva que vai computar a força bruta. Mas uma vez que a recorrência está pronta, é tão fácil quanto foi passar o fibonacci. Então vamos ver diversos exemplos formas de computar essas forças brutas através de recorrências.
 
 
 ## Problema das moedas
