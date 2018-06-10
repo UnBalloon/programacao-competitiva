@@ -28,6 +28,7 @@ E aí quando estudamos complexidade pela primeira vez essa mesma função muitas
 
 <image src="https://i.stack.imgur.com/QVSdv.png">
 
+
 Em suma, o motivo de essa complexidade ser exponencial é porque calculamos repetidamente muitos valores fibonacci. Isto é, se enxergarmos computar F(n) como resolver um problema, e F(n-1) e F(n-2) como subproblemas que precisam ser resolvidos para calcular F(n), o que acontece é que em diferentes ramos na arvore de recursão, ocorre o que chamamos de sobreposição de subproblemas.
 
 E é justamente aí que entra a programação dinâmica. Com nossa recorrência de fibonacci, estamos fazendo uma "força bruta" para o calculo de Fibonacci, mas estamos observando que estamos calculando inúmeras vezes a mesma coisa sem de fato precisarmos. 
