@@ -164,7 +164,7 @@ int dp(int i){
 
 com a nossa função, observe a árvore chamada para `dp(0)`.
 
-![](https://imgur.com/a/JqTsVsA)
+![](https://i.imgur.com/cNojrbJ.jpg)
 
 
 
