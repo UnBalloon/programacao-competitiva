@@ -1,24 +1,39 @@
 # Programação dinâmica
 
-### Estrutura básica
+Programação dinâmica é uma forma de resolver problemas que não passa de uma força bruta utilizando uma tabela para que não computemos duas vezes a mesma coisa. Sério, é só isso mesmo. Para guiar a explicação, vamos usar o exemplo da função de fibonacci.
+
+Todo mundo já ouviu falar em algum momento na famosa função de Fibonacci. O primeiro elemento é 0, o segundo é 1, e a partir do segundo, um elemento é a soma dos dois que o precedem. Escrevendo mais matematicamente, como uma relação de recorrência:
+
+```
+F(0) = 0
+F(1) = 1
+F(n) = F(n-1) + F(n-2)
+```
+Recorrência essa que podemos traduzir em uma função.
 
 ```cpp
-
-// podem ser vários argumentos, mas geralmente todos são inteiros
-tipo_retorno f(argumentos){
-	// checa se a funcao já foi chamada com exatamente os mesmos argumentos
-	// se ja foi, então só retorna o valor salvo na tabela
-
-	// checa casos base
-
-	// calcula a resposta
-	// essa parte geralmente é a mais complexa
-
-	// marca a resposta na tabela
-
-	// retorna resposta
+int fibonacci(int n){
+    if(n == 0)
+        return 0;
+    if(n == 1)
+        return 1;
+    return fibonacci(n-1) + fibonacci(n-2);
 }
 ```
+
+
+E aí quando estudamos complexidade pela primeira vez essa mesma função muitas vezes é utilizada como exemplo, porque sua complexidade é exponencial, por razões que explicamos em mais detalhes na aula de complexidade nesse repositório. 
+
+
+
+<image src="https://i.stack.imgur.com/QVSdv.png">
+
+Em suma, o motivo de essa complexidade ser exponencial é porque calculamos repetidamente muitos valores fibonacci. Isto é, se enxergarmos computar F(n) como resolver um problema, e F(n-1) e F(n-2) como subproblemas que precisam ser resolvidos para calcular F(n), o que acontece é que em diferentes ramos na arvore de recursão, ocorre o que chamamos de sobreposição de subproblemas.
+
+E é justamente aí que entra a programação dinâmica. Com nossa recorrência de fibonacci, estamos fazendo uma "força bruta" para o calculo de Fibonacci, mas estamos observando que estamos calculando inúmeras vezes a mesma coisa sem de fato precisarmos. 
+
+Então a ideia aqui é adicionarmos uma tabela, inicialmente com valores que indicam que ela ainda não foi preenchida, e toda vez que vamos calcular nossa recorrência, verificamos se aquela posição da tabela já foi preenchida, isto é, se já resolvemos aquele subproblema. Se já tivermos resolvido, esse valor estará na tabela e poderemos já retorná-lo, se não, aí sim computamos a recorrência, e salvamos na tabela em seguida.
+
 
 # Exemplos
 
@@ -43,6 +58,38 @@ int main(){
 	memset(tb,-1,sizeof(tb));
 }
 ```
+
+Então, aqui nessa modificação, adicionamos a tabela pra salvar nossos valores, um if extra pra verificar se aquela posição já foi preenchida, e preenchemos a tabela antes de retornar o valor computado.
+
+ A função memset preenche os bytes de uma região de memória com o argumento passado, é normalmente um pouco mais rápida em execução e mais fácil de escrever do que fazer um for, então por isso normalmente a usamos. Sua complexidade é linear na quantidade de memória preenchida.
+
+ Agora, qual a complexidade da nossa função?
+
+ Bem, na recorrência, os números maiores só chamam números menores. Inclusive isso é o que faz a recorrência terminar em algum momento. Por esse motivo, uma vez que chegamos num problema, só chamamos a recursão pra números menores que aquele. Então nas chamadas de dp(n-1) e dp(n-2) , não haverá ocorrido nenhuma chamada para dp(n), e já preencheremos a tabela. 
+ 
+ Quando ocorrer uma chamada de dp(n) novamente, a tabela já estará preenchida e não começaremos novamente uma recorrência, e os únicos números que chamarão dp(n) são n+1 e n+2, então dessa forma, dp(n) só poderá ser chamada no máximo 3 vezes, para todo n, e em cada chamada, nosso trabalho tem complexidade constante. Então `O(3*n)` = `O(n)`.
+
+### Estrutura básica
+
+```cpp
+
+// podem ser vários argumentos, mas quase sempre todos são inteiros
+tipo_retorno f(argumentos){
+	// checa se a funcao já foi chamada com exatamente os mesmos argumentos
+	// se ja foi, então só retorna o valor salvo na tabela
+
+	// checa casos base, ou seja, 
+	// os casos que sabemos responder sem recorrência
+
+	// calcula a resposta
+	// essa parte geralmente é a mais complexa
+
+	// salva a resposta na tabela
+
+	// retorna resposta
+}
+```
+
 
 ## Problema das moedas
 
