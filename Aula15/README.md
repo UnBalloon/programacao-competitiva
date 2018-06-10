@@ -24,18 +24,17 @@ int fibonacci(int n){
 
 E aí quando estudamos complexidade pela primeira vez essa mesma função muitas vezes é utilizada como exemplo, porque sua complexidade é exponencial, por razões que explicamos em mais detalhes na aula de complexidade nesse repositório. 
 
+![](https://i.stack.imgur.com/QVSdv.png)
 
-<br>
-<image src="https://i.stack.imgur.com/QVSdv.png">
-<br>
-<br
-<br>
 
 Em suma, o motivo de essa complexidade ser exponencial é porque calculamos repetidamente muitos valores fibonacci. Isto é, se enxergarmos computar F(n) como resolver um problema, e F(n-1) e F(n-2) como subproblemas que precisam ser resolvidos para calcular F(n), o que acontece é que em diferentes ramos na arvore de recursão, ocorre o que chamamos de sobreposição de subproblemas.
 
+
 E é justamente aí que entra a programação dinâmica. Com nossa recorrência de fibonacci, estamos fazendo uma "força bruta" para o calculo de Fibonacci, mas estamos observando que estamos calculando inúmeras vezes a mesma coisa sem de fato precisarmos. 
 
+
 Então a ideia aqui é adicionarmos uma tabela, inicialmente com valores que indicam que ela ainda não foi preenchida, e toda vez que vamos calcular nossa recorrência, verificamos se aquela posição da tabela já foi preenchida, isto é, se já resolvemos aquele subproblema. Se já tivermos resolvido, esse valor estará na tabela e poderemos já retorná-lo, se não, aí sim computamos a recorrência, e salvamos na tabela em seguida.
+
 
 
 # Exemplos
