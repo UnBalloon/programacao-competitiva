@@ -161,8 +161,9 @@ int dp(int i){
 	
 }
 ```
+### Arvore de recursão
 
-com a nossa função, observe a árvore chamada para `dp(0)` sobre o vetor [9, 17, 9].
+Com a nossa função, observe a árvore  da chamada para `dp(0)` sobre o vetor [9, 17, 9].
 
 ![](https://i.imgur.com/cNojrbJ.jpg)
 
@@ -174,10 +175,10 @@ E ao que tudo indica, essa função realmente resolve nosso problema. Mas qual s
  Da pra perceber também que nossa árvore de recorrência está tendo sobreposição. Chegamos no subproblema do índice 2 por dois caminhos diferentes, e recomputamos a sua árvore inteira, que é pequena por causa do exemplo, mas poderia ser muito grande! Na verdade a velocidade com que essa árvore cresce é igual à do fibonacci, mas em vez de chamar (n-1) e (n-2) estamos chamando (i+1) e (i+2). Então essa solução funciona em `O(2^n)`.
 
 Então, para nos aproveitarmos da sobreposição, vamos aplicar programação dinâmica ao problema. Nossa recorrência que resolve o problema já está pronta.
-
-DP(k) = 0, se k >= n
-DP(k) = max(DP(K+1), moedas[k] + DP(K+2)), caso contrário.
-
+```
+DP(i) = 0, se i >= n
+DP(i) = max(DP(i+1), moedas[i] + DP(i+2)), caso contrário.
+```
 Basta memorizar os estados no nosso código anterior:
 
 ```cpp
@@ -204,6 +205,12 @@ int main(){
 ```
 
 Agora temos a mesma funcionalidade de testar todas as possibilidades, mas computamos cada subproblema apenas um número constante de vezes. Pela mesma argumentação do fibonacci, essa solução agora fica `O(n)`.
+
+## Problema do troco mínimo
+
+
+
+## Problema da mochila
 
 
 ## Maior subsequencia crescente
