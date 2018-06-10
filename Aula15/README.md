@@ -82,17 +82,18 @@ Na verdade, todas as programações dinâmicas podem ser codadas nessa mesmas es
 
 
 // vamos colocar tamanhos na nossa tabela
-// que comportem o que precisemos, se arg1 vai no máximo até 1000 e arg2 até 200, podemos ter dimensões de 1005 e 205 por exemplo
+// que comportem o que precisemos, se arg1 vai no máximo até 1000 e arg2 até 200, 
+//podemos ter dimensões de 1005 e 205 por exemplo
 int tabela[1005][205];
 
 int dp(int arg1,int arg2){
 	// checa casos base, ou seja, 
 	// os casos que sabemos responder sem recorrência
-	if(é um caso base da recorrência)
+	if(eh um caso base da recorrencia)
 		return resposta;
 	
 	// checa se a funcao já foi chamada com exatamente os mesmos argumentos
-	// se ja foi, então só retorna o valor salvo na 	tabela
+	// se ja foi, então só retorna o valor salvo na tabela
 	if(tabela[arg1][arg2] != -1){
 		return tabela[arg1][arg2];
 	}
@@ -111,6 +112,8 @@ Normalmente, a parte mais complicada é pensar na função recursiva que vai com
 
 
 ## Problema das moedas
+
+
 
 ```cpp
 int tb[1005];
