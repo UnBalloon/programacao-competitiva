@@ -113,6 +113,59 @@ Normalmente, a parte mais complicada é pensar na função recursiva que vai com
 
 ## Problema das moedas
 
+Agora vamos para outro problema. Talvez hajam outros nomes mas alguns chamam de o problema das moedas. Nesse problema, temos a seguinte situação, há um numero n de moedas sobre uma mesa, enfileiradas. Cada moeda tem o seu valor, e devemos escolher moedas para pegar dessa mesa de forma que peguemos o valor máximo possível de moedas. Mas há um custo para pegar uma moeda: você não poderá pegar as moedas adjacentes. No final devemos dizer o valor máximo que podemos obter.
+
+Então por exemplo, se temos [100, 1, 1, 100], a resposta seria 200, pois pegaríamos a primeira e a última moeda. Para [9,17,9], a resposta seria 18, pois pegaríamos a primeira e terceira moedas e para [10,19,11,20,17,5,5,10,11,21,10], bem sei lá qual é a resposta dessa. é por isso que precisamos de um programa pra fazer isso pela gente. 
+
+Note que poderíamos tentar algumas abordagens para resolver esse problema, mas o exemplo [9, 17, 9] mostra que precisaríamos de uma estratégia mais complexa que só pegar os maiores. Não posso afirmar que não exista uma estratégia que resolva o problema, mas com certeza uma coisa que poderíamos fazer é testar todas as possibilidades.
+
+Queremos então testar todas as possibilidades através de uma função recursiva, e como queremos maximizar o valor de moedas obtido, vamos fazer a escolha que nos dá mais valor. 
+
+Bem uma abordagem possível, seria caminhar por todas as moedas, começando da primeira, considerar as duas possibilidades que temos, escolhê-la ou não. Caso a escolhamos, vamos ganhar o valor dela, mas não vamos ter a opção de pegar a moeda logo ao lado. Caso não a escolhamos, não vamos ganhar seu valor, mas vamos poder pegar a moeda imediatamente ao lado. 
+
+Quando acabarem as moedas, saberemos que acabaram nossas opções e não há mais escolhas para fazer, então não há mais como ganhar valor a partir desse ponto. Isso será quando a nossa força bruta irá parar.
+
+Então vamos construir essa recorrência de forma que `dp(i)` retorna **"maior valor de moedas considerando pegar só as moedas do índice `i` em diante"**. Vamos assumir que temos `n` moedas no total, e que seus valores estão armazenados no vector moedas. Lembre-se sempre de manter o significado de o que a função retorna na cabeça. 
+
+
+```cpp
+
+int n;
+vector<int> moedas;
+
+int dp(int i){
+	// há n moedas, de 0 a n-1, então,
+	// do indice n pra frente não há mais moedas
+	// então o maior valor a partir daqui é com certeza 0.
+	if(i >= n)
+		return 0;
+
+	// agora vamos considerar nossas duas opções.
+	// pegar ou não pegar a moeda.
+
+	// Caso eu escolha pegar, terei o valor dessa moeda,
+	// mas então, para garantir que não vou pegar a próxima,
+	// já que não é permitido, vou chamar a minha função que
+	// retorna o maior valor possível considerando 
+	// só as moedas a partir do índice i + 2,
+	// ou seja, nao contando com a próxima(i+1)
+	int pegar = moedas[i] + dp(i + 2);
+
+	// Caso eu escolha não pegar, ok, considere todas as 
+	// moedas a partir da próxima, mas não adicione o valor
+	// dessa à resposta.
+	int nao_pegar = dp(i+1);
+
+	// queremos o máximo, então
+	return max(pegar, nao_pegar);	
+	
+}
+```
+
+com a nossa função, observe a árvore chamada para `dp(0)`.
+
+![](https://imgur.com/a/JqTsVsA)
+
 
 
 ```cpp
