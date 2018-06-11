@@ -208,9 +208,91 @@ Agora temos a mesma funcionalidade de testar todas as possibilidades, mas comput
 
 ## Problema do troco mínimo
 
+O problema do troco mínimo é o seguinte: você tem um conjunto de `n` valores de moedas e pode considerar que há infinitas moedas de cada valor. A partir de várias dessas moedas, devemos acumular um valor `K`, usando a menor quantidade de moedas possível.
 
+Então se temos moedas de valores [1,5,12] e queremos juntar o valor `K = 13`, a resposta seriam 2 moedas, uma de 12 e uma de 1. Da mesma forma, se tivermos os valores [1,26,50] e devemos juntar `k = 52` moedas, a resposta seria 2, duas moedas de valor 26.
+
+Esse segundo exemplo já nos mostra que há casos em que sair subtraindo a moeda mais valiosa não funciona. pois dessa forma, pegaríamos uma de 50 e duas de 1, resultando em 3 moedas.
+
+Então,  mais uma vez, não posso provar que não haja uma estratégia ótima para pegar as moedas, mas posso afirmar com certeza que podemos testar todas as possibilidades. Vamos mais uma vez fazer nossa função recursiva que realiza uma força bruta em todas nossas possibilidades.
+
+Vamos fazer da seguinte forma. Queremos somar moedas de forma a chegar a 0. Vamos enxergar pegar uma moeda como um 'custo' de valor 1. Queremos o menor custo para chegar em 0. Da mesma forma como no problema das moedas, é um problema aonde temos várias escolhas sempre, lá nossa escolha era pegar uma moeda ou considerar apenas as próximas, agora nossas escolhas serão qual valor de moeda pegar, dentre os `n` que temos disponíveis.
+
+Dentre todas essas possibilidades, vamos escolher a possibilidade que nos dá a menor resposta. Ou seja, na nossa árvore de recursão, em cada chamada recursiva, haverá vários ramos, um para cada escolha de moeda, e vamos escolher o ramo que nos dá a melhor resposta. 
+
+Dessa forma, faremos todos os 'caminhos' possíveis que nos levem a 0, e como estamos considerando todas as possibilidades, não há como nossa resposta não estar correta.
+
+```cpp
+
+int n;
+vector<int> valores;
+
+int dp(int k){
+	// quando cheguei em 0, nao preciso mais
+	// pegar moedas para atingir 0.
+	if(k == 0){
+		return 0;
+	}
+
+	int melhor = 1e9; // de começo iniciamos com um valor muito alto, que será
+			// com certeza substituido pela resposta.
+
+	for(int i = 0; i < n; i++){
+		// primeiro verificamos se pegar esse valor
+		// não nos levará a valores negativos, pois
+		// isso não faria sentido.
+		if(valores[i] <= k)
+			melhor = min(melhor,1 + dp(k - valores[i]));
+			// caso eu pegue, pagarei um 'custo' de 1,
+			// e irei para uma nova instancia da recursão
+			// aonde tenho que computar a melhor resposta
+			// para k - valores[i], então, a melhor resposta 
+			// para k será a melhor resposta para (k - valores[i]) + 1.
+	}
+	return melhor;
+}
+```
+
+
+Observe a árvore de recursão formada para uma chamada de dp(8) para os valores de moeda [2, 3, 5]. Dessa vez não vou desenhar os custos, pos são sempre um, mas vou desenhar os ramos em profundidade, dessa forma, o ramo menos profundo nos dará a melhor resposta.
+
+![](https://i.imgur.com/YmrQe3c.jpg)
+
+
+Os ramos com espessura mais grossa são os ramos que cada chamada recursiva escolheu como a resposta, pois eram os ramos que davam a resposta mínima. Então por exemplo, a resposta para 6 foi 2, para 5 foi 1 e para 3 foi 1, então a nossa chamada de dp(8) itera sobre essas possibilidades e escolhe um dos ramos com valor 1.
+
+ O ramos 'cortados' são so ramos que levariam a valores negativos, portanto inválidos.
+
+
+Assim como nos outros exemplos, nossa árvore de recursão se sobrepõe muito. A recursão para de 3 é chamada 3 vezes, por exemplo, e em todas, recomputamos a mesma coisa.
+
+colocando nossa tabela:
+
+```cpp
+int n;
+vector<int> valores;
+
+int tabela[1005];
+
+int dp(int k){
+	if(k == 0){
+		return 0;
+	}
+	if(tabela[k] != -1)
+		return tabela[k];
+	int melhor = 1e9; 
+	for(int i = 0; i < n; i++){
+		if(valores[i] <= k)
+			melhor = min(melhor,1 + dp(k - valores[i]));
+	}
+	// aqui atribuimos e retornamos de uma vez só
+	return tabela[k] = melhor;
+}
+```
 
 ## Problema da mochila
+
+	todo
 
 
 ## Maior subsequencia crescente
