@@ -290,6 +290,8 @@ int dp(int k){
 }
 ```
 
+Então, realmente, é sempre assim, a dificuldade é escrever uma função recursiva que computa a resposta, e colocar as coisas numa tabela para evitar retrabalho é fácil. Antes tínhamos uma solução exponencial, em cada estado abríamos mais 3 estados, e agora temos uma solução que para cada estado, a complexidade para computá-lo é `O(n)` e temos `K` estados, então essa solução funciona em `O(nK)`.
+
 ## Problema da mochila
 
 	todo
