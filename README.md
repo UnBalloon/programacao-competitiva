@@ -2,7 +2,7 @@
 
 Esse repositório foi feito para ser uma coleção de tutoriais sobre algoritmos e estruturas de dados que são uteis na maratona de programação.
 
-Se você está interessado no curso de programação competitiva da UnB que faz uso desse repositório, clique [aqui](https://github.com/UnBalloon/Programacao-Competitiva/curso/)
+Se você está interessado no curso de programação competitiva da UnB que faz uso desse repositório, clique [aqui](https://github.com/UnBalloon/Programacao-Competitiva/tree/master/curso/)
 
 <!--
 <body>
