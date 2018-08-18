@@ -1,6 +1,6 @@
+# Começando
 
-
-# Juízes Online - Como praticar
+## Juízes Online - Como praticar
 
 Na disciplina, haverão diversos exercícios de fixação do conteúdo de cada semana, mas para ficar bom em resolver problemas, é necessário mais prática. As ferramentas para isso são os juízes online(OJs), que contam com competições(contests) semanais e **muitos** exercícios para que você pratique. 
 
@@ -22,7 +22,6 @@ O atcoder é um juiz japonês, o motivo de incluir ele nessa lista de recomenda�
 
 O CSAcademy é OJ mais novo, mas com uma interface muito amigável e com contests também mais fáceis do que no codeforces. 
 
-
 ## Vereditos
 
 Quando você submete alguma solução para algum problema em um juiz online, o juiz vai dar um veredito.
@@ -33,9 +32,7 @@ Seu problema foi aceito. Tudo certo.
 
 ### Wrong Answer (WA)
 
-O seu programa imprimiu uma resposta diferente do que o juíz esperava. (Ou talvez, num formato diferente). Nessa ocasião, sua solução não foi aceito. 
-
-Deve-se checar por overflows, formato de saída ou casos de borda que seu código pode não estar tratando.
+O seu programa imprimiu uma resposta diferente do que o juíz esperava. (Ou talvez, num formato diferente). Nessa ocasião, sua solução não foi aceita. Deve-se checar por overflows, formato de saída ou casos de borda que seu código pode não estar tratando.
 
 ### Time Limit Exceeded (TLE)
 
