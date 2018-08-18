@@ -7,6 +7,9 @@ Está em construção. Por favor, crie uma issue se encontrar qualquer problema 
 
 # Aulas disponíveis
 - [Algoritmo de Dijkstra](Algoritmo%20de%20Dijkstra/README.md)
+- [Busca binária](Busca%20Binária/README.md)
+- [Dicas relevantes para começar](Comecando/README.md)
+- [Delta encoding](Delta%20encoding%20(Codificação%20de%20diferenças)/README.md)
 - [Complexidade](complexidade/README.md)
 
 Como compilar os exemplos
