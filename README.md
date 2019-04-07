@@ -18,7 +18,7 @@ Está em construção. Por favor, crie uma issue se encontrar qualquer problema 
 - [Programação dinâmica](Programação%20dinâmica/README.md)
 - [C++ e sua biblioteca STL](STL/README.md)
 - [Segment trees (Árvores de segmentos)](Segment%20Trees%20(Árvores%20de%20segmento)/README.md)
-- [Decomposição em raiz (SQRT Decomposition)](Programacao-Competitiva/tree/master/sqrt%20decomposition/README.md)
+- [Decomposição em raiz (SQRT Decomposition)](sqrt%20decomposition/README.md)
 
 Como compilar os exemplos
 -------------------------
