@@ -10,7 +10,7 @@ Está em construção. Por favor, crie uma issue se encontrar qualquer problema 
 - [Busca binária](Busca%20Binária/README.md)
 - [Dicas relevantes para começar](Comecando/README.md)
 - [Delta encoding](Delta%20encoding%20(Codificação%20de%20diferenças)/README.md)
-- [Complexidade](complexidade/README.md)
+- [Complexidade](Complexidade/README.md)
 - [Representação e percorrimento de grafos](Grafos/README.md)
 - [Operações bit a bit](Operações%20bit%20a%20bit/README.md)
 - [Preffix sums (Somas de prefixos)](Preffix%20sums%20(Somas%20de%20prefixos)/README.md)
