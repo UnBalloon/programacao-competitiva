@@ -291,7 +291,7 @@ Tendo este vetor podemos fatorar um numero `x` com o seguinte procedimento.
 vector<pair<int, int>> fatora(int x){
   map<int, int> expoentes;
   while(x > 1){
-    expoente[ lp[x] ]++; // aumentamos o expoente do primo lp[x] em 1 na resposta
+    expoentes[ lp[x] ]++; // aumentamos o expoente do primo lp[x] em 1 na resposta
     x /= lp[x];
   }
   vector<pair<int, int>> ans;
