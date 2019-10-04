@@ -152,7 +152,10 @@ if(check(l)){
     ans = l;
 }
 ```
+# Material complementar
+# Exercícios recomendados 
 
-## Exemplos de problemas com busca binária
+Estes exercícios não estão necessariamente em ordem de dificuldade.
 
-TODO ??
+ - https://codeforces.com/contest/1234/problem/A - Não é necessário busca binária mas é um exercício legal para aprender
+ - https://codeforces.com/problemset/problem/817/C - Bem interessante, (se x é um numero realmente grande entao x+1 é realmente grande)
