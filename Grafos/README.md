@@ -280,3 +280,7 @@ A complexidade desse código também é `O(n+m)`, pelo mesmo motivo do código a
 ## VideoAulas complementares
 
 https://www.youtube.com/watch?v=zaBhtODEL0w
+
+## Exercícios recomendados
+
+https://www.urionlinejudge.com.br/judge/pt/problems/view/1910 - Caminho mínimo em grafo implícito.
