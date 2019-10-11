@@ -1,6 +1,6 @@
 # Busca binária
 
-Busca binária é um algoritmo de divisão e conquista usado em sua maior parte para minimizar o tempo de uma busca linear.
+Busca binária é um algoritmo de divisão e conquista usado em sua maior parte para minimizar o tempo de uma busca linear. Na busca binária sempre estamos procurando o "o maior `x` valor que satisfaz uma condição `c(x)`" ou "o menor `x` valor que satisfaz uma condição `c(x)`", retornaremos nesse ponto depois no texto.
 
 Imagine você com um livro de 1000 páginas em mãos no momento em que o professor pede para que o abra no começo do capitulo 6 seção 4. Existem várias maneiras de se alcançar a página certa. Uma delas é ir de uma em uma até que se alcance a página desejada. Outra maneira é ir pulando alguns blocos de páginas, se você está numa página depois do começo do capitulo 6 seção 4 pula algumas páginas para tras, se você está numa página antes, pula algumas páginas para frente.
 
@@ -16,7 +16,19 @@ O único problema do que foi descrito acima é determinar como chutar o elemento
 
 Perceba que o algoritmo é bastante simples porém precisamos de uma condição muito importante para que ele funcione! No momento em que é dividido pela metade nós fazemos uma pergunta para saber que parte podemos descartar, e para que seja possível responder a essa pergunta precisamos garantir que nossa função seja crescente ou decrescente. Imagine esse exemplo simples, temos o seguinte vetor [3, 1, 5, 4, 2] e buscamos o valor 2. Na primeira vez que dividirmos e perguntarmos se o valor 5 é menor, igual ou maior que 2 teremos a resposta que 5 é maior que 2 e com isso iriamos descartar todos os elementos a direita de 5 e junto com esses elementos o 2 iria embora e nunca iríamos achar resposta.
 
-Formalmente falando, seja uma função F ordenada para verificarmos se um dado valor X pertence a F basta selecionar o elemento no centro do segmento e verificar se seu valor é menor, igual ou maior que X e com isso diminuir o segmento de maneira condizente com a resposta, faremos isso até que se ache X ou que não tenha mais segmento para ser dividido.
+## Condições para aplicar busca binária
+
+Nem sempre é possível aplicar busca binária para encontrar uma resposta: um exemplo seria um vetor não ordenado (ou um livro cujos capitulos e seçoes nao estão em ordem crescente). Se o vetor não estivesse ordenado, por exemplo se estivéssemos fazendo o lower_bound, e um valor de mid não fosse válido, não poderíamos descartar toda a metade de baixo, pois a resposta poderia estar naquele pedaço.
+
+Dizemos que é possível aplicar busca binária em um problema quando a checagem se um valor satisfaz as condições apresenta **monotonicidade**.  Então por exemplo, no exemplo acima, estamos buscando pelo menor índice do vetor que satisfaz a condição "ser maior ou igual a `x`". Então, se tivermos uma função `bool check(int val)` que verifica se um valor satisfaz uma condição, essa função deve ser monótona. Considere o exemplo de aplicarmos busca binaria no vetor para descobrir se um elemento `x` esta lá ou não. Uma maneira de fazer isso seria procurar pelo menor elemento `y`  que seja maior ou igual `x`, se y for igual a x, então x está no vetor, caso contrário x não está no vetor. Então, se `x = 14` e o vetor `v = [1,2,3,5, 8, 11, 12, 14, 16]` 
+A função check para essa situação é monótona, se um valor do vetor satisfizer a condição, todos os valores a direita também vão satisfazê-la, e de forma análoga, todos os valores a esquerda de um índice que não satisfaz a condição, também não vão satisfazer.
+
+No exemplo acima, estamos procurando por um mínimo que satisfaz a propriedade, então se a função for monótona, até algum valor todas as checagens serão falsas, e após isso, todas serão verdadeiras.
+
+Se estivéssemos procurando por um máximo, ocorreria um comportamento parecido. Até certo ponto todos os valores satisfariam a condição, e após algum valor, todos não satisfariam. Um exemplo seria se estivéssemos procurando pelo maior valor <= `x`. 
+
+Essas são as duas ocasiões aonde a função de checagem é monótona e é possível aplicar busca binária. Se não houver essa garantia, não poderemos cortar os intervalos na metade como sempre fazemos.
+
 
 ## Complexidade
 
@@ -67,7 +79,7 @@ int lower_bound(int x){
 
 Perceba que se quisermos achar o indice do último elemento maior ou igual um `x` num vetor `v` de tamanho `n`.
 
-```c++
+```c++long long
 int v[MAXN], n; // vetor global para facilitar o código
 
 // funcao que retorna se id é uma resposta válida pro nosso problema
@@ -100,21 +112,6 @@ int lower_bound(int x){
 Em ambos os exemplos a complexidade de checar se mid é uma resposta válida para o problema é `O(1)`. Portanto a complexidade total é `O(lg n)`.
 
 Muitas pessoas ja viram o exemplo de realizar busca binária em vetores, mas quando se fala em busca binária na resposta, ficam confusas. Na verdade, busca binária em vetores é busca binária na resposta, mas a resposta é um índice.
-
-## Condições para aplicar busca binária
-
-Nem sempre é possível aplicar busca binária para encontrar uma resposta: um exemplo seria um vetor não ordenado. Se o vetor não estivesse ordenado, por exemplo se estivéssemos fazendo o lower_bound, e um valor de mid não fosse válido, não poderíamos descartar toda a metade de baixo, pois a resposta poderia estar naquele pedaço.
-
-Dizemos que é possível aplicar busca binária em um problema quando a checagem se um valor satisfaz as condições apresenta **monotonicidade**.  Então por exemplo, no exemplo acima, estamos buscando pelo menor índice do vetor que satisfaz a condição "ser maior ou igual a `x`". 
-
-A função check para essa situação é monótona, se um valor do vetor satisfizer a condição, todos os valores a direita também vão satisfazê-la, e de forma análoga, todos os valores a esquerda de um índice que não satisfaz a condição, também não vão satisfazer.
-
-No exemplo acima, estamos procurando por um mínimo que satisfaz a propriedade, então se a função for monótona, até algum valor todas as checagens serão falsas, e após isso, todas serão verdadeiras.
-
-Se estivéssemos procurando por um máximo, ocorreria um comportamento parecido. Até certo ponto todos os valores satisfariam a condição, e após algum valor, todos não satisfariam. Um exemplo seria se estivéssemos procurando pelo maior valor <= `x`. 
-
-Essas são as duas ocasiões aonde a função de checagem é monótona e é possível aplicar busca binária. Se não houver essa garantia, não poderemos cortar os intervalos na metade como sempre fazemos.
-
 
 
 ### Código base para busca binária
