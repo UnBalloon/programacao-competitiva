@@ -105,6 +105,38 @@ if(check(l)){
 ```
 ### Tipo2
 
+#### Valor mínimo 
+```cpp
+int l = a;
+int r = b;
+while (l < r) {
+    int mid = (l + r) / 2;
+    if (check(mid)) r = mid;
+    else l = mid + 1;
+}
+// a resposta fica em l
+```
+
+#### Valor máximo
+É fácil alterar o código de valor mínimo para encontrar o valor máximo:
+Imagine que uma função de check dê o resultado `[1,1,1,0,0]`. Veja que encontrar o último 1
+nesse array é equivalente a encontrar o primeiro 0 e subtrair 1 da posição! Assim, podemos aplicar
+a busca binária de valor mínimo **no valor contrário** do checker (`!check(mid)`) e subtrair 1 da resposta ao final.
+
+```cpp
+int l = a;
+int r = b;
+while (l < r) {
+    int mid = (l + r) / 2;
+    if (!check(mid)) r = mid; // check vira !check
+    else l = mid + 1;
+}
+// a resposta fica em l-1
+```
+
+Detalhe: como usamos `l-1` no final, a busca não inclui `b`, ou seja, buscamos no intervalo `[a, b)`.
+
+
 ## Exemplos de aplicação
 
 ### Implementação de lower_bound
