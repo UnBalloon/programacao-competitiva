@@ -159,4 +159,5 @@ Estes exercícios não estão necessariamente em ordem de dificuldade.
 
  - https://codeforces.com/contest/1234/problem/A - Não é necessário busca binária mas é um exercício legal para aprender
  - https://codeforces.com/problemset/problem/817/C - Bem interessante, (se x é um numero realmente grande entao x+1 é realmente grande)
+ - https://codeforces.com/problemset/problem/760/B - Se frodo não consegue ter x de altura então consegue ter x+1 de altura. Cuidado com overflows!
  - https://codeforces.com/gym/102346/problem/M - (Tente minimizar o quanto cada competidor come já que a resposta é em função do competidor que mais come)
