@@ -14,35 +14,96 @@ Primeiro podemos, por exemplo, para a página 400. A partir do pair daquela posi
 
 O único problema do que foi descrito acima é determinar como chutar o elemento dentro do intervalo já que os chutes foram meio aleatórios. O primeiro chute foi no elemento 400 num intervalo [1, 1000], depois de olhar o elemento poderíamos passar a ter que olhar o intervalo \[1, 399\](se o que procuramos está antes) ou \[401, 1000\](se o que procuramos está depois), tivemos sorte e caimos no primeiro caso mas no pior caso poderíamos cair no intervalo maior. O jeito de garantirmos de no pior caso sempre irmos para um intervalo de menor tamanho possivel é chutar de uma forma a dividir o intervalo em 2 intervalos de tamanhos (aproximadamente) iguais. Podemos fazer isso só chutando na metade do intervalo, assim é melhor fazer o primeiro chuta na posição 500 e nao 400.
 
-Perceba que o algoritmo é bastante simples porém precisamos de uma condição muito importante para que ele funcione! No momento em que é dividido pela metade nós fazemos uma pergunta para saber que parte podemos descartar, e para que seja possível responder a essa pergunta precisamos garantir que nossa função seja crescente ou decrescente. Imagine esse exemplo simples, temos o seguinte vetor [3, 1, 5, 4, 2] e buscamos o valor 2. Na primeira vez que dividirmos e perguntarmos se o valor 5 é menor, igual ou maior que 2 teremos a resposta que 5 é maior que 2 e com isso iriamos descartar todos os elementos a direita de 5 e junto com esses elementos o 2 iria embora e nunca iríamos achar resposta.
-
 ## Condições para aplicar busca binária
 
-Nem sempre é possível aplicar busca binária para encontrar uma resposta: um exemplo seria um vetor não ordenado (ou um livro cujos capitulos e seçoes nao estão em ordem crescente). Se o vetor não estivesse ordenado, por exemplo se estivéssemos fazendo o lower_bound, e um valor de mid não fosse válido, não poderíamos descartar toda a metade de baixo, pois a resposta poderia estar naquele pedaço.
+Nem sempre é possível aplicar busca binária para encontrar uma resposta: um exemplo seria um livro cujos capitulos e seçoes nao estão em ordem crescente. Nessa situação, não poderiamos mais ter certeza que um capitulo ou seção maior estaria a direita. 
 
-Dizemos que é possível aplicar busca binária em um problema quando a checagem se um valor satisfaz as condições apresenta **monotonicidade**.  Então por exemplo, no exemplo acima, estamos buscando pelo menor índice do vetor que satisfaz a condição "ser maior ou igual a `x`". Então, se tivermos uma função `bool check(int val)` que verifica se um valor satisfaz uma condição, essa função deve ser monótona. Considere o exemplo de aplicarmos busca binaria no vetor para descobrir se um elemento `x` esta lá ou não. Uma maneira de fazer isso seria procurar pelo menor elemento `y`  que seja maior ou igual `x`, se y for igual a x, então x está no vetor, caso contrário x não está no vetor. Então, se `x = 14` e o vetor `v = [1,2,3,5, 8, 11, 12, 14, 16]` 
-A função check para essa situação é monótona, se um valor do vetor satisfizer a condição, todos os valores a direita também vão satisfazê-la, e de forma análoga, todos os valores a esquerda de um índice que não satisfaz a condição, também não vão satisfazer.
+Como mencionamos acima, na busca binária estamos procurando o maior ou menor valor que satisfaz uma propriedade.  Então por exemplo, no exemplo acima, estamos buscando pelo menor índice(página) do vetor(livro) que satisfaz a condição "estar num (capítulo, seção) maior ou igual a (6,4)", porque a primeira página que satisfazer essa propriedade será o início do capítulo 6 seção 4. Considere agora o outro exemplo de aplicarmos busca binaria no vetor para descobrir se um elemento `x` esta lá ou não. Uma maneira de fazer isso seria procurar pelo menor elemento `y`  que seja maior ou igual `x`, se y for igual a x, então x está no vetor, caso contrário x não está no vetor. 
 
-No exemplo acima, estamos procurando por um mínimo que satisfaz a propriedade, então se a função for monótona, até algum valor todas as checagens serão falsas, e após isso, todas serão verdadeiras.
+Dizemos que é possível aplicar busca binária em um problema quando a checagem se um valor satisfaz as condições apresenta **monotonicidade**. Formalmente, monotonicidade pode ser definida da seguinte forma. Seja `check(x)` uma função que verifica uma propriedade de `x` Se para todo  `x`, `check(x) = true` implica `check(x+1) = true`, ou para todo x, `check(x) = false` implica `check(x+1) = false`, então a função `check` é monótona. 
 
-Se estivéssemos procurando por um máximo, ocorreria um comportamento parecido. Até certo ponto todos os valores satisfariam a condição, e após algum valor, todos não satisfariam. Um exemplo seria se estivéssemos procurando pelo maior valor <= `x`. 
+Então, se `x = 11` e o vetor `v = [1,2,3,5, 8, 11, 12, 14, 16]` observe o que acontece com o comportamento de uma função `check` que checa se um elemento é maior ou igual a x.
+```
+bool check(int val) {
+    return val >= x;
+}
 
-Essas são as duas ocasiões aonde a função de checagem é monótona e é possível aplicar busca binária. Se não houver essa garantia, não poderemos cortar os intervalos na metade como sempre fazemos.
+[1,2,3,5,8,11,12,14,16]
+[0,0,0,0,0,1,1,1,1,1]
+```
+Então se colocarmos graficamente os resultados de uma função `check` monotona, veremos exatamente isso, ou um monte de valores `0`s e a partir de certo ponto todos são `1`s, ou o contrário, um monte de `1`s e a partir de certo ponto todos são `0`s. No exemplo a cima é a primeira possibilidade.
 
+Então a função check para essa situação é monótona, e isso é relevante porque se um valor do vetor satisfizer a condição, todos os valores a direita também vão satisfazê-la, e de forma análoga, todos os valores a esquerda de um índice que não satisfaz a condição, também não vão satisfazer, e é isso que nos permite aplicar busca binária. Chutamos então um intervalo aonde a resposta com certeza estará no começo, fazemos então várias interações checando no meio, e dependendo da resposta, descartamos os elementos a direita ou a esquerda, mas sempre dividimos o tamanho do intervalo por 2, até que o intervalo tenha tamanho 1.
 
 ## Complexidade
 
 Tudo muito massa, mas falta a complexidade! Depois de saber isso podemos começar a aplicar esse algoritmo nos problemas por ae :)
 
-Suponha um vetor ordenado de tamanho N onde vamos aplicar o algoritmo de busca binária e o valor procurado não está presente no vetor (pior caso). Na nossa primeira iteração iremos dividir o vetor em 2 partes ou seja teremos N/2 elementos restantes, na segunda iteração iremos dividir do que restou e teremos (N/2)/2 ou seja N/4, seguindo essa lógica na K-ésima iteração vamos dividir o tamanho do vetor K vezes por 2, ou seja, N/(2^K) e como estamos calculando complexidade temos que pensar no pior caso, quando chegarmos no ponto onde teremos um espaço de apenas 1 elemento(e verificamos que o elemento não está no vetor). O que estamos buscando para saber a complexidade é K (quantidade de passos) para o pior caso então temos que N/(2^K) = 1 daí temos que N = 2^K e tirando o log2 dos dois lados temos que K = log2(N). Então no pior caso nosso algortimo demora `O(log2(N))` passos, N sendo o tamanho do vetor inicial.
+por enquanto nosso algoritmo de maneira abstrata é o seguinte
+```
+while(tamanho do intervalo que a resposta pode estar != 1) {
+    chuta no meio e descarta a metade da direita ou da esquerda(dependendo do resultado), dividindo o intervalo por 2;
+}
+```
+Suponha um vetor ordenado de tamanho N onde vamos aplicar o algoritmo de busca binária e o valor procurado não está presente no vetor (pior caso). Na nossa primeira iteração iremos dividir o vetor em 2 partes ou seja teremos N/2 elementos restantes, na segunda iteração iremos dividir do que restou e teremos (N/2)/2 ou seja N/4, seguindo essa lógica na K-ésima iteração vamos dividir o tamanho do vetor K vezes por 2, ou seja, N/(2^K) e como estamos calculando complexidade temos que pensar no pior caso, quando chegarmos no ponto onde teremos um espaço de apenas 1 elemento(e verificamos que o elemento não está no vetor). O que estamos buscando para saber a complexidade é K (quantidade de passos) para o pior caso então temos que N/(2^K) = 1 daí temos que N = 2^K e tirando o log2 dos dois lados temos que K = log2(N). Então no pior caso nosso algortimo demora `O(log2(N))` passos, N sendo o tamanho do intervalo inicial. Se a função de checagem tiver uma complexidade `O(f(x))`, então teremos complexidade no total `O(log2(N) * f(x))*`.
 
-## Ressalvas
+## Código base para busca binária
 
-Existem muitas aplicações interessantes relacionadas a busca binária. Nesse documento ressaltamos apenas a aplicação mais simples para que se torne simples e didático esse primeiro contato com o algoritmo.
+Há várias maneiras de se implementar busca binária, vamos apresentar várias delas. Vamos usar sempre a função check em separado, os jeitos de implementar diferente são apenas do corpo da busca binária.
+```cpp
+bool check(int val){
+    // nessa função checamos se uma resposta satisfaz as condições para ser uma resposta válida, e retornamos um booleano dependendo disso.
+}
+```
 
-Só foi falado que a quantidade de passos da busca bínaria é `O(log2(n))`, e em cada passo avaliamos se achamos o que queremos ou para qual metade está o que procurarmos. Esta avaliação pode ser simples, como no exemplo e ser `O(1)`, mas pode ser bem complexa e demorar `O(m)`, fazendo o algoritmo rodar em tempo `O(m*log2(n))`.
+### Tipo 1
 
-## Exemplos de código
+#### Valor mínimo (Menor valor que torna check verdadeiro)
+```cpp
+int l = a;// sei que a resposta não é menos que a
+int r = b;// sei que a resposta não é mais que b (as vezes esse chute tem que ser bom, para evitar overflow)
+
+while(r > l+1){// repita enquanto o intervalo tiver tamanho > 2
+    int mid = (l + r)/2;
+    if(check(mid)){ // mid é válido
+        r = mid; // como queremos minimizar a resposta, e mid é uma resposta válida
+                //descartamos tudo a direita de mid (mas não mid)
+    }
+    else{
+        l = mid+1; // Se mid não é válido, descartamos ele e tudo abaixo.
+    }
+}
+// Ao final desse laço, a resposta pode estar em l ou r.
+// Queremos minimizar a resposta, então se l for válido, 
+// ficaremos com l, e caso contrário,  com r
+int ans = r;
+if(check(l)){
+    ans = l;
+}
+```
+
+#### Valor máximo (Maior valor que torna check verdadeiro)
+```cpp
+int l = a;
+int r = b;
+while(r > l+1){
+    int mid = (l + r)/2;
+    if(check(mid)){// mid é válido
+        l = mid; // como queremos maximizar a resposta, e mid é uma resposta válida
+                //descartamos tudo a esquerda de mid (mas não mid)
+    }
+    else{
+        r = mid-1; // Se mid não é válido, descartamos ele e tudo acima.
+    }
+}
+int ans = r;
+if(check(l)){
+    ans = l;
+}
+```
+### Tipo2
+
+## Exemplos de aplicação
 
 ### Implementação de lower_bound
 Consideremos o problema de achar o indice do primeiro elemento maior ou igual um `x` num vetor `v` de tamanho `n`.
@@ -79,7 +140,8 @@ int lower_bound(int x){
 
 Perceba que se quisermos achar o indice do último elemento maior ou igual um `x` num vetor `v` de tamanho `n`.
 
-```c++long long
+```c++
+long long
 int v[MAXN], n; // vetor global para facilitar o código
 
 // funcao que retorna se id é uma resposta válida pro nosso problema
@@ -113,42 +175,6 @@ Em ambos os exemplos a complexidade de checar se mid é uma resposta válida par
 
 Muitas pessoas ja viram o exemplo de realizar busca binária em vetores, mas quando se fala em busca binária na resposta, ficam confusas. Na verdade, busca binária em vetores é busca binária na resposta, mas a resposta é um índice.
 
-
-### Código base para busca binária
-
-#### Valor mínimo
-
-
-
-```cpp
-bool check(int val){
-    // nessa função checamos se uma resposta satisfaz as condições para ser uma resposta válida, e retornamos um booleano dependendo disso.
-}
-.
-.
-.
-//(dentro da main)
-long long l = a;// sei que a resposta não é menos que a
-long long r = b;// sei que a resposta não é mais que b (as vezes esse chute tem que ser bom, para evitar overflow)
-
-while(r > l+1){// repita enquanto o intervalo tiver tamanho > 2
-    long long mid = (l + r)/2;
-    if(check(mid)){ // mid é válido
-        r = mid; // como queremos minimizar a resposta, e mid é uma resposta válida
-                //descartamos tudo a direita de mid (mas não mid)
-    }
-    else{
-        l = mid+1; // Se mid não é válido, descartamos ele e tudo abaixo.
-    }
-}
-// Ao final desse laço, a resposta pode estar em l ou r.
-// Queremos minimizar a resposta, então se l for válido, 
-// ficaremos com l, e caso contrário,  com r
-ll ans = r;
-if(check(l)){
-    ans = l;
-}
-```
 # Material complementar
 # Exercícios recomendados 
 
