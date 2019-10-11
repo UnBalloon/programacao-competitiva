@@ -33,7 +33,9 @@ bool check(int val) {
 ```
 Então se colocarmos graficamente os resultados de uma função `check` monotona, veremos exatamente isso, ou um monte de valores `0`s e a partir de certo ponto todos são `1`s, ou o contrário, um monte de `1`s e a partir de certo ponto todos são `0`s. No exemplo a cima é a primeira possibilidade.
 
-Então a função check para essa situação é monótona, e isso é relevante porque se um valor do vetor satisfizer a condição, todos os valores a direita também vão satisfazê-la, e de forma análoga, todos os valores a esquerda de um índice que não satisfaz a condição, também não vão satisfazer, e é isso que nos permite aplicar busca binária. Chutamos então um intervalo aonde a resposta com certeza estará no começo, fazemos então várias interações checando no meio, e dependendo da resposta, descartamos os elementos a direita ou a esquerda, mas sempre dividimos o tamanho do intervalo por 2, até que o intervalo tenha tamanho 1.
+Então a função check para essa situação é monótona, e isso é relevante porque se um valor do vetor satisfizer a condição, todos os valores a direita também vão satisfazê-la, e de forma análoga, todos os valores a esquerda de um índice que não satisfaz a condição, também não vão satisfazer, e é isso que nos permite aplicar busca binária. E a função check só se torna monótona nesse exemplo quando o vetor está ordenado, por isso busca binária só é feita em vetores ordenados : ).
+
+Então o que faremos é chutar intervalo aonde a resposta com certeza estará no começo, fazemos então várias interações checando no meio, e dependendo da resposta, descartamos os elementos a direita ou a esquerda, mas sempre dividimos o tamanho do intervalo por 2, até que o intervalo tenha tamanho 1.
 
 ## Complexidade
 
