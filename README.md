@@ -24,6 +24,8 @@ Está em construção. Por favor, crie uma issue se encontrar qualquer problema 
 * [Decomposição em raiz (SQRT Decomposition)](sqrt%20decomposition/README.md)
 * [Primalidade e fatoração](Primalidade%20e%20fatoração/README.md)
 * Tópicos avançados!
+  - [Lowest Common Ancestor](LCA/README.md)
+  
 Como compilar os exemplos
 -------------------------
 os exemplos estão em c++, se você sabe compilar com o gcc, basta compilar como compilaria com o gcc, mas digitando g++ no lugar de gcc.
