@@ -283,6 +283,7 @@ https://www.youtube.com/watch?v=zaBhtODEL0w
 
 ## Exercícios recomendados
 
-https://www.urionlinejudge.com.br/judge/pt/problems/view/1910 - Caminho mínimo em grafo implícito.
+https://www.urionlinejudge.com.br/judge/pt/problems/view/1910 - Caminho mínimo em grafo implícito sem pesos.
+https://www.urionlinejudge.com.br/judge/pt/problems/view/1907 - Contagem de componentes conexas em grafo que é um grid (implícito)
 https://codeforces.com/gym/102346/problem/A - Se considerarmos as paredes e sensores vértices, vendo se alguns vértices estão na mesma componente conexa podemos ver se há um caminho que bloqueia o ladrão.
 https://www.urionlinejudge.com.br/judge/pt/problems/view/2194 - (implementação mais difícil), resolver o reconhecimento por meio da contagem das componentes conexas de cada hieróglifo.
