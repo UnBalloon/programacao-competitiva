@@ -1,2 +1,2 @@
-#Sparse Table
+# Sparse Table
 
