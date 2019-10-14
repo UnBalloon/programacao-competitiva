@@ -19,6 +19,8 @@ Está em construção. Por favor, crie uma issue se encontrar qualquer problema 
   - [Delta encoding](Delta%20encoding%20(Codificação%20de%20diferenças)/README.md)
   - [Preffix sums (Somas de prefixos)](Preffix%20sums%20(Somas%20de%20prefixos)/README.md)
   - [Segment trees (Árvores de segmentos)](Segment%20Trees%20(Árvores%20de%20segmento)/README.md)
+  - [Sparse Table](Sparse%20Table/README.md) 
+ 
 * [Operações bit a bit](Operações%20bit%20a%20bit/README.md)
 * [Programação dinâmica](Programação%20dinâmica/README.md)
 * [Decomposição em raiz (SQRT Decomposition)](sqrt%20decomposition/README.md)
