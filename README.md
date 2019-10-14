@@ -11,6 +11,7 @@ Está em construção. Por favor, crie uma issue se encontrar qualquer problema 
 - [C++ e sua biblioteca STL](STL/README.md)
 - [Busca binária](Busca%20Binária/README.md)
 - [Representação e percorrimento de grafos](Grafos/README.md)
+- [Detecção de ciclos em grafos](Detec%C3%A7%C3%A3o%20de%20ciclos/README.md)
 - [Algoritmo de Dijkstra](Algoritmo%20de%20Dijkstra/README.md)
 - [Primalidade e fatoração](Primalidade%20e%20fatoração/README.md)
 - [Delta encoding](Delta%20encoding%20(Codificação%20de%20diferenças)/README.md)
