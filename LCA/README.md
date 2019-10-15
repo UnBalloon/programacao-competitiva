@@ -37,8 +37,35 @@ int slow_lca(int u, int v) {
 ```
 Essa estratégia efetivamente funciona, então teríamos um pré-processamento que é um DFS e após isso conseguiríamos responder queries em `O(n)`, pois numa árvore com um ramo muito profundo teríamos no pior caso que subir todos os vértices, portando complexidade overall de `O(n + Qn) = O(Qn)` onde `Q` é o número de queries e `n` a quantidade de nós na árvore.
 
+Aqui nesse tutorial vamos mostrar duas ideias para computar LCA, uma que vai nos permitir responder Queries de LCA em `O(log n)` com preprocessamento `O(n log n)` e uma segunda abordagem que vai nos permitir responder queries de LCA em `O(1)` (isso mesmo, tempo constante!) com preprocessamento `O(n log n)` também. 
 
+Apesar de a complexidade da segunda abordagem para responder queries de LCA ser estritamente melhor que da primeira, veremos que a primeira carrega um pouco mais de informação, permitindo obter algumas outras informações fora o LCA, enquanto na segunda podemos obter apenas o LCA.
 
+# Abordagem 1
+
+O problema da solução naive é essa subida de um em um até que atinjamos o pai comum. Então faz sentido tentarmos atacarmos isso para ganhar um desempenho assintótico melhor. Uma coisa a se observar é que estamos fazendo duas buscas lineares. A primeira busca linear é pelo primeiro ancestral de `u` que iguala a altura a `v` e após isso outra busca linear para procurar o primeiro ancestral de ambos que é comum. 
+
+Podemos observar que há uma espécie de monotonicidade nessas busca linear, até certo ponto os ancestrais não satisfazem uma condição, e após certo ponto todos satisfazem. Na primeira estaríamos buscando o ancestral mais baixo de `u` que satisfaz a condição "Ter altura menor ou igual a v", e na segunda busca estaríamos buscando algo como "o menor número de níveis que temos que subir na árvore que faz com que `u,v` se encontrem".
+
+ Se nós tivéssemos uma função *mágica* chamada por exemplo `climb(n,k)` que nos retornasse o k-ésimo pai do vértice `n`, poderíamos então usar buscas binárias na quantidade de vértices a subir para resolver esse problema, e restaria implementar essa função de maneira eficiente. Vamos seguir por essa linha de raciocínio então.
+
+ ## O pulo do gato
+
+Se nós tivéssemos uma outra função `mágica` chamada `p2k(n,k)` que retorna o (2^k)-ésimo pai de um vértice `n`, poderíamos implementar a função que sobe `k` vértices da seguinte maneira. Se nosso grafo tem tamanho menor que `10^6`, sabemos que não precisamos subir mais do que `2^20`.
+
+```cpp
+int climb(int node, int k){
+	for(int i = 20; i >= 0; i++) {
+		if(k >= (1 << i)) {
+			node = p2k(node,i);
+			k -= (1 << i);
+		}
+	}
+	return node;
+}
+```
+
+A complexidade dessa função depende do número que colocamos no for, que não precisa ser maior do que o `log` do tamanho do grafo(não faz sentido subir mais nós do que o grafo possui), então conseguimos obter o k-ésimo ancestral de um vértice arbitrário em complexidade `O(log) * X` aonde X é a complexidade de p2k.
 
 ## Exercícios recomendados
 - https://codeforces.com/problemset/problem/208/e
