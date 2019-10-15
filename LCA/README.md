@@ -128,7 +128,7 @@ Cada checagem para ver se um dos (2^k)-ésimos pais satisfazem a propriedade é 
 int lca(int u, int v) {
 	if(depth[u] < depth[v]) swap(u,v);
 	for (int i = 20; i >= 0; --i) {
-		if(depth[f(u,i)] >= depth[v])
+		if(depth[p2k(u,i)] >= depth[v])
 			u = p2k(u,i);	
 	}
 	if(u == v) return u;
@@ -144,7 +144,7 @@ int lca(int u, int v) {
 
 Perceba que estamos fazendo exatamente a ideia primeiramente apresentada na solução naive. Primeiro pegamos o vértice que está mais embaixo e subimos ele até o nível do outro, e após isso, subimos em ambos os vértices procurando o primeiro ancestral comum, mas em vez de fazermos busca linear, fazemos escalada binária.
 
-A escala binária desempenha melhor nessa situação porque quando vamos construir o (n-ésimo) pai para fazer a checagem (somando vários (2^k)-ésimos pais) na busca binária, estaríamos colocando os mesmos vértices todas as vezes, por exemplo, tome o exemplo anterior aonde o primeiro vértice que satisfazia a propriedade era o sexto pai. 
+A escala binária desempenha melhor nessa situação(em relação a busca binária) porque quando vamos construir o (n-ésimo) pai para fazer a checagem (somando vários (2^k)-ésimos pais) na busca binária, estaríamos colocando os mesmos vértices todas as vezes, por exemplo, tome o exemplo anterior aonde o primeiro vértice que satisfazia a propriedade era o sexto pai. 
 
 Se chutássemos `l = 0, r = 16`, 
 chutaríamos mid = 8, a checagem falharia.
