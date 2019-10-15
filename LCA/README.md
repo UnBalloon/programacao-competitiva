@@ -37,6 +37,8 @@ int slow_lca(int u, int v) {
 ```
 Essa estratégia efetivamente funciona, então teríamos um pré-processamento que é um DFS e após isso conseguiríamos responder queries em `O(n)`, pois numa árvore com um ramo muito profundo teríamos no pior caso que subir todos os vértices, portando complexidade overall de `O(n + Qn) = O(Qn)` onde `Q` é o número de queries e `n` a quantidade de nós na árvore.
 
+O LCA é relevante porque como em uma árvore há um único caminho que liga dos vértices, se conseguimos obter o LCA rápido então uma das coisas que já ganhamos de quebra é conseguir responder as distâncias entre quaisquer par de vértices, já que a distância vai ser a distância de um vértice para o LCA e do LCA para o outro, sendo que essas duas distâncias intermediárias são apenas a diferença de alturas na árvore.
+
 Aqui nesse tutorial vamos mostrar duas ideias para computar LCA, uma que vai nos permitir responder Queries de LCA em `O(log n)` com preprocessamento `O(n log n)` e uma segunda abordagem que vai nos permitir responder queries de LCA em `O(1)` (isso mesmo, tempo constante!) com preprocessamento `O(n log n)` também. 
 
 Apesar de a complexidade da segunda abordagem para responder queries de LCA ser estritamente melhor que da primeira, veremos que a primeira carrega um pouco mais de informação, permitindo obter algumas outras informações fora o LCA, enquanto na segunda podemos obter apenas o LCA.
@@ -55,7 +57,7 @@ Se nós tivéssemos uma outra função `mágica` chamada `p2k(n,k)` que retorna 
 
 ```cpp
 int climb(int node, int k){
-	for(int i = 20; i >= 0; i++) {
+	for(int i = 20; i >= 0; i--) {
 		if(k >= (1 << i)) {
 			node = p2k(node,i);
 			k -= (1 << i);
@@ -66,6 +68,50 @@ int climb(int node, int k){
 ```
 
 A complexidade dessa função depende do número que colocamos no for, que não precisa ser maior do que o `log` do tamanho do grafo(não faz sentido subir mais nós do que o grafo possui), então conseguimos obter o k-ésimo ancestral de um vértice arbitrário em complexidade `O(log) * X` aonde X é a complexidade de p2k.
+
+Mostramos agora que podemos preprocessar todos os valores possíveis de p2k em `O(n log n)`. Precisamos saber os valores dos ancestrais para todos os `n` vértices e para cada vértice só faz sentido saber `log` ancestrais. Podemos obter todos os valores de uma vez usando programação dinâmica, com uma recorrência muito elegante. 
+
+```cpp
+int p2k(int node, int k) {
+	if(k == 0) {
+		return pai[node];
+	}
+	return p2k(p2k(node, k-1),k-1);
+}
+
+```
+### Versão recursiva
+
+Usamos então memoização para computarmos cada estado em `O(1)`
+
+```cpp
+int memo[GRAPH_SIZE][log2(GRAPHSIZE)];
+
+int p2k(int node, int k) {
+	if(k == 0) {
+		return pai[node];
+	}
+	if(memo[node][k] != -1) {
+		return memo[node][k];	
+	}
+	return memo[node][k] = p2k(p2k(node, k-1),k-1);
+}
+```
+### Versão iterativa
+
+```cpp
+int p2k[GRAPH_SIZE][log2(GRAPH_SIZE)];
+for(int node = 0; node < GRAPH_SIZE; node++) {
+	p2k[node][0] = pai[node];
+}
+for(int node = 0; node < GRAPH_SIZE; node++) {
+	for(int k = 1; k <= log2(GRAPH_SIZE); k++) {
+		p2k[node][k] = p2k[p2k[node][k-1]][k-1];
+	}
+}
+```
+
+Dessa forma então temos o seguinte procedimento para acharmos o LCA, fazemos uma busca binária, em cada iteração obtemos o k-ésimo ancestral, e checamos se ele satisfaz as propriedades, tendo então complexidade `O(log n * log n) = O(log^2 n)`, já que fazemos `log` iterações e em cada iteração demoramos `log` para obter o k-ésimo ancestral. Isso funciona, mas podemos melhorar um pouco mais.
 
 ## Exercícios recomendados
 - https://codeforces.com/problemset/problem/208/e
