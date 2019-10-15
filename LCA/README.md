@@ -113,6 +113,57 @@ for(int node = 0; node < GRAPH_SIZE; node++) {
 
 Dessa forma então temos o seguinte procedimento para acharmos o LCA, fazemos uma busca binária, em cada iteração obtemos o k-ésimo ancestral, e checamos se ele satisfaz as propriedades, tendo então complexidade `O(log n * log n) = O(log^2 n)`, já que fazemos `log` iterações e em cada iteração demoramos `log` para obter o k-ésimo ancestral. Isso funciona, mas podemos melhorar um pouco mais.
 
+Ao invés de usarmos busca binária vamos usar uma técnica conhecida como `binary lifting` ou escalada binária, basicamente vamos percorrer bit a bit vendo se esse bit está na resposta ou não.
+
+A ideia é a seguinte, vamos supor que a resposta da busca binária de o quanto eu tenho que subir a partir de um vértice para satisfazer uma propriedade seja 6. Podemos usar escala binária para procurar pelo último vértice que ainda não satisfaz a propriedade (no caso então seria o 5). 
+
+Usando nossa função p2k, podemos começar vendo se o oitavo pai já satisfaz a propriedade e sim satisfaz, então como estamos buscando o último que ainda satisfaz, não subimos para o oitavo pai. Depois verificamos que o quarto pai que ainda não satisfaz, então subimos para ele. Depois verificamos o segundo pai do quarto pai, isto é, o sexto pai do vértice original, que já satisfaz, então não subimos para ele, e por último, verificamos o pai do quarto pai (quinto pai do vértice original), que não satisfaz, então subimos pra ele e sabemos o último vértice que ainda não satisfaz a propriedade. 
+
+A escalada binária pode ser usada nas mesmas situações aonde a busca binária pode ser usada, mas algumas vezes (como essa), podemos obter uma complexidades assintóticas melhores.
+
+
+Cada checagem para ver se um dos (2^k)-ésimos pais satisfazem a propriedade é constante, e checamos os pais `(2^k), 2^(k-1), 2^(k-2),..., 1` sempre dividindo por 2, então passamos por no máximo `log` vezes nessa checagem, portanto com essa ideia podemos obter o `lca` em `O(log n)`.
+
+```cpp
+int lca(int u, int v) {
+	if(depth[u] < depth[v]) swap(u,v);
+	for (int i = 20; i >= 0; --i) {
+		if(depth[f(u,i)] >= depth[v])
+			u = p2k(u,i);	
+	}
+	if(u == v) return u;
+	for (int i = 20; i >= 0; --i) {
+		if(p2k(v,i) != p2k(u,i)) {
+			v = p2k(v,i);
+			u = p2k(u,i);
+		}
+	}
+	return pai[v];
+}
+```
+
+Perceba que estamos fazendo exatamente a ideia primeiramente apresentada na solução naive. Primeiro pegamos o vértice que está mais embaixo e subimos ele até o nível do outro, e após isso, subimos em ambos os vértices procurando o primeiro ancestral comum, mas em vez de fazermos busca linear, fazemos escalada binária.
+
+A escala binária desempenha melhor nessa situação porque quando vamos construir o (n-ésimo) pai para fazer a checagem (somando vários (2^k)-ésimos pais) na busca binária, estaríamos colocando os mesmos vértices todas as vezes, por exemplo, tome o exemplo anterior aonde o primeiro vértice que satisfazia a propriedade era o sexto pai. 
+
+Se chutássemos `l = 0, r = 16`, 
+chutaríamos mid = 8, a checagem falharia.
+```
+l = 0, r = 16, mid = 8(8), checagem falha.
+l = 0, r = 8, mid = 4(4), checagem passa.
+l = 4, r = 8, mid = 6(4 + 2), checagem falha
+l = 4, r = 6, mid = 5(4 + 1), checagem passa
+```
+
+Quando a checagem passou para mid = 4, podíamos ter certeza que tinhamos que subir pelo menos até o quarto pai, mas aí nos checks subsequentes perdemos tempo reconstruindo a resposta que já conhecemos. Então o que a escala binária faz é tomar vantagem disso.
+
+Agora como mencionado podemos obter rapidamente a distância entre quaisquer 2 nós na árvore.
+
+```cpp
+int dist(int u, int v){
+	return depth[u] + depth[v] -2*depth[lca(u,v)];
+}
+```
 ## Exercícios recomendados
 - https://codeforces.com/problemset/problem/208/e
 - https://www.urionlinejudge.com.br/judge/pt/problems/view/2470
