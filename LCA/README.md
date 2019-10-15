@@ -35,9 +35,11 @@ int slow_lca(int u, int v) {
 }
 
 ```
-Essa estratégia efetivamente funciona, então teríamos um pré-processamento que é um DFS e após isso conseguiríamos responder queries em `O(n)`, pois numa árvore com um ramo muito profundo teríamos no pior caso que subir todos os vértices, portando complexidade overall de `O(n + Qn) = O(Qn)` onde `Q` é o número de queries e `n` a quantidade de nós na árvore.
+Essa estratégia efetivamente funciona, então teríamos um pré-processamento que é um DFS e após isso conseguiríamos responder queries em `O(n)`, pois numa árvore com um ramo muito profundo teríamos no pior caso que subir todos os vértices, portando complexidade total de `O(n + Qn) = O(Qn)` onde `Q` é o número de queries e `n` a quantidade de nós na árvore.
 
-O LCA é relevante porque como em uma árvore há um único caminho que liga dos vértices, se conseguimos obter o LCA rápido então uma das coisas que já ganhamos de quebra é conseguir responder as distâncias entre quaisquer par de vértices, já que a distância vai ser a distância de um vértice para o LCA e do LCA para o outro, sendo que essas duas distâncias intermediárias são apenas a diferença de alturas na árvore.
+O LCA é relevante porque como em uma árvore há um único caminho que liga dois vértices, se conseguimos obter o LCA rápido então uma das coisas que já ganhamos de quebra é conseguir responder as distâncias entre quaisquer par de vértices.
+
+A distância vai ser a distância de um vértice para o LCA e do LCA para o outro, sendo que essas duas distâncias intermediárias são apenas a diferença de alturas na árvore.
 
 Aqui nesse tutorial vamos mostrar duas ideias para computar LCA, uma que vai nos permitir responder Queries de LCA em `O(log n)` com preprocessamento `O(n log n)` e uma segunda abordagem que vai nos permitir responder queries de LCA em `O(1)` (isso mesmo, tempo constante!) com preprocessamento `O(n log n)` também. 
 
@@ -47,7 +49,7 @@ Apesar de a complexidade da segunda abordagem para responder queries de LCA ser 
 
 O problema da solução naive é essa subida de um em um até que atinjamos o pai comum. Então faz sentido tentarmos atacarmos isso para ganhar um desempenho assintótico melhor. Uma coisa a se observar é que estamos fazendo duas buscas lineares. A primeira busca linear é pelo primeiro ancestral de `u` que iguala a altura a `v` e após isso outra busca linear para procurar o primeiro ancestral de ambos que é comum. 
 
-Podemos observar que há uma espécie de monotonicidade nessas busca linear, até certo ponto os ancestrais não satisfazem uma condição, e após certo ponto todos satisfazem. Na primeira estaríamos buscando o ancestral mais baixo de `u` que satisfaz a condição "Ter altura menor ou igual a v", e na segunda busca estaríamos buscando algo como "o menor número de níveis que temos que subir na árvore que faz com que `u,v` se encontrem".
+Podemos observar que há monotonicidade nessas buscas lineares, até certo ponto os ancestrais não satisfazem uma condição, e após certo ponto todos satisfazem. Na primeira estaríamos buscando o ancestral mais baixo de `u` que satisfaz a condição "Ter altura menor ou igual a v", e na segunda "Ser ancestral de `v`".
 
  Se nós tivéssemos uma função *mágica* chamada por exemplo `climb(n,k)` que nos retornasse o k-ésimo pai do vértice `n`, poderíamos então usar buscas binárias na quantidade de vértices a subir para resolver esse problema, e restaria implementar essa função de maneira eficiente. Vamos seguir por essa linha de raciocínio então.
 
@@ -121,7 +123,6 @@ Usando nossa função p2k, podemos começar vendo se o oitavo pai já satisfaz a
 
 A escalada binária pode ser usada nas mesmas situações aonde a busca binária pode ser usada, mas algumas vezes (como essa), podemos obter uma complexidades assintóticas melhores.
 
-
 Cada checagem para ver se um dos (2^k)-ésimos pais satisfazem a propriedade é constante, e checamos os pais `(2^k), 2^(k-1), 2^(k-2),..., 1` sempre dividindo por 2, então passamos por no máximo `log` vezes nessa checagem, portanto com essa ideia podemos obter o `lca` em `O(log n)`.
 
 ```cpp
@@ -144,14 +145,12 @@ int lca(int u, int v) {
 
 Perceba que estamos fazendo exatamente a ideia primeiramente apresentada na solução naive. Primeiro pegamos o vértice que está mais embaixo e subimos ele até o nível do outro, e após isso, subimos em ambos os vértices procurando o primeiro ancestral comum, mas em vez de fazermos busca linear, fazemos escalada binária.
 
-A escala binária desempenha melhor nessa situação(em relação a busca binária) porque quando vamos construir o (n-ésimo) pai para fazer a checagem (somando vários (2^k)-ésimos pais) na busca binária, estaríamos colocando os mesmos vértices todas as vezes, por exemplo, tome o exemplo anterior aonde o primeiro vértice que satisfazia a propriedade era o sexto pai. 
+A escala binária desempenha melhor nessa situação(em relação a busca binária) porque quando vamos construir o (n-ésimo) pai para fazer a checagem (somando vários (2^k)-ésimos pais) na busca binária, estaríamos colocando os mesmos vértices todas as vezes, por exemplo, tome o exemplo aonde o último vértice que satisfaz uma propridade é o 26. 
 
-Se chutássemos `l = 0, r = 16`, 
-chutaríamos mid = 8, a checagem falharia.
 ```
-l = 0, r = 16, mid = 8(8), checagem falha.
-l = 0, r = 8, mid = 4(4), checagem passa.
-l = 4, r = 8, mid = 6(4 + 2), checagem falha
+l = 0, r = 32, mid = 16(16), checagem passa.
+l = 16, r = 32, mid = 24(16 + 8), checagem passa.
+l = 24, r = 32, mid = 28(16 + 8 + 4), checagem falha
 l = 4, r = 6, mid = 5(4 + 1), checagem passa
 ```
 
