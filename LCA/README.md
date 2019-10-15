@@ -102,7 +102,7 @@ int p2k(int node, int k) {
 ### Versão iterativa
 
 ```cpp
-int p2k[GRAPH_SIZE][log2(GRAPH_SIZE)];
+int p2k[GRAPH_SIZE][log2(GRAPH_SIZE)+1];
 for(int node = 0; node < GRAPH_SIZE; node++) {
 	p2k[node][0] = pai[node];
 }
@@ -117,7 +117,7 @@ Dessa forma então temos o seguinte procedimento para acharmos o LCA, fazemos um
 
 Ao invés de usarmos busca binária vamos usar uma técnica conhecida como `binary lifting` ou escalada binária, basicamente vamos percorrer bit a bit vendo se esse bit está na resposta ou não.
 
-A ideia é a seguinte, vamos supor que a resposta da busca binária de o quanto eu tenho que subir a partir de um vértice para satisfazer uma propriedade seja 6. Podemos usar escala binária para procurar pelo último vértice que ainda não satisfaz a propriedade (no caso então seria o 5). 
+A ideia é a seguinte, vamos supor que a resposta da busca binária de o quanto eu tenho que subir a partir de um vértice para satisfazer uma propriedade seja 6(o primeiro ancestral que satisfaz a propriedade é o sexto pai). Podemos usar escala binária para procurar pelo último vértice que ainda não satisfaz a propriedade (no caso então seria o 5). 
 
 Usando nossa função p2k, podemos começar vendo se o oitavo pai já satisfaz a propriedade e sim satisfaz, então como estamos buscando o último que ainda satisfaz, não subimos para o oitavo pai. Depois verificamos que o quarto pai que ainda não satisfaz, então subimos para ele. Depois verificamos o segundo pai do quarto pai, isto é, o sexto pai do vértice original, que já satisfaz, então não subimos para ele, e por último, verificamos o pai do quarto pai (quinto pai do vértice original), que não satisfaz, então subimos pra ele e sabemos o último vértice que ainda não satisfaz a propriedade. 
 
@@ -151,10 +151,11 @@ A escala binária desempenha melhor nessa situação(em relação a busca binár
 l = 0, r = 32, mid = 16(16), checagem passa.
 l = 16, r = 32, mid = 24(16 + 8), checagem passa.
 l = 24, r = 32, mid = 28(16 + 8 + 4), checagem falha
-l = 4, r = 6, mid = 5(4 + 1), checagem passa
+l = 24, r = 28, mid = 26(16 + 8 + 2), checagem passa
+l = 26, r = 28, mid = 27(16 + 8 + 2 + 1), checagem falha
 ```
 
-Quando a checagem passou para mid = 4, podíamos ter certeza que tinhamos que subir pelo menos até o quarto pai, mas aí nos checks subsequentes perdemos tempo reconstruindo a resposta que já conhecemos. Então o que a escala binária faz é tomar vantagem disso.
+Quando a checagem passou para mid = 16, podíamos ter certeza que tinhamos que subir pelo menos até o décimo sexto pai, mas aí nos checks subsequentes perdemos tempo reconstruindo a resposta que já conhecemos. Então o que a escala binária faz é tomar vantagem disso.
 
 Agora como mencionado podemos obter rapidamente a distância entre quaisquer 2 nós na árvore.
 
