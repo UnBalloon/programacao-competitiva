@@ -51,6 +51,8 @@ O problema da solução naive é essa subida de um em um até que atinjamos o pa
 
 Podemos observar que há monotonicidade nessas buscas lineares, até certo ponto os ancestrais não satisfazem uma condição, e após certo ponto todos satisfazem. Na primeira estaríamos buscando o ancestral mais baixo de `u` que satisfaz a condição "Ter altura menor ou igual a v", e na segunda "Ser ancestral de `v`".
 
+Aqui usaremos o conceito de "k-ésimo pai" que funciona assim: o primeiro pai é o pai do vértice, o segundo pai é o pai do pai do vértice, e assim por diante.
+
  Se nós tivéssemos uma função *mágica* chamada por exemplo `climb(n,k)` que nos retornasse o k-ésimo pai do vértice `n`, poderíamos então usar buscas binárias na quantidade de vértices a subir para resolver esse problema, e restaria implementar essa função de maneira eficiente. Vamos seguir por essa linha de raciocínio então.
 
  ## O pulo do gato
@@ -87,7 +89,7 @@ int p2k(int node, int k) {
 Usamos então memoização para computarmos cada estado em `O(1)`
 
 ```cpp
-int memo[GRAPH_SIZE][log2(GRAPHSIZE)];
+int memo[SIZE][log2(GRAPHSIZE)];
 
 int p2k(int node, int k) {
 	if(k == 0) {
@@ -102,12 +104,12 @@ int p2k(int node, int k) {
 ### Versão iterativa
 
 ```cpp
-int p2k[GRAPH_SIZE][log2(GRAPH_SIZE)+1];
-for(int node = 0; node < GRAPH_SIZE; node++) {
+int p2k[SIZE][log2(SIZE)+1];
+for(int node = 0; node < SIZE; node++) {
 	p2k[node][0] = pai[node];
 }
-for(int node = 0; node < GRAPH_SIZE; node++) {
-	for(int k = 1; k <= log2(GRAPH_SIZE); k++) {
+for(int node = 0; node < SIZE; node++) {
+	for(int k = 1; k <= log2(SIZE); k++) {
 		p2k[node][k] = p2k[p2k[node][k-1]][k-1];
 	}
 }
@@ -129,14 +131,13 @@ Cada checagem para ver se um dos (2^k)-ésimos pais satisfazem a propriedade é 
 int lca(int u, int v) {
 	if(depth[u] < depth[v]) swap(u,v);
 	for (int i = 20; i >= 0; --i) {
-		if(depth[p2k(u,i)] >= depth[v])
-			u = p2k(u,i);	
+		if(depth[p2k[u][i]] >= depth[v])
+			u = p2k[u][i];	
 	}
-	if(u == v) return u;
 	for (int i = 20; i >= 0; --i) {
-		if(p2k(v,i) != p2k(u,i)) {
-			v = p2k(v,i);
-			u = p2k(u,i);
+		if(p2k[v][i] != p2k[u][i]) {
+			v = p2k[v][i];
+			u = p2k[u][i];
 		}
 	}
 	return pai[v];
@@ -157,6 +158,7 @@ l = 26, r = 28, mid = 27(16 + 8 + 2 + 1), checagem falha
 
 Quando a checagem passou para mid = 16, podíamos ter certeza que tinhamos que subir pelo menos até o décimo sexto pai, mas aí nos checks subsequentes perdemos tempo reconstruindo a resposta que já conhecemos. Então o que a escala binária faz é tomar vantagem disso.
 
+### Versão final do código
 Agora como mencionado podemos obter rapidamente a distância entre quaisquer 2 nós na árvore.
 
 ```cpp
@@ -164,7 +166,82 @@ int dist(int u, int v){
 	return depth[u] + depth[v] -2*depth[lca(u,v)];
 }
 ```
+
+### Versão final do código
+
+Apesar de não fazermos a busca binária que usava a função climb no final, é possível que essa implementação seja útil em alguns problemas.
+
+```cpp
+
+int depth[SIZE];
+vector<int> graph[SIZE];
+
+void pre_process_depth(int u, int d) {
+	depth[u] = d;
+	for(auto adj : graph[u]) {
+		pre_process_depth(adj, d + 1);
+	}
+}
+
+int p2k[SIZE][log2(SIZE)+1];
+int lca(int u, int v) {
+	if(depth[u] < depth[v]) swap(u,v);
+	for (int i = 20; i >= 0; --i) {
+		if(depth[p2k[u][i]] >= depth[v])
+			u = p2k[u][i];	
+	}
+	if(u == v) return u;
+	for (int i = 20; i >= 0; --i) {
+		if(p2k[v][i] != p2k[u][i]) {
+			v = p2k[v][i];
+			u = p2k[u][i];
+		}
+	}
+	return pai[v];
+}
+
+int climb(int node, int k){
+	for(int i = 20; i >= 0; i--) {
+		if(k >= (1 << i)) {
+			node = p2k(node,i);
+			k -= (1 << i);
+		}
+	}
+	return node;
+}
+
+int dist(int u, int v){
+	return depth[u] + depth[v] -2*depth[lca(u,v)];
+}
+
+int main() {
+	// codigo
+	// le os pais e monta o grafo
+	pai[raiz] = raiz;
+	pre_proccess_depth(raiz); // tipicamente qual vertice é a raiz nao importa
+	for(int node = 0; node < SIZE; node++){
+		p2k[node][0] = pai[node];
+	}
+	for(int node = 0; node < SIZE; node++) {
+		for(int k = 1; k <= log2(SIZE); k++) {
+			p2k[node][k] = p2k[p2k[node][k-1]][k-1];
+		}
+	}
+	// resolve problema
+}
+```
+
+### Conclusão
+
+Com essa abordagem, com preprocessamento `O(n log n)`, podemos responder queries de LCA (e climb, e dist) em `O(log n)`, além disso, podemos modificar a DP do LCA para guardar mais informações além de qual o (2^k)-ésimo pai, por exemplo a aresta mínima(ou máxima) nesse caminho, a soma dos custos das arestas(caso hajam pesos), máximo divisor comum, etc.
+
+## Abordagem 2
+
+A segunda abordagem usa uma ideia diferente, mas que também é muito top. Com preprocessamento `O(n log n)` podemos fazer queries de LCA em `O(1)`. Parando pra pensar nisso, é muito poderoso, não importa o quanto seja o tamanho do grafo, teremos a resposta em tempo constante! A ideia para atingir essa complexidade é a seguinte. Sabemos que usando uma Sparse Table(Vide aula de Sparse Table) podemos resolver problemas de RMQ (range minimum query) em `O(1)`, com preprocessamento `O(n log n)` a ideia é construir um vetor de forma que a RMQ nele representa a query de LCA.
+
+
 ## Exercícios recomendados
 - https://codeforces.com/problemset/problem/208/e
 - https://www.urionlinejudge.com.br/judge/pt/problems/view/2470
 - https://www.urionlinejudge.com.br/judge/pt/problems/view/1135
+- https://www.spoj.com/problems/QTREE2/ - queries de distancia e obter k-ésimo vértice no caminho, Só da pra obter késimo vértice com LCA log.
