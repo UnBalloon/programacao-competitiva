@@ -5,7 +5,7 @@ Esse repositório foi feito para ser uma coleção de tutoriais sobre algoritmos
 
 Está em construção. Por favor, crie uma issue se encontrar qualquer problema de definição, digitação, ou de semântica de código. Se alguma explicação estiver confusa também peço que crie a issue.
 
-# Aulas disponíveis(ordem recomendada)
+# Aulas disponíveis
 * Início
   - [Dicas relevantes para começar](Comecando/README.md)
   - [Complexidade](Complexidade/README.md)
