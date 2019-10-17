@@ -13,7 +13,7 @@ Mas essa propriedade não é verdade para a operação de soma, por exemplo, sej
 
 ## O pulo do gato
 
-Imagine que tenhamos uma função `mágica`, chamada `dp(n,k)`, que retorna basicamente a operação aplicada no intervalo [n, n + (2^k) - 1]. 
+Imagine que tenhamos uma função `mágica`, chamada `dp(n,k)`, que retorna a operação aplicada no intervalo [n, n + (2^k) - 1]. 
 ```
 k = 0, [n, n]
 k = 1, [n, n + 1]
@@ -35,7 +35,7 @@ O intervalo que estamos interessados está demarcado com um parêntese. Bem, dp(
 
 Então o que nós estamos fazendo aqui é selecionando uma potencia de dois e duas posições aonde duas chamadas a essa função mágica vão ser suficientes para cobrir exatamente o intervalo que estamos interessados. E a operação precisa ser idempotente porque como estamos selecionando apenas intervalos que tem tamanhos de potências de dois, no caso geral não conseguimos selecionar dois intervalos que não tenham interseção, e caso a operação não seja idempotente, isso fará com que a interseção seja contada duas vezes, fazendo então com que essa ideia não funcione.
 
-Então a complexidade que temos até então para resolver consultas é a seguinte: `O(k + 2*q)` aonde `k` é o custo da operação, e `q` é o custo da nossa função `mágica`. Veremos que conseguimos com programação dinâmica precomputar os valores pra essa função fazendo com que as chamadas a ela tenham tempo constante.
+Então a complexidade que temos até então para resolver consultas é a seguinte: `O(k + 2*q)` aonde `k` é o custo da operação, e `q` é o custo da nossa função `mágica`. Veremos que conseguimos com programação dinâmica precomputar os valores pra essa função fazendo com que as chamadas a ela tenham tempo constante. Como `min()` tem tempo constante de `gcd()` tempo `log`, é assim que resultamos nas complexidades mencionadas no começo do texto.
 
 ## Recorrência
 
