@@ -67,7 +67,7 @@ void dijkstra(int start){
 	int u, v;
 	while(!pq.empty()){
 		tie(dt, u) = pq.top(); pq.pop();
-
+		if(dt > d[u]) continue;
 		for(auto edge : g[u]){
 			tie(v, w) = edge;
 

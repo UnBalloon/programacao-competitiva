@@ -108,8 +108,8 @@ int p2k[SIZE][log2(SIZE)+1];
 for(int node = 0; node < SIZE; node++) {
 	p2k[node][0] = pai[node];
 }
-for(int node = 0; node < SIZE; node++) {
-	for(int k = 1; k <= log2(SIZE); k++) {
+for(int k = 1; k <= log2(SIZE); k++) {
+	for(int node = 0; node < SIZE; node++) {
 		p2k[node][k] = p2k[p2k[node][k-1]][k-1];
 	}
 }
@@ -134,6 +134,8 @@ int lca(int u, int v) {
 		if(depth[p2k[u][i]] >= depth[v])
 			u = p2k[u][i];	
 	}
+	if(u == v) return u;
+	
 	for (int i = 20; i >= 0; --i) {
 		if(p2k[v][i] != p2k[u][i]) {
 			v = p2k[v][i];
