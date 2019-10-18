@@ -108,7 +108,7 @@ E sobre as posições da query, a primeira sempre será no começo do intervalo,
 ```cpp
 int query(int a, int b) {
 	int lg = log2(b-a);
-	return F(tb[a][lg],tb[b-(1 << lg)])
+	return F(tb[a][lg],tb[1 + b-(1 << lg)][lg])
 }
 ```
 # Conteúdo complementar
