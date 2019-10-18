@@ -34,7 +34,7 @@ Como a operação é idempotente, podemos fazer o seguinte. A resposta vai ser m
 ```
 O intervalo que estamos interessados está demarcado com um parêntese. Bem, dp(4, 3) = 0, e dp(10,3) = 2, e min(0,2) = 0, que realmente é o mínimo do intervalo. Se a query fosse no intervalo [4,10] poderíamos fazer `min(dp(4,2), dp(7,2))`, e assim por diante.
 
-Então o que nós estamos fazendo aqui é selecionando uma potencia de dois e duas posições aonde duas chamadas a essa função mágica vão ser suficientes para cobrir exatamente o intervalo que estamos interessados. E a operação precisa ser idempotente porque como estamos selecionando apenas intervalos que tem tamanhos de potências de dois, no caso geral não conseguimos selecionar dois intervalos que não tenham interseção, e caso a operação não seja idempotente, isso fará com que a interseção seja contada duas vezes, fazendo então com que essa ideia não funcione.
+Então o que nós estamos fazendo aqui é selecionando uma potencia de dois e duas posições aonde duas chamadas a essa função mágica vão ser suficientes para cobrir exatamente o intervalo que estamos interessados. E a operação precisa ser idempotente porque como estamos selecionando apenas intervalos que tem tamanhos de potências de dois, no caso geral não conseguimos selecionar dois intervalos que não tenham interseção, e caso a operação não seja idempotente, isso fará com que a interseção seja contada duas vezes, fazendo então com que essa ideia não funcione. Voltaremos mais tarde na implementação de como selecionar essas potências.
 
 Então a complexidade que temos até então para resolver consultas é a seguinte: `O(k + 2*q)` aonde `k` é o custo da operação, e `q` é o custo da nossa função `mágica`. Veremos que conseguimos com programação dinâmica precomputar os valores pra essa função fazendo com que as chamadas a ela tenham tempo constante. Como `min()` tem tempo constante de `gcd()` tempo `log`, é assim que resultamos nas complexidades mencionadas no começo do texto.
 
@@ -43,11 +43,10 @@ Então a complexidade que temos até então para resolver consultas é a seguint
 Esta é a recorrência da programação dinâmica, nessa recorrência, estamos apenas dizendo o seguinte: O resultado da operação em um intervalo é o resultado da primeira metade combinado com o resultado da segunda metade.
 ```cpp
 int dp(int i, int k) {
-if(k == 0) {
-    return v[i];
-}
-
-return op(dp(i,k-1),dp(i + (1 << (k-1)). k-1));
+    if(k == 0) {
+        return v[i];
+    }
+    return op(dp(i,k-1),dp(i + (1 << (k-1)). k-1));
 }
 ```
 
@@ -57,11 +56,12 @@ return op(dp(i,k-1),dp(i + (1 << (k-1)). k-1));
 int memo[SIZE][log2(SIZE)+1];
 vector<int> v(SIZE);
 int dp(int i, int k) {
-if(k == 0) {
-    return v[i];
-}
-if(memo[i][k] != -1) return memo[i][k];
-return memo[i][k] = min(dp(i,k-1),dp(i + (1 << (k-1)), k-1));
+    if(i >= SIZE) return 0;
+    if(k == 0) {
+        return v[i];
+    }
+    if(memo[i][k] != -1) return memo[i][k];
+    return memo[i][k] = min(dp(i,k-1),dp(i + (1 << (k-1)), k-1));
 }
 ```
 
@@ -73,15 +73,46 @@ vector<int> v(SIZE);
 for(int i = 0; i < SIZE; i++) {
     memo[i][0] = v[i];
 }
-for(int i = 0; i < SIZE; i++) {
-    for(int k = 1; k <= log2(SIZE); k++) {
-        memo[i][k] = min(memo[i][k-1], memo[i + (1 << (k-1))][k-1]);
+for(int k = 1; k <= log2(SIZE); k++) {
+    for(int i = 0; i < SIZE; i++) {
+        if(i + (1 << k -1) >= SIZE) {
+            memo[i][k] = memo[i][k-1];
+        } else {
+            memo[i][k] = op(memo[i][k-1], memo[i + (1 << (k-1))][k-1]);
+        }
     }
 }
 ```
 
 Precisamos apenas computar para potências até log2(SIZE) + 1 porque potências maiores que essa com certeza já são maiores que o vetor.
 
-Outro detalhe de implementação é que temos que tomar cuidado para não acessar fora do vetor, algumas alternativas que temos podem ser por exemplo adicionar um `if(i >= n) return 0;` na versão recusiva. Na versão iterativa podemos fazer de maneira análoga.
+Outro detalhe de implementação é que temos que tomar cuidado para não acessar fora do vetor, algumas alternativas que temos podem ser por exemplo adicionar um `if(i >= SIZE) return 0;` na versão recusiva. Na versão iterativa fazemos de maneira análoga.
+
+Estamos preenchendo uma tabela de tamanho `O(n log n)` aonde `n` é o tamanho da árvore, para preencher cada célula dessa tabela fazemos operações constantes e uma chamada a `op`, então a complexidade de montarmos essa tabela para responder as queries é `O(n log n * K)`, aonde K é a complexidade de `op`.
+
+## Ajustando a consulta
+
+Acima demos alguns exemplos de como podemos usar a recorrência que definimos para computar intervalos específicos, por exemplo para `[4,17]`, escolhemos `(4,3) e (10,7)`. O intervalo em questão tem tamanho 14, então a menor potência de 2 que podemos usar para cobri-lo é 8(2^3). Em geral essa menor potência pode ser calculada pela expressão `log2(b-a)`, aonde log2(x) é o chão do logaritmo de x na base 2 e assumimos que `b > a`.
+
+```
+log2(13) = 3
+log2(14) = 3
+log2(15) = 3
+log2(16) = 4
+.
+.
+.
+```
+
+E sobre as posições da query, a primeira sempre será no começo do intervalo, e a segunda temos que ajustar de forma que o último elemento levado em consideração seja o último.
+```cpp
+int query(int a, int b) {
+	int lg = log2(b-a);
+	return F(tb[a][lg],tb[b-(1 << lg)])
+}
+```
+# Conteúdo complementar
+
+https://www.youtube.com/watch?v=EKcQt-74bNw
 
 # Exercícios recomendados

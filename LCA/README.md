@@ -239,6 +239,9 @@ Com essa abordagem, com preprocessamento `O(n log n)`, podemos responder queries
 
 A segunda abordagem usa uma ideia diferente, mas que também é muito top. Com preprocessamento `O(n log n)` podemos fazer queries de LCA em `O(1)`. Parando pra pensar nisso, é muito poderoso, não importa o quanto seja o tamanho do grafo, teremos a resposta em tempo constante! A ideia para atingir essa complexidade é a seguinte. Sabemos que usando uma Sparse Table(Vide aula de Sparse Table) podemos resolver problemas de RMQ (range minimum query) em `O(1)`, com preprocessamento `O(n log n)` a ideia é construir um vetor de forma que a RMQ nele representa a query de LCA.
 
+## Materiais complementares
+
+https://www.youtube.com/watch?v=EKcQt-74bNw
 
 ## Exercícios recomendados
 - https://codeforces.com/problemset/problem/208/e
