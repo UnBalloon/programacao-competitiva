@@ -134,6 +134,8 @@ int lca(int u, int v) {
 		if(depth[p2k[u][i]] >= depth[v])
 			u = p2k[u][i];	
 	}
+	if(u == v) return u;
+	
 	for (int i = 20; i >= 0; --i) {
 		if(p2k[v][i] != p2k[u][i]) {
 			v = p2k[v][i];
@@ -221,9 +223,6 @@ int main() {
 	pre_proccess_depth(raiz); // tipicamente qual vertice é a raiz nao importa
 	for(int node = 0; node < SIZE; node++){
 		p2k[node][0] = pai[node];
-	}
-	if(u == v) {
-		return u;
 	}
 	for(int node = 0; node < SIZE; node++) {
 		for(int k = 1; k <= log2(SIZE); k++) {
