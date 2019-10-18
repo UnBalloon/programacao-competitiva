@@ -1,4 +1,5 @@
 # Sparse Table
+
 Nesse tutorial vamos falar sobre uma estrutura de dados chamada Sparse Table, que é uma estrutura de dados poderosa para resolvermos range queries de algumas operações específicas em complexidades superiores as de uma Segment Tree por exemplo. 
 
 Por exemplo, uma Sparse Table conseque resolver range minimum(ou maximum) query em `O(1)`, enquanto numa segment tree precisaríamos de `O(log n)`. Outro exemplo poderia ser range query de gcd, numa Segment Tree podemos resolver range queries de GCD em `O(log^2 n)`, já na sparse table conseguimos isso em `O(log n)`. No geral, quando a operação da range query tem uma propriedade chamada idempotência, podemos tirar um log da complexidade usando a Sparse Table.
@@ -39,7 +40,7 @@ Então a complexidade que temos até então para resolver consultas é a seguint
 
 ## Recorrência
 
-Esta é a recorrência da programação dinâmica, nessa recorrência, estamos apenas dizendo o seguinte. O resultado da operação em um intervalo é o resultado da primeira metade combinado com o resultado da segunda metade.
+Esta é a recorrência da programação dinâmica, nessa recorrência, estamos apenas dizendo o seguinte: O resultado da operação em um intervalo é o resultado da primeira metade combinado com o resultado da segunda metade.
 ```cpp
 int dp(int i, int k) {
 if(k == 0) {
@@ -49,7 +50,6 @@ if(k == 0) {
 return op(dp(i,k-1),dp(i + (1 << (k-1)). k-1));
 }
 ```
-
 
 ## Versão recursiva
 
@@ -79,5 +79,9 @@ for(int i = 0; i < SIZE; i++) {
     }
 }
 ```
+
+Precisamos apenas computar para potências até log2(SIZE) + 1 porque potências maiores que essa com certeza já são maiores que o vetor.
+
+Outro detalhe de implementação é que temos que tomar cuidado para não acessar fora do vetor, algumas alternativas que temos podem ser por exemplo adicionar um `if(i >= n) return 0;` na versão recusiva. Na versão iterativa podemos fazer de maneira análoga.
 
 # Exercícios recomendados
