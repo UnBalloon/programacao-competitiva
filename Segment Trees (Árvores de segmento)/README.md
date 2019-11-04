@@ -346,3 +346,16 @@ class  SegTree{
 };
 
 ```
+
+## Problemas recomendados
+* [Compras em FdI](https://www.urionlinejudge.com.br/judge/pt/problems/view/2531)
+* [Produto do Intervalo](https://www.urionlinejudge.com.br/judge/pt/problems/view/1301)
+* [Distinct Characthers](https://codeforces.com/contest/1234/problem/D)
+* [Cards Sorting](https://codeforces.com/contest/830/problem/B)
+* [Ant Colony](https://codeforces.com/contest/474/problem/F)
+* [Xenia and Bit Operations](https://codeforces.com/contest/339/problem/D)
+* [Consultas Horríveis](https://www.urionlinejudge.com.br/judge/pt/problems/view/1500)
+* [SUM and REPLACE](https://codeforces.com/contest/920/problem/F)
+* [Sereja and Brackets](https://codeforces.com/contest/380/problem/C)
+* [Kquery](https://www.spoj.com/problems/KQUERY/)
+* [DQuery](https://www.spoj.com/problems/DQUERY/)
