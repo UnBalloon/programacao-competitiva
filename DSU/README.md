@@ -1,6 +1,6 @@
 # Disjoint-Set/Union-Find
 
-> É recomendado que você leia as aulas de [conceitos de grafos](/Grafos/) e [detecção de ciclos](/Detecção%20de%20ciclos/)
+> É recomendado que você leia as aulas de [conceitos de grafos](/Grafos/) e [detecção de ciclos](/Detecção%20de%20ciclos/) antes dessa
 
 Uma das estruturas de dados mais elegantes existentes é o Union-Find, também conhecido como Disjoint-Set, Merge-Find e DSU. 
 O problema que essa ED resolve é o seguinte: dados vários conjuntos disjuntos, como podemos saber se dois elementos 
