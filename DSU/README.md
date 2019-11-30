@@ -86,7 +86,7 @@ int Find(int x) {
 }
 ```
 
-Aplicar só essa otimização já deixa todas as operações em O(1) amortizado, porque a altura da árvore diminui depois de um Find.
+Aplicar só essa otimização já deixa o Find em [O(log N)](http://e-maxx.ru/bookz/files/dsu/Efficiency%20of%20a%20Good%20But%20Not%20Linear%20Set%20Union%20Algorithm.%20Tarjan.pdf).
 
 ## Union by size
 Enquanto o path compression diminui a altura, o union by size faz as uniões aumentando a altura o mínimo possível. A ideia é que se vamos unir X e Y, e o conjunto de X é menor que o de Y, é melhor apontar X->Y do que Y->X. Vamos então guardar a informação de tamanho de um conjunto no array `S[]`. Importante: com path compression esse array pode não estar certo em todo índice, mas ele sempre está certo para um índice que é representante. O código fica assim:
@@ -110,7 +110,22 @@ void Union(int x, int y) {
 }
 ```
 
-Com isso, as operações de Find podem ser feitas em O(log N) sem path compression. Provar isso fica como exercício ao leitor.
+Com isso, as operações de Find podem ser feitas em O(log N) sem compressão de caminhos. Provar isso fica como exercício ao leitor. 
 
-# Aplicações
-Kruskal, problemas 2000+ no cf, ...
+Utilizando tanto path compression quanto union by size podemos fazer o Find em O(α(N)), onde α é a função inversa de Ackermann. Essa função cresce tão lentamente que é mais fácil considerar ela igual a O(1), mas não escreva isso em uma prova.
+
+Há outras otimizações possíveis que também deixam o Find em O(α(N)), que podem ser encontradas na [Wikipedia](https://en.wikipedia.org/wiki/Disjoint-set_data_structure#Operations).
+
+# Problemas
+> Tente resolver por 10-15 minutos antes de olhar a solução
+
+## [News Distribution](https://codeforces.com/problemset/problem/1167/C)
+<details>
+ <summary>Solução</summary>
+ Um dos jeitos de resolver essa questão é representar os usuários por vértices em um grafo. Se dois usuários estão no mesmo grupo, colocamos uma aresta entre eles. Agora, a resposta para um usuário é o tamanho da componente conexa em que ele se encontra. // TODO: explicar melhor
+</details>
+
+[Código](https://codeforces.com/contest/1167/submission/65958807)
+
+# Material Extra
++ Visualização interativa: https://visualgo.net/en/ufds
