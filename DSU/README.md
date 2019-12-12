@@ -122,10 +122,20 @@ Há outras otimizações possíveis que também deixam o Find em O(α(N)), que p
 ## [News Distribution](https://codeforces.com/problemset/problem/1167/C)
 <details>
  <summary>Solução</summary>
- Um dos jeitos de resolver essa questão é representar os usuários por vértices em um grafo. Se dois usuários estão no mesmo grupo, colocamos uma aresta entre eles. Agora, a resposta para um usuário é o tamanho da componente conexa em que ele se encontra. // TODO: explicar melhor
-</details>
-
+ Primeiro, perceba que se dois grupos tem um membro em comum, por exemplos os grupos A = {1,2} e B = {2,3}, temos uma situação equivalente a ter um grupo só C = {1,2,3}. Isso acontece, porque sempre que temos uma intersecção entre dois grupos ela distribui as notícias de um grupo para o outro. No conjunto final, C, a resposta (the number of users that will know the news if user i starts distributing it) de todos os membros é a mesma, o tamanho do conjunto. Sendo assim, podemos, para cada grupo do input, unir todos os membros em um conjunto de uma DSU. Após isso, já podemos responder as perguntas em O(1) para cada usuário. Para mais detalhes da implementação, o código está disponibilizado abaixo. // TODO: review
+ </details>
+ 
 [Código](https://codeforces.com/contest/1167/submission/65958807)
 
+## [Quando não usar path compression](https://www.urionlinejudge.com.br/judge/pt/problems/view/1476)
+<details>
+ <summary>Dica</summary>
+ Ordene as arestas por peso do maior para o menor. Colocando aresta por aresta no grafo, quando dois vértices ficam conectados pela primeira vez, o caminho que existe entre eles é o melhor possível, visto que qualquer aresta colocada depois disso tem peso menor (ou igual). // TODO
+</details>
+<details>
+ <summary>Solução</summary> 
+ 
+</details>
+ 
 # Material Extra
 + Visualização interativa: https://visualgo.net/en/ufds
