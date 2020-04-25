@@ -1,5 +1,9 @@
 # Começando
 
+## Porque eu deveria me interessar em maratona de programacao?
+
+Maratona de programacao eh um esporte da mente muito interessante e muito legal quando praticado num grupo com todo mundo interessado. Alem de ser legal, trabalha muitos conhecimentos gerais de ciencia da computacao e matematica, sendo assim uma coisa legal de ter no curriculo. Durante a pratica, aprimora-se a habilidade de resolucao de problemas, util para qualquer cientista da computacao, e tambem conhecida por ser cobrada em entrevistas de empresas gigantes da tecnologia (e boas pagadoras) como Google, Microsoft, Facebook e Amazon. 
+
 ## Juízes Online - Como praticar
 
 Na disciplina, haverão diversos exercícios de fixação do conteúdo de cada semana, mas para ficar muito bom em resolver problemas, é necessário mais prática. As ferramentas para isso são os juízes online(OJs), que contam com competições(contests) semanais e **muitos** exercícios para que você pratique. 
