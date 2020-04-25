@@ -2,7 +2,7 @@
 
 ## Juízes Online - Como praticar
 
-Na disciplina, haverão diversos exercícios de fixação do conteúdo de cada semana, mas para ficar bom em resolver problemas, é necessário mais prática. As ferramentas para isso são os juízes online(OJs), que contam com competições(contests) semanais e **muitos** exercícios para que você pratique. 
+Na disciplina, haverão diversos exercícios de fixação do conteúdo de cada semana, mas para ficar muito bom em resolver problemas, é necessário mais prática. As ferramentas para isso são os juízes online(OJs), que contam com competições(contests) semanais e **muitos** exercícios para que você pratique. 
 
 Normalmente, nos contests semanais, os problemas estão (ou pelo menos tentam fazer assim) ordenados em ordem de dificuldade, então, um bom exercício seria pegar vários contests desses OJs e resolver vários problemas 'A'. Quando os problemas 'A' parecerem simples, vá para os problemas 'B', assim que você conseguir resolver consistentemente os problemas 'A' e 'B', você já estará com uma base sólida de resolução de problemas.
 
