@@ -52,7 +52,7 @@ O seu programa foi encerrado com algum erro durante a execução. Isso pode ser 
 
 # Comunidade de maratona de programacao
 
-Reddit : https://www.reddit.com/r/maratona/
+Se voce esta interessado, entre nas comunidades de Brasilia e do Brasil! Eh importante conhecer pessoas mais experientes que vao orientar durante seus treinos, e tambem tendo amigos na maratona eh muito mais facil de se manter motivado!
 
 Telegram Matatona Brasil : t.me/maratonabrasil
 
@@ -61,3 +61,4 @@ https://t.me/avisosunballoon
 
 https://t.me/joinchat/DRxx10GKFnLMk6mDJjzZsQ
 
+Reddit : https://www.reddit.com/r/maratona/ (menos usado)
