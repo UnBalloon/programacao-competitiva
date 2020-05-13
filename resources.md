@@ -8,6 +8,7 @@ Aqui ficam links para conteudos ainda nao cobertos pelo nosso material. Provavel
 - [Static-to-dynamic in decomposable searching problems](https://codeforces.com/blog/entry/67263) - cool trick para transformar EDs estaticas em dinamicas.
 - [Argumento do troco ou ordenacao com dp](https://codeforces.com/blog/entry/63533)
 - [Sums and Expected Value - part 2](https://codeforces.com/blog/entry/62792)
+- [Slope Trick](https://codeforces.com/blog/entry/77298) - o blog original nao explica mt coisa, esse detalha bem mais
 - [Nim](https://codeforces.com/blog/entry/66040)
 - [Matroid intersection](https://codeforces.com/blog/entry/69287)
 - [Dynamic convex hull](https://codeforces.com/blog/entry/75929) - Supports point deletion
