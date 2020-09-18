@@ -71,7 +71,7 @@ int atual = 0;
 
 for(int i = 0; i < n; i++){
     atual += delta[i];
-    v[i] = atual;
+    v[i] += atual;
 }
 
 for(int i = 0; i < n; i++){
